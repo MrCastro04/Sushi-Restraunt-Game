@@ -16,7 +16,7 @@ namespace Modules.Features.Characters.Base.Code
             _agent = GetComponent<NavMeshAgent>();
         }
 
-        public virtual async UniTask MoveTo(Transform targetTransform, float timeToPosition)
+        protected async UniTask MoveTo(Transform targetTransform, float timeToPosition)
         {
             _agent.SetDestination(targetTransform.position);
             
