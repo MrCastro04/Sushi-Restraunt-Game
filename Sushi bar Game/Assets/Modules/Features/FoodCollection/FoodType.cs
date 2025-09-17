@@ -1,7 +1,8 @@
 ﻿namespace Modules.Features.FoodCollection
 {
-    public class FoodCollection
+    public enum FoodType
     {
-        
+        Lemonade,
+        Burger
     }
 }
