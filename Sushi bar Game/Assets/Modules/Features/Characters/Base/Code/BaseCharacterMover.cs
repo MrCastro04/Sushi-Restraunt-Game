@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Modules.Features.Characters.Base.Code
 {
     public abstract class BaseCharacterMover : MonoBehaviour
     {
-        public async UniTask MoveTo(Transform targetTransform, float timeToPosition)
+        public virtual async UniTask MoveTo(Transform targetTransform, float timeToPosition)
         {
           UniTask moveTask = gameObject.transform.DOMove(targetTransform.position, timeToPosition).AsyncWaitForCompletion().AsUniTask();
 
