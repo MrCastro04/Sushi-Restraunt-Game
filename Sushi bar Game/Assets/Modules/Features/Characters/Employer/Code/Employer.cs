@@ -7,23 +7,14 @@ namespace Modules.Features
 {
     public class Employer : BaseCharacterMover
     {
-        [SerializeField] private float _immitationTime;
         [SerializeField] private LoadingCircle _loadingCircle;
-
-        private void Awake()
-        {
-            _loadingCircle.gameObject.SetActive(false);
-        }
+        [SerializeField] private float _immitationTime;
 
         public override async UniTask MoveTo(Transform targetTransform, float timeToPosition)
         {
             await base.MoveTo(targetTransform, timeToPosition);
 
-            _loadingCircle.gameObject.SetActive(true);
-            
             await _loadingCircle.RunImmitation(_immitationTime);
-
-            _loadingCircle.gameObject.SetActive(false);
         }
     }
 }
