@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class LoadingCircle : MonoBehaviour
 
     private float _currentFill;
     
-    public async void RunImmitation(float immitationTime)
+    public async UniTask RunImmitation(float immitationTime)
     {
         _circleImage.fillAmount = 0;
         
