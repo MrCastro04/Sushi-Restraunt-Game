@@ -20,7 +20,7 @@ namespace Modules.Features
             await base.MoveTo(targetTransform, timeToPosition);
 
             _loadingCircle.gameObject.SetActive(true);
-
+            
             await _loadingCircle.RunImmitation(_immitationTime);
 
             _loadingCircle.gameObject.SetActive(false);
