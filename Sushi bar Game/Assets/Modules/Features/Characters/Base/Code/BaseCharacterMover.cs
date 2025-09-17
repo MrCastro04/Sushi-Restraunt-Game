@@ -2,20 +2,29 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Modules.Features.Characters.Base.Code
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public abstract class BaseCharacterMover : MonoBehaviour
     {
+        protected NavMeshAgent _agent;
+
+        private void Awake()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+        }
+
         public virtual async UniTask MoveTo(Transform targetTransform, float timeToPosition)
         {
-          UniTask moveTask = gameObject.transform.DOMove(targetTransform.position, timeToPosition).AsyncWaitForCompletion().AsUniTask();
-
-          UniTask rotateTask = gameObject.transform.DOLookAt(targetTransform.position, timeToPosition).AsyncWaitForCompletion().AsUniTask();
-
-          await UniTask.WhenAll(moveTask,rotateTask);
-
-          await gameObject.transform.DORotateQuaternion(targetTransform.rotation, 0.2f).AsyncWaitForCompletion();
+            _agent.SetDestination(targetTransform.position);
+            
+            await UniTask.WaitWhile(() => _agent.hasPath).AsTask().AsUniTask();
+            
+            await gameObject.transform
+                .DORotateQuaternion(targetTransform.rotation, 0.2f)
+                .AsyncWaitForCompletion();  
         }
     }
 }
