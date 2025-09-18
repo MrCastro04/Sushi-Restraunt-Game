@@ -19,12 +19,12 @@ namespace Modules.Features.Characters.Base.Code
         protected async UniTask MoveTo(Transform targetTransform, float timeToPosition)
         {
             _agent.SetDestination(targetTransform.position);
-            
-            await UniTask.WaitWhile(() => _agent.hasPath).AsTask().AsUniTask();
-            
+
+            await UniTask.WaitWhile(() => _agent.hasPath);
+
             await gameObject.transform
                 .DORotateQuaternion(targetTransform.rotation, 0.2f)
-                .AsyncWaitForCompletion();  
+                .AsyncWaitForCompletion();
         }
     }
 }
