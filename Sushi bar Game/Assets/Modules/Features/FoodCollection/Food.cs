@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Modules.Features.FoodCollection
+﻿namespace Modules.Features.FoodCollection
 {
-    public class Food
+    public struct Food
     {
         private FoodType _foodType;
         public FoodType FoodType => _foodType;

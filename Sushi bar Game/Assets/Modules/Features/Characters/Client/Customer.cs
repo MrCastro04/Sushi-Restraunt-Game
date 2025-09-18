@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using Cysharp.Threading.Tasks;
 using Modules.Features.Characters.Base.Code;
 using UnityEngine;
@@ -11,7 +9,7 @@ namespace Modules.Features.Characters.Client
     {
         [SerializeField] private PointMono _buyPoint;
 
-        [SerializeField] private Worker.Code.Worker _worker;
+        [SerializeField] private Employer.Code.Employer employer;
 
         private Vector3 _startPosition;
         private Quaternion _startRotation;
@@ -28,7 +26,7 @@ namespace Modules.Features.Characters.Client
 
         private void OnEnable()
         {
-            _worker.OnSellFood += () => _getFood = true;
+            employer.OnSellFood += () => _getFood = true;
         }
 
         private async void Start()

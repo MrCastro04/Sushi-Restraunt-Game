@@ -4,9 +4,9 @@ using Modules.Features.Characters.Base.Code;
 using Modules.Features.Characters.Client;
 using UnityEngine;
 
-namespace Modules.Features.Characters.Worker.Code
+namespace Modules.Features.Characters.Employer.Code
 {
-    public class Worker : BaseCharacterMover
+    public class Employer : BaseCharacterMover
     {
         [SerializeField] private PointMono _gatheringPoint;
         [SerializeField] private PointMono _sellPoint;
@@ -26,19 +26,23 @@ namespace Modules.Features.Characters.Worker.Code
             _customer.OnGetDestination -= RunWorkFlow;
         }
 
-        private async void RunWorkFlow()
+        private async void RunWorkFlow( )
         {
-            await MoveTo(_sellPoint.Position, _sellPoint.Rotation);
+            await GoToPoint(_sellPoint,true);
 
-            await _loadingCircle.RunImmitation(_immitationTime);
+            await GoToPoint(_gatheringPoint, true);
 
-            await MoveTo(_gatheringPoint.Position, _gatheringPoint.Rotation);
-
-            await _loadingCircle.RunImmitation(_immitationTime);
-
-            await MoveTo(_sellPoint.Position, _sellPoint.Rotation);
-
+            await GoToPoint(_sellPoint);
+            
             OnSellFood?.Invoke();
+        }
+        
+        private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false)
+        {
+            await MoveTo(pointMono.Position, pointMono.Rotation);
+
+            if (withImmitation)
+                await _loadingCircle.RunImmitation(_immitationTime);
         }
     }
 }

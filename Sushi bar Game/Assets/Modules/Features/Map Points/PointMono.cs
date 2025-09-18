@@ -11,7 +11,7 @@ namespace Modules.Features
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
         public PointType PointType => _pointType;
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = _gizmosColor;
