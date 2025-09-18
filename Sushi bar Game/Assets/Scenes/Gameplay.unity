@@ -445,6 +445,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 669895245}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &396870660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8867836298929816980, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
+  m_PrefabInstance: {fileID: 6607325499491438226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5d8dd471d9466fb39b134c2ce5cc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &492810690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,8 +1049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 0
-  _gizmosColor: {r: 0, g: 0, b: 0, a: 0}
+  _pointType: 1
+  _gizmosColor: {r: 0, g: 1, b: 0.8354206, a: 1}
   _gizmosSize: 0.5
 --- !u!1001 &1979934970
 PrefabInstance:
@@ -1124,8 +1135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca64136bf344b6791e318f4257df069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buyPoint: {fileID: 1846187490}
-  _timeToPoint: 5
+  _buyPoint: {fileID: 1846187491}
+  _worker: {fileID: 396870660}
 --- !u!1 &2099700775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1247,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2752531840605525552, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
       propertyPath: m_Name
-      value: Employer
+      value: Worker
       objectReference: {fileID: 0}
     - target: {fileID: 8405951181526451656, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1285,7 +1296,19 @@ PrefabInstance:
     - target: {fileID: 8867836298929816980, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
       propertyPath: _sellPoint
       value: 
-      objectReference: {fileID: 24993501}
+      objectReference: {fileID: 24993502}
+    - target: {fileID: 8867836298929816980, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
+      propertyPath: _timeToPoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867836298929816980, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
+      propertyPath: _gatheringPoint
+      value: 
+      objectReference: {fileID: 803814553}
+    - target: {fileID: 8867836298929816980, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
+      propertyPath: _immitationTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

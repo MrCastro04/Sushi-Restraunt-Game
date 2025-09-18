@@ -12,18 +12,18 @@ namespace Modules.Features.Characters.Base.Code
     {
         protected NavMeshAgent _agent;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
         }
 
-        protected async UniTask MoveTo(Transform targetTransform)
+        protected async UniTask MoveTo(Vector3 targetPosition, Quaternion targetRotation)
         {
-            _agent.SetDestination(targetTransform.position);
+            _agent.SetDestination(targetPosition);
 
-            await UniTask.WaitWhile(() => _agent.hasPath);
+            await UniTask.WaitUntil(() => _agent.hasPath == false);
 
-            await gameObject.transform.DORotateQuaternion(targetTransform.rotation, 0.2f);
+            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Modules.Features
         [SerializeField] private Color _gizmosColor = Color.blue;
         [SerializeField] private float _gizmosSize = 0.5f;
 
+        public Vector3 Position => transform.position;
+        public Quaternion Rotation => transform.rotation;
         public PointType PointType => _pointType;
 
         private void OnDrawGizmos()
