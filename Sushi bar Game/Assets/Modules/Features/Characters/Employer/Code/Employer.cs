@@ -1,16 +1,14 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Modules.Features.Characters.Base.Code;
-using Modules.Features.Characters.Client;
+using Modules.Features.Characters.Customer;
 using UnityEngine;
-
 namespace Modules.Features.Characters.Employer.Code
 {
     public class Employer : BaseCharacterMover
     {
         [SerializeField] private PointMono _gatheringPoint;
         [SerializeField] private PointMono _sellPoint;
-        [SerializeField] private Customer _customer;
         [SerializeField] private LoadingCircle _loadingCircle;
         [SerializeField] private float _immitationTime;
 
@@ -18,15 +16,15 @@ namespace Modules.Features.Characters.Employer.Code
 
         private void OnEnable()
         {
-            _customer.OnGetDestination += RunWorkFlow;
+            EventsCustomer.OnCustomerGetBuyPoint += RunWorkFlow;
         }
 
         private void OnDisable()
         {
-            _customer.OnGetDestination -= RunWorkFlow;
+            EventsCustomer.OnCustomerGetBuyPoint -= RunWorkFlow;
         }
 
-        private async void RunWorkFlow( )
+        private async void RunWorkFlow()
         {
             await GoToPoint(_sellPoint,true);
 

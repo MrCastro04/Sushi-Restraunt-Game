@@ -1,21 +1,18 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Modules.Features.Characters.Base.Code;
 using UnityEngine;
+using Zenject;
 
-namespace Modules.Features.Characters.Client
+namespace Modules.Features.Characters.Customer
 {
     public class Customer : BaseCharacterMover
     {
-        [SerializeField] private PointMono _buyPoint;
-
-        [SerializeField] private Employer.Code.Employer employer;
+        [Inject] private PointMono _buyPoint;
+        [Inject] Employer.Code.Employer employer;
 
         private Vector3 _startPosition;
         private Quaternion _startRotation;
         private bool _getFood = false;
-
-        public event Action OnGetDestination;
 
         protected override void Awake()
         {
@@ -32,9 +29,9 @@ namespace Modules.Features.Characters.Client
         private async void Start()
         {
             await MoveTo(_buyPoint.Position, _buyPoint.Rotation);
-
-            OnGetDestination?.Invoke();
             
+            EventsCustomer.ExecuteCustomerGetBuyPoint();
+
             await UniTask.WaitUntil(() => _getFood);
 
             await MoveTo(_startPosition, _startRotation);
