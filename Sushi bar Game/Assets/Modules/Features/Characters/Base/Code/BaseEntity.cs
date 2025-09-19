@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,7 +6,7 @@ using UnityEngine.AI;
 namespace Modules.Features.Characters.Base.Code
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public abstract class BaseCharacterMover : MonoBehaviour
+    public abstract class BaseEntity : MonoBehaviour
     {
         protected NavMeshAgent _agent;
 
