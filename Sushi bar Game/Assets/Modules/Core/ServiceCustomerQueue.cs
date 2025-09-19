@@ -53,7 +53,7 @@ namespace Modules.Core
             Debug.Log($"Пришел посититель. Посетителей в колекции - {_customers.Count}");
         }
 
-        public void RemoveCustomer(string pointID, Customer customer)
+        public void RemoveCurrentCustomer()
         {
             _customers.Dequeue();
 

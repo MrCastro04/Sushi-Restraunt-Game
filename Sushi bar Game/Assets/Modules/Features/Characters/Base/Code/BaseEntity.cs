@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,8 @@ namespace Modules.Features.Characters.Base.Code
     {
         protected NavMeshAgent _agent;
 
+        protected CancellationToken _cancellationToken => this.GetCancellationTokenOnDestroy();
+        
         protected virtual void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
@@ -19,9 +22,11 @@ namespace Modules.Features.Characters.Base.Code
         {
             _agent.SetDestination(targetPosition);
 
-            await UniTask.WaitUntil(() => _agent.hasPath == false);
+            UniTask waitTask = UniTask.WaitUntil(() => _agent.hasPath == false);
+            
+            await waitTask.AttachExternalCancellation(_cancellationToken);
 
-            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f);
+            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f).WithCancellation(_cancellationToken);
         }
     }
 }
