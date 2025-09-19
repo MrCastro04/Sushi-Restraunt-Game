@@ -1,8 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Modules.Core;
 using Modules.Features.Characters.Base.Code;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 

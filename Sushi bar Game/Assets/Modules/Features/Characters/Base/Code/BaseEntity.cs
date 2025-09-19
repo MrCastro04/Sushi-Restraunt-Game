@@ -22,11 +22,9 @@ namespace Modules.Features.Characters.Base.Code
         {
             _agent.SetDestination(targetPosition);
 
-            UniTask waitTask = UniTask.WaitUntil(() => _agent.hasPath == false);
-            
-            await waitTask.AttachExternalCancellation(_cancellationToken);
+            await UniTask.WaitUntil(() => _agent.hasPath == false, cancellationToken:_cancellationToken);
 
-            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f).WithCancellation(_cancellationToken);
+            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f);
         }
     }
 }
