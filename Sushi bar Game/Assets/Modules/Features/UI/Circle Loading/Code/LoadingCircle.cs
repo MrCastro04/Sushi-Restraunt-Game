@@ -21,7 +21,7 @@ public class LoadingCircle : MonoBehaviour
         
         _circleImage.fillAmount = 0;
         
-        await _circleImage.DOFillAmount(_maxFillAmount, immitationTime).AsyncWaitForCompletion();
+        await _circleImage.DOFillAmount(_maxFillAmount, immitationTime);
         
         gameObject.SetActive(false);
     }
