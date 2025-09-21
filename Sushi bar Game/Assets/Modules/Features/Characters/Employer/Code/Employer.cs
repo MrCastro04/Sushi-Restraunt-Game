@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Core;
+using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using Modules.Features.Characters.Customer;
 using UnityEngine;
@@ -17,15 +18,6 @@ namespace Modules.Features.Characters.Employer.Code
         [Inject] private ServiceCustomerQueue _serviceCustomerQueue;
 
         private bool _isBusy = false;
-        private Vector3 _startPosition;
-        private Quaternion _startRotation;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            _startPosition = transform.position;
-            _startRotation = transform.rotation;
-        }
 
         #region EventSubscription
 
@@ -75,7 +67,7 @@ namespace Modules.Features.Characters.Employer.Code
             {
                 Debug.Log("очередь пустая");
                 _isBusy = false;
-                await MoveTo(_startPosition, _startRotation);
+                // засыпаем
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Core;
 using Modules.Features.Characters.Base.Code;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 
@@ -35,20 +36,22 @@ namespace Modules.Features.Characters.Customer
 
         private async void Start()
         {
-            var buyPoint = _serviceMapPoint.GetFreePointByType(_desiredPointType);
+            var buyPoint = _serviceMapPoint.RegisterAndGetAnyFreePointWithType(_desiredPointType);  
 
             await MoveTo(buyPoint.Position, buyPoint.Rotation);
 
-            EventsCustomer.ExecuteCustomerGetBuyPoint(buyPoint.ID,this);
+            EventsCustomer.ExecuteCustomerGetBuyPoint(buyPoint.ID, this);
 
             await UniTask.WaitUntil(() => _getFood);
+            
+            EventsCustomer.ExecuteCustomerGetFood(this);
 
             await MoveTo(_startPosition, _startRotation);
         }
 
         private void GetFood(Customer customer)
         {
-            if(customer != this) return;
+            if (customer != this) return;
 
             _getFood = true;
         }

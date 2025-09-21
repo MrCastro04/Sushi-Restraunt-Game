@@ -5,10 +5,11 @@ using Modules.Features;
 using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Modules.Core
 {
-    public class ServiceMapPoint : IInitializable, IDisposable
+    public class ServiceMapPoint
     {
         private readonly PointMono[] _mapPoints;
 
@@ -17,20 +18,23 @@ namespace Modules.Core
             _mapPoints = mapPoints;
         }
 
-        public void Initialize()
+        public PointMono RegisterAndGetAnyFreePointWithType(PointType pointType)
         {
-            EventsCustomer.OnGetBuyPoint += MarkTargetPointAsNonEmpty;
-        }
+            var freePoints = _mapPoints.Where(x => x.IsEmpty & x.PointType == pointType).ToArray();
 
-        public void Dispose()
-        {
-            EventsCustomer.OnGetBuyPoint += MarkTargetPointAsNonEmpty;
-        }
+            if (freePoints.Any() == false)
+            {
+                Debug.Log("Свободных мест нет");
+                return null;
+            }
 
-        public PointMono GetFreePointByType(PointType pointType)
-        {
-            return _mapPoints.FirstOrDefault(x => x.IsEmpty & x.PointType == pointType);
+            var randomFreePoint = freePoints[Random.Range(0, freePoints.Length)];
+
+            MarkTargetPointAsNonEmpty(randomFreePoint.ID);
+
+            return randomFreePoint;
         }
+        
 
         public PointMono GetFreePointByID(string id)
         {
@@ -46,20 +50,20 @@ namespace Modules.Core
 
             var targetID = $"S{numberID}";
 
-            return _mapPoints.FirstOrDefault(x => x.ID == targetID && x.PointType == PointType.Sell);
+            return _mapPoints.FirstOrDefault(x => x.ID == targetID & x.PointType == PointType.Sell);
         }
 
-        private void MarkTargetPointAsNonEmpty(string pointID, Customer customer)
+        private void MarkTargetPointAsNonEmpty(string pointID)
         {
             var point = _mapPoints.FirstOrDefault(x => x.ID == pointID);
-
+            
             if (point == null)
             {
                 Debug.Log($"|{this}| not foundTargetPoint");
                 return;
             }
 
-            point.SetNotEmpty(customer);
+            point.SetNotEmpty();
         }
     }
 }
