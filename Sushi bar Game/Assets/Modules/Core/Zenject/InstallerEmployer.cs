@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Core
+namespace Modules.Core.Zenject
 {
     public class InstallerEmployer : MonoInstaller
     {

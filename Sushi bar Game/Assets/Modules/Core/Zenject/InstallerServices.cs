@@ -1,10 +1,9 @@
 ﻿using Modules.Core.Services;
 using Modules.Features;
-using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Core
+namespace Modules.Core.Zenject
 {
     public class InstallerServices : MonoInstaller
     {

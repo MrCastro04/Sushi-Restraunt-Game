@@ -1,13 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using Modules.Features;
-using Modules.Features.Characters.Customer;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Modules.Core
+namespace Modules.Core.Services
 {
     public class ServiceMapPoint
     {

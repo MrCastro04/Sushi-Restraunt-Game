@@ -10,7 +10,6 @@ namespace Modules.Features.Characters.Base.Code
     public abstract class BaseEntity : MonoBehaviour
     {
         protected NavMeshAgent _agent;
-
         protected CancellationToken _cancellationToken => this.GetCancellationTokenOnDestroy();
         
         protected virtual void Awake()
