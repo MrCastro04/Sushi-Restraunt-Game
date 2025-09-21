@@ -8,21 +8,13 @@ namespace Modules.Features.Characters.Customer
 {
     public class Customer : BaseEntity
     {
-        [Inject] private ServiceMapPoint _serviceMapPoint;
-
+       [Inject] private ServiceMapPoint _serviceMapPoint;
         private Vector3 _startPosition;
         private Quaternion _startRotation;
         private bool _getFood = false;
 
         private PointType _desiredPointType => PointType.Buy;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            _startPosition = transform.position;
-        }
-
+        
         private void OnEnable()
         {
             EventsCustomer.OnGetFood += GetFood;
@@ -35,17 +27,17 @@ namespace Modules.Features.Characters.Customer
 
         private async void Start()
         {
-            var buyPoint = _serviceMapPoint.RegisterAndGetAnyFreePointWithType(_desiredPointType);  
+            var buyPoint = _serviceMapPoint.RegisterAndGetAnyFreePointWithType(_desiredPointType);
 
             await MoveTo(buyPoint.Position, buyPoint.Rotation);
 
             EventsCustomer.ExecuteCustomerGetBuyPoint(buyPoint.ID, this);
 
             await UniTask.WaitUntil(() => _getFood);
-            
-            EventsCustomer.ExecuteCustomerGetFood(this);
 
             await MoveTo(_startPosition, _startRotation);
+
+            EventsCustomer.ExecuteCustomerLeft(this);
         }
 
         private void GetFood(Customer customer)

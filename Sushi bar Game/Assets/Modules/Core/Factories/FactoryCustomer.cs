@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Modules
+namespace Modules.Core.Factories
 {
     public class FactoryCustomer : IFactory<Customer>
     {

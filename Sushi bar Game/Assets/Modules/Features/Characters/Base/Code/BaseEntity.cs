@@ -3,19 +3,15 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace Modules.Features.Characters.Base.Code
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class BaseEntity : MonoBehaviour
     {
-        protected NavMeshAgent _agent;
+       [SerializeField] protected NavMeshAgent _agent;
         protected CancellationToken _cancellationToken => this.GetCancellationTokenOnDestroy();
-        
-        protected virtual void Awake()
-        {
-            _agent = GetComponent<NavMeshAgent>();
-        }
 
         protected async UniTask MoveTo(Vector3 targetPosition, Quaternion targetRotation)
         {

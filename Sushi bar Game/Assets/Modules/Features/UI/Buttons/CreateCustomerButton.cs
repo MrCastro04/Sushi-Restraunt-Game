@@ -1,4 +1,5 @@
 ﻿using Modules.Core;
+using Modules.Core.Factories;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
