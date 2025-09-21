@@ -1,28 +1,26 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityEditor.PackageManager;
 
 namespace Modules.Features.Characters.Customer
 {
     public static class EventsCustomer
     {
+        public static event Action<Customer> OnLeft;
         public static event Action<string,Customer> OnGetBuyPoint;
-        public static event Action<string, Customer> OnLeftBuyPoint;
-        public static event Action<Customer> OnGetFood;
+        public static event Action<string,Customer> OnGetFood;
+
+        public static void ExecuteCustomerLeft(Customer customer)
+        {
+            OnLeft?.Invoke(customer);
+        }
         
         public static void ExecuteCustomerGetBuyPoint( string pointID,Customer customer)
         {
             OnGetBuyPoint?.Invoke(pointID, customer);
         }
-        public static void ExecuteCustomerLeftBuyPoint(string pointID,Customer customer)
-        {
-            OnLeftBuyPoint?.Invoke(pointID, customer);
-        }
 
-
-        public static void ExecuteCustomerGetFood(Customer customer)
+        public static void ExecuteCustomerGetFood(string pointID,Customer customer)
         {
-            OnGetFood?.Invoke(customer);
+            OnGetFood?.Invoke(pointID,customer);
         }
     }
 }

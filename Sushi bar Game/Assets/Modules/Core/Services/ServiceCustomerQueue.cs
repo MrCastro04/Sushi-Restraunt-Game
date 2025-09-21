@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.Features;
 using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Core
+namespace Modules.Core.Services
 {
     public class ServiceCustomerQueue
     {
@@ -39,7 +38,7 @@ namespace Modules.Core
 
         public bool IsQueueEmpty()
         {
-            if (_customers.Count > 0)
+            if (_customers.Any())
                 return false;
 
             return true;
@@ -53,7 +52,7 @@ namespace Modules.Core
             Debug.Log($"Пришел посититель. Посетителей в колекции - {_customers.Count}");
         }
 
-        public void RemoveCustomer(string pointID, Customer customer)
+        public void RemoveCurrentCustomer()
         {
             _customers.Dequeue();
 

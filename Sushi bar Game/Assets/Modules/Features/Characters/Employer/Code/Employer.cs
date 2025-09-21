@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Modules.Core;
+using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using Modules.Features.Characters.Customer;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 
@@ -35,6 +32,8 @@ namespace Modules.Features.Characters.Employer.Code
         }
 
         #endregion
+
+        #region WorkFlow
 
         private async void RunWorkFlow(string pointID, Customer.Customer customer)
         {
@@ -68,6 +67,7 @@ namespace Modules.Features.Characters.Employer.Code
             {
                 Debug.Log("очередь пустая");
                 _isBusy = false;
+                // засыпаем
             }
         }
 
@@ -81,11 +81,13 @@ namespace Modules.Features.Characters.Employer.Code
 
             await GoToPoint(sellPoint);
 
-            EventsCustomer.ExecuteCustomerGetFood(customer);
+            EventsCustomer.ExecuteCustomerGetFood(pointID,customer);
 
-            _serviceCustomerQueue.RemoveCustomer(pointID, customer);
+            _serviceCustomerQueue.RemoveCurrentCustomer();
         }
 
+        #endregion
+        
         private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false)
         {
             await MoveTo(pointMono.Position, pointMono.Rotation);

@@ -1,5 +1,6 @@
 using System;
 using Modules.Core;
+using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using UnityEngine;
 using Zenject;
@@ -17,8 +18,7 @@ namespace Modules.Features
         
         private bool _isEmpty = true;
         private BaseEntity _baseEntity;
-
-        public BaseEntity BaseEntity => _baseEntity;
+        
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
         public PointType PointType => _pointType;
@@ -31,19 +31,8 @@ namespace Modules.Features
             Gizmos.DrawSphere(transform.position, _gizmosSize);
         }
         
-        public void SetNotEmpty(BaseEntity baseEntity)
-        {
-            _isEmpty = false;
-
-            _baseEntity = baseEntity;
-        }
-
-        public void SetEmpty()
-        {
-            _isEmpty = true;
-
-            _baseEntity = null;
-        }
+        public void SetNotEmpty() => _isEmpty = false;
+        public void SetEmpty() => _isEmpty = true;
     }
 
     public enum PointType

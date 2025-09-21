@@ -225,9 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5d8dd471d9466fb39b134c2ce5cc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agent: {fileID: 1042629776477989856}
   _gatheringPoint: {fileID: 0}
-  _sellPoint: {fileID: 0}
-  _customer: {fileID: 0}
   _loadingCircle: {fileID: 5901344798756576435}
   _immitationTime: 5
 --- !u!195 &1042629776477989856

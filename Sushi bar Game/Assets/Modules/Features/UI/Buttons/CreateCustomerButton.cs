@@ -1,4 +1,5 @@
 ﻿using Modules.Core;
+using Modules.Core.Factories;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,7 +11,7 @@ namespace Modules.Features.UI.Buttons
     {
         [SerializeField] private Transform _spawnCusmomersTransform;
 
-        [Inject] private FactoryClients _factoryClients;
+        [Inject] private FactoryCustomer _factoryCustomer;
 
         private Button _button;
 
@@ -23,7 +24,7 @@ namespace Modules.Features.UI.Buttons
 
         private void OnClick()
         {
-            _factoryClients.CreateAt(_spawnCusmomersTransform.position, _spawnCusmomersTransform.rotation);
+            _factoryCustomer.CreateItemIn(_spawnCusmomersTransform.position, _spawnCusmomersTransform.rotation);
         }
     }
 }
