@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Modules.Features.Characters.Customer
     public class Customer : BaseEntity
     {
        [Inject] private ServiceMapPoint _serviceMapPoint;
+       
         private Vector3 _startPosition;
         private Quaternion _startRotation;
         private bool _getFood = false;
@@ -25,7 +27,7 @@ namespace Modules.Features.Characters.Customer
             EventsCustomer.OnGetFood -= GetFood;
         }
 
-        private async void Start()
+        public async void WorkFlow()
         {
             var buyPoint = _serviceMapPoint.RegisterAndGetAnyFreePointWithType(_desiredPointType);
 
@@ -36,11 +38,13 @@ namespace Modules.Features.Characters.Customer
             await UniTask.WaitUntil(() => _getFood);
 
             await MoveTo(_startPosition, _startRotation);
-
+            
+            _getFood = false;
+            
             EventsCustomer.ExecuteCustomerLeft(this);
         }
 
-        private void GetFood(Customer customer)
+        private void GetFood(string pointID,Customer customer)
         {
             if (customer != this) return;
 

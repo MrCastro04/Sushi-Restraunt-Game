@@ -41,6 +41,8 @@ namespace Modules.@new
       
             customer.gameObject.SetActive(true);
 
+            customer.WorkFlow();
+
             return customer;
         }
 

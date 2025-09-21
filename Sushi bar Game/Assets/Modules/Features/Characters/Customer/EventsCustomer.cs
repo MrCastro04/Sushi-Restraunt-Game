@@ -6,7 +6,7 @@ namespace Modules.Features.Characters.Customer
     {
         public static event Action<Customer> OnLeft;
         public static event Action<string,Customer> OnGetBuyPoint;
-        public static event Action<Customer> OnGetFood;
+        public static event Action<string,Customer> OnGetFood;
 
         public static void ExecuteCustomerLeft(Customer customer)
         {
@@ -18,9 +18,9 @@ namespace Modules.Features.Characters.Customer
             OnGetBuyPoint?.Invoke(pointID, customer);
         }
 
-        public static void ExecuteCustomerGetFood(Customer customer)
+        public static void ExecuteCustomerGetFood(string pointID,Customer customer)
         {
-            OnGetFood?.Invoke(customer);
+            OnGetFood?.Invoke(pointID,customer);
         }
     }
 }

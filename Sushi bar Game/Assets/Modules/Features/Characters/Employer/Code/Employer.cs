@@ -81,7 +81,7 @@ namespace Modules.Features.Characters.Employer.Code
 
             await GoToPoint(sellPoint);
 
-            EventsCustomer.ExecuteCustomerGetFood(customer);
+            EventsCustomer.ExecuteCustomerGetFood(pointID,customer);
 
             _serviceCustomerQueue.RemoveCurrentCustomer();
         }

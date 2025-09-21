@@ -30,8 +30,16 @@ namespace Modules.Core.Services
 
             return randomFreePoint;
         }
-        
 
+        public void UnRegisterPointWithID(string pointID)
+        {
+            var point = _mapPoints.FirstOrDefault(x => !x.IsEmpty & x.ID == pointID);
+
+            if(point == null) return;
+            
+            point.SetEmpty();
+        }
+        
         public PointMono GetFreePointByID(string id)
         {
             return _mapPoints.FirstOrDefault(x => x.ID == id);
@@ -52,7 +60,7 @@ namespace Modules.Core.Services
         private void MarkTargetPointAsNonEmpty(string pointID)
         {
             var point = _mapPoints.FirstOrDefault(x => x.ID == pointID);
-            
+
             if (point == null)
             {
                 Debug.Log($"|{this}| not foundTargetPoint");
