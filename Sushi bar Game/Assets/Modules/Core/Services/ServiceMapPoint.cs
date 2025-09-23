@@ -9,18 +9,18 @@ namespace Modules.Core.Services
 {
     public class ServiceMapPoint
     {
-        private readonly Dictionary<string, MapPointInfo> _mapPoints;
+        private readonly Dictionary<string, MapPointInfo> _mapPointsInfo;
         
         public ServiceMapPoint(CollectionMapPoints collectionMapPoints)
         {
-            _mapPoints = collectionMapPoints.BasePoints;
+            _mapPointsInfo = collectionMapPoints.MapPoints;
         }
 
         public void RegisterPointWithID(string pointID)
         {
-            if (_mapPoints.ContainsKey(pointID))
+            if (_mapPointsInfo.ContainsKey(pointID))
             {
-                _mapPoints[pointID].PointMono.SetNotEmpty();
+                _mapPointsInfo[pointID].PointMono.SetNotEmpty();
             }
             else
             {
@@ -30,9 +30,9 @@ namespace Modules.Core.Services
 
         public void UnRegisterPointWithID(string pointID)
         {
-            if (_mapPoints.ContainsKey(pointID))
+            if (_mapPointsInfo.ContainsKey(pointID))
             {
-                _mapPoints[pointID].PointMono.SetEmpty();
+                _mapPointsInfo[pointID].PointMono.SetEmpty();
             }
             else
             {
@@ -42,7 +42,7 @@ namespace Modules.Core.Services
 
         public PointMono GetAnyFreePointWithType(PointType pointType)
         {
-            var freePoints = _mapPoints.Where(
+            var freePoints = _mapPointsInfo.Where(
                     x =>
                         x.Value.PointMono.IsEmpty &
                         x.Value.PointType == pointType)
@@ -61,7 +61,7 @@ namespace Modules.Core.Services
 
         public PointMono GetFreePointByID(string id)
         {
-            return _mapPoints.FirstOrDefault(x => x.Key == id).Value.PointMono;
+            return _mapPointsInfo.FirstOrDefault(x => x.Key == id).Value.PointMono;
         }
 
         public PointMono GetNeighboringPointForEmployer(string pointID)
@@ -73,7 +73,7 @@ namespace Modules.Core.Services
 
             var employerPointID = $"S{customerPointIDNumber}";
 
-            var point = _mapPoints.FirstOrDefault(
+            var point = _mapPointsInfo.FirstOrDefault(
                 x =>
                     x.Key == employerPointID &
                     x.Value.PointType == PointType.Sell &

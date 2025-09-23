@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 24993501}
   - component: {fileID: 24993502}
   m_Layer: 0
-  m_Name: Sell Point
+  m_Name: S1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 24993500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: -17.4}
+  m_LocalPosition: {x: -1.5, y: 0, z: -17.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,7 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 266491984}
   m_Layer: 0
-  m_Name: Buy
+  m_Name: Buy Point (B)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,8 +907,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266491983}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.82, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1813,6 +1813,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f5cddc7174f730e47948f8dd0af2d032, type: 3}
   m_PrefabInstance: {fileID: 458063867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &459154307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 459154308}
+  m_Layer: 0
+  m_Name: Gathering Point (G)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &459154308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459154307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 803814552}
+  m_Father: {fileID: 1127670297}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &467348793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2907,7 +2939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656192405}
   m_Layer: 0
-  m_Name: Sell
+  m_Name: Sell Point (S)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2921,8 +2953,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656192404}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.82, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3544,7 +3576,7 @@ GameObject:
   - component: {fileID: 803814552}
   - component: {fileID: 803814553}
   m_Layer: 0
-  m_Name: Gathering Point
+  m_Name: G1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3560,10 +3592,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7010125, z: -0.000000059604638, w: 0.713149}
   m_LocalPosition: {x: 2.2021694, y: 0, z: -18.375772}
-  m_LocalScale: {x: 60.00001, y: 60.00002, z: 60.00002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1127670297}
+  m_Father: {fileID: 459154308}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &803814553
 MonoBehaviour:
@@ -3664,7 +3696,7 @@ GameObject:
   - component: {fileID: 883520977}
   - component: {fileID: 883520978}
   m_Layer: 0
-  m_Name: Sell Point (2)
+  m_Name: S2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3679,7 +3711,7 @@ Transform:
   m_GameObject: {fileID: 883520976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 0, z: -17.4}
+  m_LocalPosition: {x: 0.5, y: 0, z: -17.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3710,7 +3742,7 @@ GameObject:
   - component: {fileID: 905988141}
   - component: {fileID: 905988142}
   m_Layer: 0
-  m_Name: Buy Point 2
+  m_Name: B2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3725,7 +3757,7 @@ Transform:
   m_GameObject: {fileID: 905988140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 15, y: 0, z: -14.4}
+  m_LocalPosition: {x: 0.5, y: 0, z: -14.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4552,8 +4584,8 @@ Transform:
   m_Children:
   - {fileID: 266491984}
   - {fileID: 656192405}
-  - {fileID: 1278385577}
-  - {fileID: 803814552}
+  - {fileID: 1566266002}
+  - {fileID: 459154308}
   m_Father: {fileID: 1337633498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1127670298
@@ -4577,6 +4609,7 @@ MonoBehaviour:
     - {fileID: 24993502}
     - {fileID: 883520978}
     - {fileID: 803814553}
+    - {fileID: 1278385578}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -4595,7 +4628,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -4695,6 +4728,27 @@ MonoBehaviour:
     - Name: PointType
       Entry: 3
       Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: CS1
+    - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
+      Entry: 10
+      Data: 5
+    - Name: PointType
+      Entry: 3
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -5247,8 +5301,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278385577}
+  - component: {fileID: 1278385578}
   m_Layer: 0
-  m_Name: Customer Spawn Point
+  m_Name: CS1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5263,12 +5318,26 @@ Transform:
   m_GameObject: {fileID: 1278385576}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.82, y: 0, z: 0}
+  m_LocalPosition: {x: 0.56, y: 0, z: -7.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1127670297}
+  m_Father: {fileID: 1566266002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278385578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278385576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gizmosColor: {r: 0, g: 0, b: 1, a: 1}
+  _gizmosSize: 0.5
 --- !u!1001 &1284450641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6120,6 +6189,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c3f0a5b5d31a5b44be2a66fb5265ca1, type: 3}
   m_PrefabInstance: {fileID: 1492026487}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1566266001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566266002}
+  m_Layer: 0
+  m_Name: Customer Spawn Point (CS)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566266002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566266001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1278385577}
+  m_Father: {fileID: 1127670297}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1582456649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7069,7 +7170,7 @@ GameObject:
   - component: {fileID: 1846187490}
   - component: {fileID: 1846187491}
   m_Layer: 0
-  m_Name: Buy Point 1
+  m_Name: B1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7084,7 +7185,7 @@ Transform:
   m_GameObject: {fileID: 1846187489}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 13, y: 0, z: -14.4}
+  m_LocalPosition: {x: -1.5, y: 0, z: -14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
