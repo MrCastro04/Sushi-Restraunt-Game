@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using Modules.Features;
-using Modules.Features.Map_Points;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Zenject;
+using UnityEngine;
 
 namespace Modules.Core.Serializeable_Collections.Map_Points
 {
     public class CollectionMapPoints : SerializedMonoBehaviour
     {
-        [OdinSerialize] public Dictionary<string, PointMono> BasePoints { get; private set; }
+        [OdinSerialize] public Dictionary<string, MapPointInfo> BasePoints { get; private set; }
 
         public void Init()
         {

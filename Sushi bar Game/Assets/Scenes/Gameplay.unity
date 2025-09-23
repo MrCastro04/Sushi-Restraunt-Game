@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 1
   _gizmosColor: {r: 0.654088, g: 0.0061705397, b: 0.011969862, a: 1}
   _gizmosSize: 0.5
 --- !u!1001 &28746042
@@ -569,41 +568,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8405951181526451656, guid: c031ab8bf07e438bb890e29d9f0c49db, type: 3}
   m_PrefabInstance: {fileID: 6607325499491438226}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &199374796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 199374797}
-  m_Layer: 0
-  m_Name: Points Mono
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &199374797
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199374796}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.82, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 266491984}
-  - {fileID: 656192405}
-  - {fileID: 1278385577}
-  - {fileID: 803814552}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &224459096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -943,14 +907,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266491983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1846187490}
   - {fileID: 905988141}
-  m_Father: {fileID: 199374797}
+  m_Father: {fileID: 1127670297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &267108454
 GameObject:
@@ -2957,14 +2921,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656192404}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 24993501}
   - {fileID: 883520977}
-  m_Father: {fileID: 199374797}
+  m_Father: {fileID: 1127670297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &656543757
 PrefabInstance:
@@ -3595,11 +3559,11 @@ Transform:
   m_GameObject: {fileID: 803814551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7010125, z: -0.000000059604638, w: 0.713149}
-  m_LocalPosition: {x: 17.02217, y: 0, z: -18.375772}
+  m_LocalPosition: {x: 2.2021694, y: 0, z: -18.375772}
   m_LocalScale: {x: 60.00001, y: 60.00002, z: 60.00002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 199374797}
+  m_Father: {fileID: 1127670297}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &803814553
 MonoBehaviour:
@@ -3613,7 +3577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 2
   _gizmosColor: {r: 0.9811321, g: 0.8839231, b: 0.2252283, a: 1}
   _gizmosSize: 0.5
 --- !u!1001 &820919843
@@ -3734,7 +3697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 1
   _gizmosColor: {r: 0.654088, g: 0.0061705397, b: 0.011969862, a: 1}
   _gizmosSize: 0.5
 --- !u!1 &905988140
@@ -3781,7 +3743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 0
   _gizmosColor: {r: 0, g: 1, b: 0.8354206, a: 1}
   _gizmosSize: 0.5
 --- !u!1001 &911247893
@@ -4588,8 +4549,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1278328009}
+  m_Children:
+  - {fileID: 266491984}
+  - {fileID: 656192405}
+  - {fileID: 1278385577}
+  - {fileID: 803814552}
+  m_Father: {fileID: 1337633498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1127670298
 MonoBehaviour:
@@ -4619,7 +4584,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: BasePoints
       Entry: 7
-      Data: 0|Unity.VisualScripting.FlexibleDictionary`2[[System.String, mscorlib],[Modules.Features.Map_Points.PointMono,
+      Data: 0|Unity.VisualScripting.FlexibleDictionary`2[[System.String, mscorlib],[Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo,
         Assembly-CSharp]], Unity.VisualScripting.Core
     - Name: comparer
       Entry: 7
@@ -4638,8 +4603,17 @@ MonoBehaviour:
       Entry: 1
       Data: B1
     - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
       Entry: 10
       Data: 0
+    - Name: PointType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -4650,8 +4624,17 @@ MonoBehaviour:
       Entry: 1
       Data: B2
     - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
       Entry: 10
       Data: 1
+    - Name: PointType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -4662,8 +4645,17 @@ MonoBehaviour:
       Entry: 1
       Data: S1
     - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
       Entry: 10
       Data: 2
+    - Name: PointType
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -4674,8 +4666,17 @@ MonoBehaviour:
       Entry: 1
       Data: S2
     - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
       Entry: 10
       Data: 3
+    - Name: PointType
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -4686,8 +4687,17 @@ MonoBehaviour:
       Entry: 1
       Data: G1
     - Name: $v
+      Entry: 7
+      Data: Modules.Core.Serializeable_Collections.Map_Points.MapPointInfo, Assembly-CSharp
+    - Name: PointMono
       Entry: 10
       Data: 4
+    - Name: PointType
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -5228,38 +5238,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e38c6709ab4ed94dbfa0e8a3703c9df, type: 3}
   m_PrefabInstance: {fileID: 1270315097}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1278328008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1278328009}
-  m_Layer: 0
-  m_Name: === SERIALIZE COLLECTIONS ===
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1278328009
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278328008}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1127670297}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1278385576
 GameObject:
   m_ObjectHideFlags: 0
@@ -5284,12 +5262,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278385576}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 199374797}
+  m_Father: {fileID: 1127670297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1284450641
 PrefabInstance:
@@ -5690,7 +5668,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1127670297}
   m_Father: {fileID: 1325131337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1337633499
@@ -5705,6 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ed999836314e79831a379ec39686a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectionMapPoints: {fileID: 1127670298}
 --- !u!1001 &1367821029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7122,7 +7102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointType: 0
   _gizmosColor: {r: 0, g: 1, b: 0.8354206, a: 1}
   _gizmosSize: 0.5
 --- !u!1001 &1860888246
@@ -8583,5 +8562,3 @@ SceneRoots:
   - {fileID: 2140557162}
   - {fileID: 1230978073}
   - {fileID: 2062893496}
-  - {fileID: 1278328009}
-  - {fileID: 199374797}
