@@ -1,6 +1,7 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Modules.Features;
+using Modules.Core.Serializeable_Collections.Map_Points;
+using Modules.Features.Map_Points;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,42 +9,44 @@ namespace Modules.Core.Services
 {
     public class ServiceMapPoint
     {
-        private readonly PointMono[] _mapPoints;
+        private readonly Dictionary<string, MapPointInfo> _mapPoints;
         
-        public ServiceMapPoint(PointMono[] mapPoints)
+        public ServiceMapPoint(CollectionMapPoints collectionMapPoints)
         {
-            _mapPoints = mapPoints;
+            _mapPoints = collectionMapPoints.BasePoints;
         }
 
         public void RegisterPointWithID(string pointID)
         {
-            var poinWithID = _mapPoints.FirstOrDefault(x => x.ID == pointID);
-
-            if (poinWithID == null)
+            if (_mapPoints.ContainsKey(pointID))
             {
-                Debug.Log("Точку с таким ID несуществует");
-                return;
+                _mapPoints[pointID].PointMono.SetNotEmpty();
             }
-            
-            poinWithID.SetNotEmpty();
+            else
+            {
+                Debug.Log("Такой точки не существует");
+            }
         }
 
         public void UnRegisterPointWithID(string pointID)
         {
-            var point = _mapPoints.FirstOrDefault(x => x.ID == pointID);
-
-            if (point == null)
+            if (_mapPoints.ContainsKey(pointID))
             {
-                Debug.Log("Точку с таким ID несуществует");
-                return;
+                _mapPoints[pointID].PointMono.SetEmpty();
             }
-
-            point.SetEmpty();
+            else
+            {
+                Debug.Log("Такой точки не существует");
+            }
         }
 
         public PointMono GetAnyFreePointWithType(PointType pointType)
         {
-            var freePoints = _mapPoints.Where(x => x.IsEmpty & x.PointType == pointType).ToArray();
+            var freePoints = _mapPoints.Where(
+                    x =>
+                        x.Value.PointMono.IsEmpty &
+                        x.Value.PointType == pointType)
+                .ToArray();
 
             if (freePoints.Any() == false)
             {
@@ -51,16 +54,14 @@ namespace Modules.Core.Services
                 return null;
             }
 
-            var randomFreePoint = freePoints[Random.Range(0, freePoints.Length)];
-
-            randomFreePoint.SetNotEmpty();
+            var randomFreePoint = freePoints[Random.Range(0, freePoints.Length)].Value.PointMono;
 
             return randomFreePoint;
         }
 
         public PointMono GetFreePointByID(string id)
         {
-            return _mapPoints.FirstOrDefault(x => x.ID == id);
+            return _mapPoints.FirstOrDefault(x => x.Key == id).Value.PointMono;
         }
 
         public PointMono GetNeighboringPointForEmployer(string pointID)
@@ -68,12 +69,15 @@ namespace Modules.Core.Services
             if (pointID.Length < 2)
                 return null;
 
-            var numberID = pointID.Substring(1);
+            var customerPointIDNumber = pointID.Substring(1);
 
-            var targetID = $"S{numberID}";
+            var employerPointID = $"S{customerPointIDNumber}";
 
-            var point = _mapPoints.FirstOrDefault(x =>
-                x.ID == targetID & x.PointType == PointType.Sell & x.IsEmpty);
+            var point = _mapPoints.FirstOrDefault(
+                x =>
+                    x.Key == employerPointID &
+                    x.Value.PointType == PointType.Sell &
+                    x.Value.PointMono.IsEmpty).Value.PointMono;
 
             if (point == null)
                 return null;

@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
+using Modules.Features.Map_Points;
 using UnityEngine;
 using Zenject;
 
