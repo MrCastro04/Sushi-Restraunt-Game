@@ -156,7 +156,6 @@ Transform:
   - {fileID: 492810694}
   - {fileID: 194593636}
   - {fileID: 1979934971}
-  - {fileID: 199374797}
   - {fileID: 1741222068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -204,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: S1
   _pointType: 1
   _gizmosColor: {r: 0.654088, g: 0.0061705397, b: 0.011969862, a: 1}
   _gizmosSize: 0.5
@@ -596,14 +594,15 @@ Transform:
   m_GameObject: {fileID: 199374796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -14.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 266491984}
   - {fileID: 656192405}
   - {fileID: 1278385577}
-  m_Father: {fileID: 4667724}
+  - {fileID: 803814552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &224459096
 PrefabInstance:
@@ -1228,9 +1227,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a93ab29cfa905940a43852b34251aea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 458063868}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a93ab29cfa905940a43852b34251aea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 803814552}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a93ab29cfa905940a43852b34251aea, type: 3}
       insertIndex: -1
@@ -3598,12 +3594,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803814551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.0192, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7010125, z: -0.000000059604638, w: 0.713149}
+  m_LocalPosition: {x: 17.02217, y: 0, z: -18.375772}
+  m_LocalScale: {x: 60.00001, y: 60.00002, z: 60.00002}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 319417403}
+  m_Father: {fileID: 199374797}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &803814553
 MonoBehaviour:
@@ -3617,7 +3613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: G1
   _pointType: 2
   _gizmosColor: {r: 0.9811321, g: 0.8839231, b: 0.2252283, a: 1}
   _gizmosSize: 0.5
@@ -3739,7 +3734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: S2
   _pointType: 1
   _gizmosColor: {r: 0.654088, g: 0.0061705397, b: 0.011969862, a: 1}
   _gizmosSize: 0.5
@@ -3754,7 +3748,7 @@ GameObject:
   - component: {fileID: 905988141}
   - component: {fileID: 905988142}
   m_Layer: 0
-  m_Name: Buy Point  (1)
+  m_Name: Buy Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3787,7 +3781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: B2
   _pointType: 0
   _gizmosColor: {r: 0, g: 1, b: 0.8354206, a: 1}
   _gizmosSize: 0.5
@@ -4488,11 +4481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b328228eb547d2a7fd762918f3a55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePoints:
-  - {fileID: 1846187491}
-  - {fileID: 905988142}
-  - {fileID: 24993502}
-  - {fileID: 883520978}
 --- !u!1001 &1107512792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4571,6 +4559,144 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c20b3c0862d0614bb01435b4606dd77, type: 3}
   m_PrefabInstance: {fileID: 1107512792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1127670296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127670297}
+  - component: {fileID: 1127670298}
+  m_Layer: 0
+  m_Name: Map Points Collection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127670297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127670296}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1278328009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127670298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127670296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d67501af0114fd09b54043de6b18af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 1846187491}
+    - {fileID: 905988142}
+    - {fileID: 24993502}
+    - {fileID: 883520978}
+    - {fileID: 803814553}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: BasePoints
+      Entry: 7
+      Data: 0|Unity.VisualScripting.FlexibleDictionary`2[[System.String, mscorlib],[Modules.Features.Map_Points.PointMono,
+        Assembly-CSharp]], Unity.VisualScripting.Core
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: B1
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: B2
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: S1
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: S2
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: G1
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1001 &1130085561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5102,6 +5228,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e38c6709ab4ed94dbfa0e8a3703c9df, type: 3}
   m_PrefabInstance: {fileID: 1270315097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1278328008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278328009}
+  m_Layer: 0
+  m_Name: === SERIALIZE COLLECTIONS ===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1278328009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278328008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1127670297}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1278385576
 GameObject:
   m_ObjectHideFlags: 0
@@ -5390,6 +5548,7 @@ Transform:
   - {fileID: 1620543451}
   - {fileID: 1033793263}
   - {fileID: 1299710026}
+  - {fileID: 1337633498}
   m_Father: {fileID: 1230978073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325131338
@@ -5406,6 +5565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 1337633499}
   - {fileID: 585373417}
   - {fileID: 1033793264}
   - {fileID: 1299710027}
@@ -5501,6 +5661,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 148f1f4e937193b4c830793ecfe5ae77, type: 3}
   m_PrefabInstance: {fileID: 1327218187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1337633497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337633498}
+  - component: {fileID: 1337633499}
+  m_Layer: 0
+  m_Name: Installer Serializeable Collections
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337633498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337633497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1325131337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337633499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337633497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ed999836314e79831a379ec39686a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1367821029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6885,7 +7089,7 @@ GameObject:
   - component: {fileID: 1846187490}
   - component: {fileID: 1846187491}
   m_Layer: 0
-  m_Name: 'Buy Point '
+  m_Name: Buy Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6918,7 +7122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02223d9b5f9bdb448af73a15024dce62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: B1
   _pointType: 0
   _gizmosColor: {r: 0, g: 1, b: 0.8354206, a: 1}
   _gizmosSize: 0.5
@@ -8380,3 +8583,5 @@ SceneRoots:
   - {fileID: 2140557162}
   - {fileID: 1230978073}
   - {fileID: 2062893496}
+  - {fileID: 1278328009}
+  - {fileID: 199374797}

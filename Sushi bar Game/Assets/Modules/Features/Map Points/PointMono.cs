@@ -1,15 +1,13 @@
-using System;
-using Modules.Core;
 using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Features
+namespace Modules.Features.Map_Points
 {
     public class PointMono : MonoBehaviour
     {
-        [SerializeField] private string _id;
+       private string _id;
         [SerializeField] private PointType _pointType;
         [SerializeField] private Color _gizmosColor = Color.blue;
         [SerializeField] private float _gizmosSize = 0.5f;
@@ -24,6 +22,11 @@ namespace Modules.Features
         public PointType PointType => _pointType;
         public bool IsEmpty => _isEmpty;
         public string ID => _id;
+ 
+        public void Init(string id)
+        {
+            _id = id;
+        }
 
         private void OnDrawGizmos()
         {

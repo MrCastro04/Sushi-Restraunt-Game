@@ -3,6 +3,7 @@ using Modules.Core;
 using Modules.Core.Services;
 using Modules.Features.Characters.Base.Code;
 using Modules.Features.Characters.Customer;
+using Modules.Features.Map_Points;
 using UnityEngine;
 using Zenject;
 
