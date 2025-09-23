@@ -29,13 +29,17 @@ namespace Modules.Features.Characters.Customer
 
         public async void WorkFlow()
         {
-            var buyPoint = _serviceMapPoint.RegisterAndGetAnyFreePointWithType(_desiredPointType);
+            var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_desiredPointType);
+            
+            _serviceMapPoint.RegisterPointWithID(buyPoint.ID);
 
             await MoveTo(buyPoint.Position, buyPoint.Rotation);
 
             EventsCustomer.ExecuteCustomerGetBuyPoint(buyPoint.ID, this);
 
             await UniTask.WaitUntil(() => _getFood);
+            
+            _serviceMapPoint.UnRegisterPointWithID(buyPoint.ID);
 
             await MoveTo(_startPosition, _startRotation);
             

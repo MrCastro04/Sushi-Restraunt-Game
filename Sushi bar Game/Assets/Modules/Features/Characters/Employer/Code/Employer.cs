@@ -75,6 +75,8 @@ namespace Modules.Features.Characters.Employer.Code
         {
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
+           _serviceMapPoint.RegisterPointWithID(sellPoint.ID);
+           
             await GoToPoint(sellPoint, true);
 
             await GoToPoint(_gatheringPoint, true);
@@ -83,6 +85,8 @@ namespace Modules.Features.Characters.Employer.Code
 
             EventsCustomer.ExecuteCustomerGetFood(pointID,customer);
 
+            _serviceMapPoint.UnRegisterPointWithID(sellPoint.ID);
+            
             _serviceCustomerQueue.RemoveCurrentCustomer();
         }
 
