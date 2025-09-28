@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using Modules.Core.Serializeable_Collections.Map_Points;
 using Zenject;
 
 namespace Modules.Core.Zenject
 {
     public class InstallerManagers : MonoInstaller
     {
-        [SerializeField] private Transform _customerSpawnPoint;
-        
         public override void InstallBindings()
         {
+            BindManagerCustomerQueue();
+        }
+
+        private void BindManagerCustomerQueue()
+        {
+            var resolveCollectionMapPoints = Container.Resolve<CollectionMapPoints>();
+
+            // взять позицию точки с ID - CS1 ( "Customer Spawn 1") .
+            var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CS1"].PointMono.Position;
+
             Container
                 .BindInterfacesAndSelfTo<ManagerCustomerQueue>()
                 .AsSingle()
-                .WithArguments(_customerSpawnPoint.position);
+                .WithArguments(postionDefaultSpawnPoint);
         }
     }
 }

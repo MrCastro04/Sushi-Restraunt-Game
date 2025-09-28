@@ -15,7 +15,7 @@ public class ManagerCustomerQueue : IInitializable, IDisposable
     private readonly int _startSpawnCustomerCount = 2;
     
     public ManagerCustomerQueue(
-        FactoryCustomer factoryCustomer
+          FactoryCustomer factoryCustomer
         , ServiceMapPoint serviceMapPoint
         , Vector3 spawnPosition)
     {

@@ -37,6 +37,7 @@ namespace Modules.Features.Map_Points
     {
         Buy,
         Sell,
-        GatheringFood
+        GatheringFood,
+        CustomerSpawnPoint
     }
 }
