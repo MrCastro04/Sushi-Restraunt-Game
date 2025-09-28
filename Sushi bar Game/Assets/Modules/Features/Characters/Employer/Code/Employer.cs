@@ -9,8 +9,10 @@ using Zenject;
 
 namespace Modules.Features.Characters.Employer.Code
 {
+    [RequireComponent(typeof(EmployerServiceAnimator))]
     public class Employer : BaseEntity
     {
+        [SerializeField] private EmployerServiceAnimator _employerServiceAnimator;
         [SerializeField] private PointMono _gatheringPoint;
         [SerializeField] private LoadingCircle _loadingCircle;
         [SerializeField] private float _immitationTime;
@@ -76,29 +78,43 @@ namespace Modules.Features.Characters.Employer.Code
         {
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
-           _serviceMapPoint.RegisterPointWithID(sellPoint.ID);
-           
+            _serviceMapPoint.RegisterPointWithID(sellPoint.ID);
+            
             await GoToPoint(sellPoint, true);
-
+            
             await GoToPoint(_gatheringPoint, true);
+            
+            await GoToPoint(sellPoint, false , true);
 
-            await GoToPoint(sellPoint);
-
-            EventsCustomer.ExecuteCustomerGetFood(pointID,customer);
+            EventsCustomer.ExecuteCustomerGetFood(pointID, customer);
 
             _serviceMapPoint.UnRegisterPointWithID(sellPoint.ID);
-            
+
             _serviceCustomerQueue.RemoveCurrentCustomer();
         }
 
         #endregion
-        
-        private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false)
+
+        private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false, bool withFood = false)
         {
+            _employerServiceAnimator.PlayAnimationWalking(withFood);
+            
             await MoveTo(pointMono.Position, pointMono.Rotation);
 
+            switch (pointMono.PointType)
+            {
+                case PointType.Sell:
+                    _employerServiceAnimator.PlayAnimationIdle();
+                    break;
+                
+                case PointType.GatheringFood:
+                    _employerServiceAnimator.PlayAnimationChopChopFood();
+                    break;
+            }
             if (withImmitation)
+            {
                 await _loadingCircle.RunImmitation(_immitationTime);
+            }
         }
     }
 }
