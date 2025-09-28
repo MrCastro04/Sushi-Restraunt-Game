@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Modules.Content.Map_Points;
 using Modules.Core.Serializeable_Collections.Map_Points;
-using Modules.Features.Map_Points;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,11 +9,11 @@ namespace Modules.Core.Services
 {
     public class ServiceMapPoint
     {
-        private readonly Dictionary<string, MapPointInfo> _mapPointsInfo;
+        private readonly Dictionary<string, PointMonoInfo> _mapPointsInfo;
         
-        public ServiceMapPoint(CollectionMapPoints collectionMapPoints)
+        public ServiceMapPoint(CollectionPointsMono collectionPointsMono)
         {
-            _mapPointsInfo = collectionMapPoints.MapPoints;
+            _mapPointsInfo = collectionPointsMono.MapPoints;
         }
 
         public void RegisterPointWithID(string pointID)

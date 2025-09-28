@@ -6,7 +6,7 @@ namespace Modules.Core.Zenject
 {
     public class InstallerSerializeableCollections : MonoInstaller
     {
-        [SerializeField] private CollectionMapPoints _collectionMapPoints;
+        [SerializeField] private CollectionPointsMono collectionPointsMono;
         
         public override void InstallBindings()
         {
@@ -16,10 +16,10 @@ namespace Modules.Core.Zenject
         private void BindCollectionMapPoints()
         {
             Container
-                .BindInstance(_collectionMapPoints)
+                .BindInstance(collectionPointsMono)
                 .AsSingle();
 
-            var resolve = Container.Resolve<CollectionMapPoints>();
+            var resolve = Container.Resolve<CollectionPointsMono>();
             resolve.Init();
         }
     }

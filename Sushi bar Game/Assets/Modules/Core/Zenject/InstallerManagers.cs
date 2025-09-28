@@ -12,7 +12,7 @@ namespace Modules.Core.Zenject
 
         private void BindManagerCustomerQueue()
         {
-            var resolveCollectionMapPoints = Container.Resolve<CollectionMapPoints>();
+            var resolveCollectionMapPoints = Container.Resolve<CollectionPointsMono>();
 
             // взять позицию точки с ID - CS1 ( "Customer Spawn 1") .
             var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CS1"].PointMono.Position;

@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
+using Modules.Content.Map_Points;
 using Modules.Core.Services;
 using Modules.Features.Characters.Customer;
-using Modules.Features.Map_Points;
 using UnityEngine;
 using Zenject;
 

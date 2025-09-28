@@ -1,6 +1,7 @@
+using Modules.Features.FoodCollection;
 using UnityEngine;
 
-namespace Modules.Features.Map_Points
+namespace Modules.Content.Map_Points
 {
     public class PointMono : MonoBehaviour
     {
@@ -8,19 +9,22 @@ namespace Modules.Features.Map_Points
         [SerializeField] private float _gizmosSize = 0.5f;
         
         private PointType _pointType;
+        private FoodType _foodType;
         private string _id;
         private bool _isEmpty = true;
 
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
         public PointType PointType => _pointType;
+        public FoodType FoodType => _foodType;
         public bool IsEmpty => _isEmpty;
         public string ID => _id;
  
-        public void Init(string id, PointType pointerType)
+        public void Init(string id, PointType pointerType, FoodType foodType)
         {
             _id = id;
             _pointType = pointerType;
+            _foodType = foodType;
         }
 
         private void OnDrawGizmos()

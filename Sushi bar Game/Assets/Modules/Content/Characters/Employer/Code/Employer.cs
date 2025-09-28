@@ -1,9 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
+using Modules.Content.Map_Points;
+using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;
 using Modules.Features.Characters.Customer;
 using Modules.Features.Characters.Employer.Code;
-using Modules.Features.Map_Points;
 using UnityEngine;
 using Zenject;
 
@@ -12,16 +13,31 @@ namespace Modules.Content.Characters.Employer.Code
     [RequireComponent(typeof(EmployerServiceAnimator))]
     public class Employer : BaseEntity
     {
-        [Inject] private ServiceMapPoint _serviceMapPoint;
-        [Inject] private ServiceCustomerQueue _serviceCustomerQueue;
-        
-        [SerializeField] private PointMono _gatheringPoint;
         [SerializeField] private LoadingCircle _loadingCircle;
         [SerializeField] private float _immitationTime;
 
+        private ServiceMapPoint _serviceMapPoint;
+        private ServiceCustomerQueue _serviceCustomerQueue;
         private EmployerServiceAnimator _employerServiceAnimator;
+        private PointMono _gatheringPoint;
         private bool _isBusy = false;
 
+        #region Dependecies
+        [Inject]
+        private void Construct(
+            ServiceMapPoint serviceMapPoint,
+            ServiceCustomerQueue serviceCustomerQueue
+            , CollectionPointsMono collectionPointsMono)
+        {
+            _serviceMapPoint = serviceMapPoint;
+
+            _serviceCustomerQueue = serviceCustomerQueue;
+
+            _gatheringPoint = _serviceMapPoint.GetAnyFreePointWithType(PointType.GatheringFood);
+        }
+        
+        #endregion
+        
         protected override void Awake()
         {
             base.Awake();
@@ -86,12 +102,12 @@ namespace Modules.Content.Characters.Employer.Code
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
             _serviceMapPoint.RegisterPointWithID(sellPoint.ID);
-            
+
             await GoToPoint(sellPoint, true);
-            
+
             await GoToPoint(_gatheringPoint, true);
-            
-            await GoToPoint(sellPoint, false , true);
+
+            await GoToPoint(sellPoint, false, true);
 
             EventsCustomer.ExecuteCustomerGetFood(pointID, customer);
 
@@ -103,9 +119,9 @@ namespace Modules.Content.Characters.Employer.Code
         #endregion
 
         private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false, bool withFood = false)
-        { 
+        {
             _employerServiceAnimator.PlayAnimationWalking(withFood);
-            
+
             await MoveTo(pointMono.Position, pointMono.Rotation);
 
             switch (pointMono.PointType)
@@ -113,11 +129,12 @@ namespace Modules.Content.Characters.Employer.Code
                 case PointType.Sell:
                     _employerServiceAnimator.PlayAnimationIdle();
                     break;
-                
+
                 case PointType.GatheringFood:
                     _employerServiceAnimator.PlayAnimationChopChopFood();
                     break;
             }
+
             if (withImmitation)
             {
                 await _loadingCircle.RunImmitation(_immitationTime);
