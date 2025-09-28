@@ -1,4 +1,5 @@
-﻿using Modules.Features.Characters.Employer.Code;
+﻿using Modules.Content.Characters.Employer.Code;
+using Modules.Features.Characters.Employer.Code;
 using UnityEngine;
 using Zenject;
 

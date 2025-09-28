@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Modules.Content.Characters.Customer;
 using Modules.Core.Factories;
 using Modules.Core.Services;
 using Modules.Features.Characters.Customer;

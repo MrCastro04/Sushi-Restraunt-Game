@@ -1,4 +1,5 @@
-﻿using Modules.Core.Factories;
+﻿using Modules.Content.Characters.Customer;
+using Modules.Core.Factories;
 using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;

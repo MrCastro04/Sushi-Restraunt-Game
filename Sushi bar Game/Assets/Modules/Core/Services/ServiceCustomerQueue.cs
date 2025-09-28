@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Modules.Content.Characters.Customer;
 using Modules.Features.Characters.Customer;
 using Modules.Features.Map_Points;
 using UnityEngine;

@@ -1,26 +1,33 @@
 ﻿using Cysharp.Threading.Tasks;
-using Modules.Core;
+using Modules.Content.Characters.Base.Code;
 using Modules.Core.Services;
-using Modules.Features.Characters.Base.Code;
 using Modules.Features.Characters.Customer;
+using Modules.Features.Characters.Employer.Code;
 using Modules.Features.Map_Points;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Features.Characters.Employer.Code
+namespace Modules.Content.Characters.Employer.Code
 {
     [RequireComponent(typeof(EmployerServiceAnimator))]
     public class Employer : BaseEntity
     {
-        [SerializeField] private EmployerServiceAnimator _employerServiceAnimator;
+        [Inject] private ServiceMapPoint _serviceMapPoint;
+        [Inject] private ServiceCustomerQueue _serviceCustomerQueue;
+        
         [SerializeField] private PointMono _gatheringPoint;
         [SerializeField] private LoadingCircle _loadingCircle;
         [SerializeField] private float _immitationTime;
 
-        [Inject] private ServiceMapPoint _serviceMapPoint;
-        [Inject] private ServiceCustomerQueue _serviceCustomerQueue;
-
+        private EmployerServiceAnimator _employerServiceAnimator;
         private bool _isBusy = false;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _employerServiceAnimator = GetComponent<EmployerServiceAnimator>();
+        }
 
         #region EventSubscription
 
@@ -38,7 +45,7 @@ namespace Modules.Features.Characters.Employer.Code
 
         #region WorkFlow
 
-        private async void RunWorkFlow(string pointID, Customer.Customer customer)
+        private async void RunWorkFlow(string pointID, Content.Characters.Customer.Customer customer)
         {
             if (_serviceCustomerQueue.IsContainsCustomerID(pointID) &
                 _serviceCustomerQueue.IsContainsCustomer(customer))
@@ -74,7 +81,7 @@ namespace Modules.Features.Characters.Employer.Code
             }
         }
 
-        private async UniTask WorkFlow(string pointID, Customer.Customer customer)
+        private async UniTask WorkFlow(string pointID, Content.Characters.Customer.Customer customer)
         {
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
@@ -96,7 +103,7 @@ namespace Modules.Features.Characters.Employer.Code
         #endregion
 
         private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false, bool withFood = false)
-        {
+        { 
             _employerServiceAnimator.PlayAnimationWalking(withFood);
             
             await MoveTo(pointMono.Position, pointMono.Rotation);
