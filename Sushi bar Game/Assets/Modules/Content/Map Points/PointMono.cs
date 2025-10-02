@@ -1,3 +1,6 @@
+using System;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Modules.Features.FoodCollection;
 using UnityEngine;
 
@@ -19,14 +22,14 @@ namespace Modules.Content.Map_Points
         public FoodType FoodType => _foodType;
         public bool IsEmpty => _isEmpty;
         public string ID => _id;
- 
+  
         public void Init(string id, PointType pointerType, FoodType foodType)
         {
             _id = id;
             _pointType = pointerType;
             _foodType = foodType;
         }
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = _gizmosColor;
