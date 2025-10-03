@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using Modules.Content.Map_Points;
-using Modules.Features.FoodCollection;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using UnityEngine;
 
 namespace Modules.Core.Serializeable_Collections.Map_Points
 {
@@ -18,11 +15,6 @@ namespace Modules.Core.Serializeable_Collections.Map_Points
             {
                 keyValuePair.Value.Init(keyValuePair.Key);
             }
-        }
-
-        public void AddMapPoint(string name, PointMono pointMono, FoodType foodType)
-        {
-            
         }
     }
 }
