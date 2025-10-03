@@ -9,7 +9,7 @@ namespace Modules.Content.UI
     public class ManagerScreen : IInitializable, IDisposable
     {
         private readonly Dictionary<ScreenType, BaseScreen> _baseScreens;
-        private readonly Stack<BaseScreen> _screenHistory;
+        private readonly Stack<BaseScreen> _screenHistory = new(); 
         
         private BaseScreen _currentActiveScreen;
 
@@ -27,6 +27,8 @@ namespace Modules.Content.UI
                    _currentActiveScreen = keyValuePair.Value;
                     
                    _currentActiveScreen.Open();
+                   
+                   _screenHistory.Push(_currentActiveScreen);
                    continue;
                 }
 
@@ -45,20 +47,38 @@ namespace Modules.Content.UI
 
         private void CloseScreen()
         {
-            _currentActiveScreen.Close();
+            if (_currentActiveScreen != null)
+            {
+                _currentActiveScreen.Close();
+            }
 
-            _screenHistory.Pop();
+            if (_screenHistory.Count > 0)
+            {
+                _screenHistory.Pop();
+            }
 
-            _currentActiveScreen = null;
+            if (_screenHistory.Count > 0)
+            {
+                _currentActiveScreen = _screenHistory.Peek();
+                
+                _currentActiveScreen.Open();
+            }
+            else
+            {
+                _currentActiveScreen = null;
+            }
         }
 
         private void OpenScreen(ScreenType screenType)
         {
             if (_baseScreens.ContainsKey(screenType))
             {
-                CloseScreen();
-                
-               _currentActiveScreen = _baseScreens[screenType];
+                if (_currentActiveScreen != null)
+                {
+                    _currentActiveScreen.Close();
+                }
+
+                _currentActiveScreen = _baseScreens[screenType];
                
                _currentActiveScreen.Open();
                
