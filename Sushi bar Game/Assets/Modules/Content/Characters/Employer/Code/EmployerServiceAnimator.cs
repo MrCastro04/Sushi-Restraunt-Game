@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Modules.Features.Characters.Employer.Code
+namespace Modules.Content.Characters.Employer.Code
 {
     [RequireComponent(typeof(Animator))]
     public class EmployerServiceAnimator : MonoBehaviour

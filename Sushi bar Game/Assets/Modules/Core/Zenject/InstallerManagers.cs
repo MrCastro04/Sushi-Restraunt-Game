@@ -1,13 +1,23 @@
-﻿using Modules.Core.Serializeable_Collections.Map_Points;
+﻿using Modules.Core.Managers;
+using Modules.Core.Serializeable_Collections.Map_Points;
 using Zenject;
 
 namespace Modules.Core.Zenject
 {
-    public class InstallerManagers : MonoInstaller
+    public class fInstallerManagers : MonoInstaller
     {
         public override void InstallBindings()
         {
             BindManagerCustomerQueue();
+
+            BindManagerScreen();
+        }
+
+        private void BindManagerScreen()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ManagerScreen>()
+                .AsSingle();
         }
 
         private void BindManagerCustomerQueue()

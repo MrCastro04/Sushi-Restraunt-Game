@@ -1,10 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
+using Modules.Content.Characters.Customer;
 using Modules.Content.Map_Points;
+using Modules.Content.UI.Circle_Loading.Code;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;
-using Modules.Features.Characters.Customer;
-using Modules.Features.Characters.Employer.Code;
 using UnityEngine;
 using Zenject;
 

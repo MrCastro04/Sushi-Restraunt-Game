@@ -2,7 +2,6 @@
 using System.Linq;
 using Modules.Content.Characters.Customer;
 using Modules.Content.Map_Points;
-using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;
 
