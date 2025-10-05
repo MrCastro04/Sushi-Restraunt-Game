@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using UnityEngine;
@@ -10,13 +11,36 @@ namespace Modules.Core.Services
     public class ServiceMapPoint
     {
         private readonly Dictionary<string, PointMonoInfo> _mapPointsInfo;
-        
+
         public ServiceMapPoint(CollectionPointsMono collectionPointsMono)
         {
             _mapPointsInfo = collectionPointsMono.MapPoints;
         }
 
-        public void RegisterPointWithID(string pointID)
+        public void AddNewPoint(PointMono pointMono, PointType pointType, FoodType foodType)
+        {
+            var targetMapPointsInfo = _mapPointsInfo
+                .Where(pair => pair.Value.PointType == pointType);
+
+            var lastPair = targetMapPointsInfo.OrderBy(pair => pair.Key).Last();
+
+            var lastPairIDNumberString = lastPair.Key.Substring(1); 
+
+            if (int.TryParse(lastPairIDNumberString, out int lastNumber))
+            {
+                int newIDNumber = lastNumber + 1; 
+                
+                string newPointIDPrefix = lastPair.Key.Substring(0,1);
+                
+                string newPointID = $"{newPointIDPrefix}{newIDNumber}";
+
+                PointMonoInfo newPointMonoInfo = new(pointMono, pointType, foodType);
+        
+                _mapPointsInfo.Add(newPointID, newPointMonoInfo);
+            }
+        }
+
+        public void SetNonEmptyPointWithID(string pointID)
         {
             if (_mapPointsInfo.ContainsKey(pointID))
             {
@@ -28,7 +52,7 @@ namespace Modules.Core.Services
             }
         }
 
-        public void UnRegisterPointWithID(string pointID)
+        public void SetEmptyPointWithID(string pointID)
         {
             if (_mapPointsInfo.ContainsKey(pointID))
             {
@@ -58,6 +82,25 @@ namespace Modules.Core.Services
 
             return randomFreePoint;
         }
+        
+        public PointMono GetFreeGeneratorPointWithFoodType(FoodType foodType)
+        {
+            var freePoints = _mapPointsInfo.Where(
+                    x =>
+                        x.Value.PointMono.IsEmpty &
+                        x.Value.FoodType == foodType).ToArray();
+
+            if (freePoints.Any() == false)
+            {
+                Debug.Log("Свободных мест нет");
+                return null;
+            }
+
+            var randomFreePoint = freePoints[Random.Range(0, freePoints.Length)].Value.PointMono;
+
+            return randomFreePoint;
+        }
+
 
         public PointMono GetFreePointByID(string id)
         {

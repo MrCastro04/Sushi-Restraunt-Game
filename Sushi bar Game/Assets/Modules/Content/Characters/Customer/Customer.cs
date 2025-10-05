@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
+using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Core.Services;
 using UnityEngine;
@@ -15,9 +16,13 @@ namespace Modules.Content.Characters.Customer
         private CustomerServiceAnimator _customerServiceAnimator;
         private Vector3 _startPosition;
         private Quaternion _startRotation;
+        private FoodType _desiredFoodType = FoodType.Sushi;
         private bool _hasFood = false;
 
+        public FoodType DesiredFoodType => _desiredFoodType;
         private PointType _desiredPointType => PointType.Buy;
+
+        #region Initialize
 
         protected override void Awake()
         {
@@ -30,6 +35,10 @@ namespace Modules.Content.Characters.Customer
             _startRotation = transform.rotation;
         }
 
+        #endregion
+
+        #region EventsSubscription
+
         private void OnEnable()
         {
             EventsCustomer.OnGetFood += GetFood;
@@ -39,20 +48,23 @@ namespace Modules.Content.Characters.Customer
         {
             EventsCustomer.OnGetFood -= GetFood;
         }
+        
+        #endregion
 
+        
         public async void WorkFlow()
         {
             var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_desiredPointType);
 
-            _serviceMapPoint.RegisterPointWithID(buyPoint.ID);
+            _serviceMapPoint.SetNonEmptyPointWithID(buyPoint.ID);
             
             await GoToPoint(buyPoint.Position, buyPoint.Rotation);
 
-            EventsCustomer.ExecuteCustomerGetBuyPoint(buyPoint.ID, this);
+            EventsCustomer.ExecuteCustomerEnterBuyPoint(buyPoint.ID, this);
 
             await UniTask.WaitUntil(() => _hasFood);
 
-            _serviceMapPoint.UnRegisterPointWithID(buyPoint.ID);
+            _serviceMapPoint.SetEmptyPointWithID(buyPoint.ID);
             
             await GoToPoint(_startPosition, _startRotation);
 

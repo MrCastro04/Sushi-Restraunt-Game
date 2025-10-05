@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Modules.Core.Zenject
 {
-    public class fInstallerManagers : MonoInstaller
+    public class InstallerManagers : MonoInstaller
     {
         public override void InstallBindings()
         {

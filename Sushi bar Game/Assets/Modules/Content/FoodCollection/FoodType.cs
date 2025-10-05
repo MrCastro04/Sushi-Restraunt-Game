@@ -2,7 +2,7 @@
 {
     public enum FoodType
     {
-        Lemonade,
-        Burger
+        Sushi,
+        Udon
     }
 }

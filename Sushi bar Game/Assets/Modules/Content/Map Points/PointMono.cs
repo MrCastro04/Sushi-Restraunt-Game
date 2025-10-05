@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using Modules.Content.FoodCollection;
 using UnityEngine;
 
@@ -15,6 +12,7 @@ namespace Modules.Content.Map_Points
         private FoodType _foodType;
         private string _id;
         private bool _isEmpty = true;
+        private bool _hasFoodGenerator;
 
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
@@ -22,7 +20,7 @@ namespace Modules.Content.Map_Points
         public FoodType FoodType => _foodType;
         public bool IsEmpty => _isEmpty;
         public string ID => _id;
-  
+
         public void Init(string id, PointType pointerType, FoodType foodType)
         {
             _id = id;

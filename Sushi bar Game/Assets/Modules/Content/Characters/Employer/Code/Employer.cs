@@ -5,8 +5,10 @@ using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;
+using Modules.New;
 using UnityEngine;
 using Zenject;
+
 
 namespace Modules.Content.Characters.Employer.Code
 {
@@ -16,28 +18,31 @@ namespace Modules.Content.Characters.Employer.Code
         [SerializeField] private LoadingCircle _loadingCircle;
         [SerializeField] private float _immitationTime;
 
+        private ServiceFoodGenerators _serviceFoodGenerators;
         private ServiceMapPoint _serviceMapPoint;
         private ServiceCustomerQueue _serviceCustomerQueue;
         private EmployerServiceAnimator _employerServiceAnimator;
         private PointMono _gatheringPoint;
         private bool _isBusy = false;
 
-        #region Dependecies
+        #region Initialize
+
         [Inject]
         private void Construct(
+            ServiceFoodGenerators serviceFoodGenerators,
             ServiceMapPoint serviceMapPoint,
-            ServiceCustomerQueue serviceCustomerQueue
-            , CollectionPointsMono collectionPointsMono)
+            ServiceCustomerQueue serviceCustomerQueue,
+            CollectionPointsMono collectionPointsMono)
         {
+            _serviceFoodGenerators = serviceFoodGenerators;
+
             _serviceMapPoint = serviceMapPoint;
 
             _serviceCustomerQueue = serviceCustomerQueue;
 
             _gatheringPoint = _serviceMapPoint.GetAnyFreePointWithType(PointType.GatheringFood);
         }
-        
-        #endregion
-        
+
         protected override void Awake()
         {
             base.Awake();
@@ -45,16 +50,18 @@ namespace Modules.Content.Characters.Employer.Code
             _employerServiceAnimator = GetComponent<EmployerServiceAnimator>();
         }
 
+        #endregion
+
         #region EventSubscription
 
         private void OnEnable()
         {
-            EventsCustomer.OnGetBuyPoint += RunWorkFlow;
+            EventsCustomer.OnEnterBuyPoint += RunWorkFlow;
         }
 
         private void OnDisable()
         {
-            EventsCustomer.OnGetBuyPoint -= RunWorkFlow;
+            EventsCustomer.OnEnterBuyPoint -= RunWorkFlow;
         }
 
         #endregion
@@ -97,21 +104,25 @@ namespace Modules.Content.Characters.Employer.Code
             }
         }
 
-        private async UniTask WorkFlow(string pointID, Content.Characters.Customer.Customer customer)
+        private async UniTask WorkFlow(string pointID, Customer.Customer customer)
         {
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
-            _serviceMapPoint.RegisterPointWithID(sellPoint.ID);
+            _serviceMapPoint.SetNonEmptyPointWithID(sellPoint.ID);
 
             await GoToPoint(sellPoint, true);
 
-            await GoToPoint(_gatheringPoint, true);
+            var generator = _serviceFoodGenerators.GetFreeFoodGeneratorByFoodType(customer.DesiredFoodType);
+
+            await GoToPoint(generator.PointMono);
+
+            await generator.StartUse();
 
             await GoToPoint(sellPoint, false, true);
 
             EventsCustomer.ExecuteCustomerGetFood(pointID, customer);
 
-            _serviceMapPoint.UnRegisterPointWithID(sellPoint.ID);
+            _serviceMapPoint.SetEmptyPointWithID(sellPoint.ID);
 
             _serviceCustomerQueue.RemoveCurrentCustomer();
         }

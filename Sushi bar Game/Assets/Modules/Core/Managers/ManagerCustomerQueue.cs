@@ -44,7 +44,7 @@ namespace Modules.Core.Managers
 
         private void CleanPointAndSpawnNewCustomer(string pointID,Customer customer)
         {
-            _serviceMapPoint.UnRegisterPointWithID(pointID);
+            _serviceMapPoint.SetEmptyPointWithID(pointID);
         
             _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
         }
