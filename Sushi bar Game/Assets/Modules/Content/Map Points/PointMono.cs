@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Modules.Features.FoodCollection;
+using Modules.Content.FoodCollection;
 using UnityEngine;
 
 namespace Modules.Content.Map_Points

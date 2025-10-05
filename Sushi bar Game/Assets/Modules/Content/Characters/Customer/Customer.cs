@@ -2,7 +2,6 @@
 using Modules.Content.Characters.Base.Code;
 using Modules.Content.Map_Points;
 using Modules.Core.Services;
-using Modules.Features.Characters.Customer;
 using UnityEngine;
 using Zenject;
 

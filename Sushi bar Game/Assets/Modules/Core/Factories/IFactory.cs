@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Modules
+namespace Modules.Core.Factories
 {
     public interface IFactory<T>
     {

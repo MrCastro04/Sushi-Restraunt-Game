@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Modules.Content.UI
+namespace Modules.Content.UI.Screens.Base
 {
     public class BaseScreen : MonoBehaviour
     {

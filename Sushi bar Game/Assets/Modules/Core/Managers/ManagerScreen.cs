@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Modules.Content.UI;
+using Modules.Content.UI.Buttons.Events;
+using Modules.Content.UI.Screens.Base;
 using Modules.Core.Serializeable_Collections.Screens;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Content.UI
+namespace Modules.Core.Managers
 {
     public class ManagerScreen : IInitializable, IDisposable
     {

@@ -1,4 +1,4 @@
-﻿namespace Modules.Features.FoodCollection
+﻿namespace Modules.Content.FoodCollection
 {
     public enum FoodType
     {

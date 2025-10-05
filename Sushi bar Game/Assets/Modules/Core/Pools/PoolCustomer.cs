@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.Content.Characters.Customer;
+using Modules.Core.Extensions.GameObject_Extention;
 using Modules.Core.Factories;
-using Modules.Features.Characters.Customer;
 using UnityEngine;
 
-namespace Modules.@new
+namespace Modules.Core.Pools
 {
     public class PoolCustomer
     {

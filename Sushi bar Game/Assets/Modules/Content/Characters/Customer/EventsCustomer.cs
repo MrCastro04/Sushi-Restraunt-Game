@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modules.Features.Characters.Customer
+namespace Modules.Content.Characters.Customer
 {
     public static class EventsCustomer
     {

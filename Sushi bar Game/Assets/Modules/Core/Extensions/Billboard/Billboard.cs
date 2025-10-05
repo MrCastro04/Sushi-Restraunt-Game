@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Modules.Features.UI.Billboard
+namespace Modules.Core.Extensions.Billboard
 {
     public class Billboard : MonoBehaviour
     {

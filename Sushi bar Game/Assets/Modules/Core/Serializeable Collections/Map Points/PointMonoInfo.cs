@@ -1,6 +1,6 @@
 ﻿using System;
+using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
-using Modules.Features.FoodCollection;
 
 namespace Modules.Core.Serializeable_Collections.Map_Points
 {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Modules.Content.UI;
+using Modules.Content.UI.Screens.Base;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
