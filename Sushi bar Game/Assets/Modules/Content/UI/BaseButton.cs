@@ -1,4 +1,3 @@
-using Modules.Content.UI;
 using UnityEngine;
 using UnityEngine.UI;
 

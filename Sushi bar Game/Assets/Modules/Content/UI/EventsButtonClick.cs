@@ -1,5 +1,4 @@
 ﻿using System;
-using Modules.Content.UI;
 
 public static class EventsButtonClick
 {
