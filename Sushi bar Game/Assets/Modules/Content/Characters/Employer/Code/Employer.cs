@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
 using Modules.Content.Characters.Customer;
+using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;
 using Modules.Core.Serializeable_Collections.Map_Points;
@@ -66,6 +67,16 @@ namespace Modules.Content.Characters.Employer.Code
 
         #endregion
 
+        public void PlayAnimationCook(FoodType foodType)
+        {
+            switch (foodType)
+            {
+                case FoodType.Sushi:
+                    _employerServiceAnimator.PlayAnimationChopChopFood();
+                    break;
+            }
+        }
+        
         #region WorkFlow
 
         private async void RunWorkFlow(string pointID, Content.Characters.Customer.Customer customer)
@@ -116,7 +127,7 @@ namespace Modules.Content.Characters.Employer.Code
 
             await GoToPoint(generator.PointMono);
 
-            await generator.StartUse();
+            await generator.StartUse(this);
 
             await GoToPoint(sellPoint, false, true);
 
@@ -127,7 +138,7 @@ namespace Modules.Content.Characters.Employer.Code
             _serviceCustomerQueue.RemoveCurrentCustomer();
         }
 
-        #endregion
+       
 
         private async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false, bool withFood = false)
         {
@@ -151,5 +162,6 @@ namespace Modules.Content.Characters.Employer.Code
                 await _loadingCircle.RunImmitation(_immitationTime);
             }
         }
+        #endregion
     }
 }

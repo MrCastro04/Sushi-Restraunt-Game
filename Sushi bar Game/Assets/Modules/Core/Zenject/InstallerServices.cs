@@ -12,12 +12,22 @@ namespace Modules.Core.Zenject
 
             BindServiceCustomerQueue();
 
-            Container
-                .BindInterfacesAndSelfTo<ServiceFoodGenerators>()
-                .AsSingle();
+            BindServiceFoodGenerators();
 
+            BindPlayerResource();
+        }
+
+        private void BindPlayerResource()
+        {
             Container
                 .BindInterfacesAndSelfTo<ServicePlayerResources>()
+                .AsSingle();
+        }
+
+        private void BindServiceFoodGenerators()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ServiceFoodGenerators>()
                 .AsSingle();
         }
 

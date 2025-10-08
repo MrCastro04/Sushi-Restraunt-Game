@@ -20,7 +20,36 @@ namespace Modules.Core.Services
         public void AddNewPoint(PointMono pointMono, PointType pointType, FoodType foodType)
         {
             var targetMapPointsInfo = _mapPointsInfo
-                .Where(pair => pair.Value.PointType == pointType);
+                .Where(pair => pair.Value.PointType == pointType).ToList();
+
+            if (targetMapPointsInfo.Any() == false)
+            {
+                PointMonoInfo newPointMonoInfo = new(pointMono, pointType, foodType);
+
+                string idLetter = "";
+                
+                switch (pointType)
+                {
+                    case PointType.Buy:
+                        idLetter = "B";
+                        break;
+                    
+                    case PointType.Sell:
+                        idLetter = "S";
+                        break;
+                    
+                    case PointType.GatheringFood:
+                        idLetter = "G";
+                        break;
+                    
+                    case PointType.CustomerSpawnPoint:
+                        idLetter = "CS";
+                        break;
+                }
+                
+                _mapPointsInfo.Add($"{idLetter}" + 1, newPointMonoInfo);
+                return;
+            }
 
             var lastPair = targetMapPointsInfo.OrderBy(pair => pair.Key).Last();
 

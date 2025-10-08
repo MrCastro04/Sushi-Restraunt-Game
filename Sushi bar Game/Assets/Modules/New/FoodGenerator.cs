@@ -1,5 +1,5 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Modules.Content.Characters.Employer.Code;
 using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;
@@ -14,12 +14,12 @@ namespace Modules.New
         [Inject] private ServiceMapPoint _serviceMapPoint;
         [Inject] private ServiceFoodGenerators _serviceFoodGenerators;
         
-        [SerializeField] private float _offsetForLoadingCirclePosition;
-        [SerializeField] private float _generateTime;
         [SerializeField] private GameObject _foodPrefab;
         [SerializeField] private PointMono _pointMono;
         [SerializeField] private FoodType _foodTypeGenerates;
         [SerializeField] private LoadingCircle _loadingCircle;
+        [SerializeField] private float _offsetForLoadingCirclePosition;
+        [SerializeField] private float _generateTime;
         
         private int _profit;
         
@@ -39,7 +39,7 @@ namespace Modules.New
         
         #endregion
 
-        public async UniTask StartUse()
+        public async UniTask StartUse(Employer employer)
         {
             if(_loadingCircle.gameObject.activeSelf)
                 _loadingCircle.gameObject.SetActive(false);
@@ -52,7 +52,9 @@ namespace Modules.New
                 , _pointMono.transform.position.z);
             
             _loadingCircle.gameObject.SetActive(true);
-
+            
+            employer.PlayAnimationCook(_foodTypeGenerates);   
+            
            await _loadingCircle.RunImmitation(_generateTime);
         }
     }
