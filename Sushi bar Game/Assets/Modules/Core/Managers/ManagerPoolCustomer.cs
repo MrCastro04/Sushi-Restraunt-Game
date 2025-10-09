@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Customer;
+using Modules.Content.Characters.Customer.Controller;
 using Modules.Core.Factories;
 using Modules.Core.Pools;
 using Modules.Core.Services;
@@ -9,14 +10,14 @@ using Zenject;
 
 namespace Modules.Core.Managers
 {
-    public class ManagerCustomerQueue : IInitializable, IDisposable
+    public class ManagerPoolCustomer : IInitializable, IDisposable
     {
         private readonly PoolCustomer _poolCustomer;
         private readonly ServiceMapPoint _serviceMapPoint;
         private readonly Vector3 _spawnPosition;
         private readonly int _startSpawnCustomerCount = 2;
     
-        public ManagerCustomerQueue(
+        public ManagerPoolCustomer(
             FactoryCustomer factoryCustomer
             , ServiceMapPoint serviceMapPoint
             , Vector3 spawnPosition)
@@ -42,7 +43,7 @@ namespace Modules.Core.Managers
             EventsCustomer.OnLeft -= _poolCustomer.Return;
         }
 
-        private void CleanPointAndSpawnNewCustomer(string pointID,Customer customer)
+        private void CleanPointAndSpawnNewCustomer(string pointID,ControllerCustomer controllerCustomer)
         {
             _serviceMapPoint.SetEmptyPointWithID(pointID);
         

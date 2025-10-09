@@ -28,7 +28,7 @@ namespace Modules.Core.Zenject
             var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CS1"].PointMono.Position;
 
             Container
-                .BindInterfacesAndSelfTo<ManagerCustomerQueue>()
+                .BindInterfacesAndSelfTo<ManagerPoolCustomer>()
                 .AsSingle()
                 .WithArguments(postionDefaultSpawnPoint);
         }

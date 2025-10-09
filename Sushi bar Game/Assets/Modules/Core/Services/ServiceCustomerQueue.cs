@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Modules.Content.Characters.Customer;
+using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Map_Points;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,10 @@ namespace Modules.Core.Services
     {
         [Inject] private ServiceMapPoint _serviceMapPoint;
 
-        private Queue<Customer> _customers = new();
+        private Queue<ControllerCustomer> _customers = new();
         private Queue<PointMono> _buyPoints = new();
 
-        public Customer GetPeekCustomer()
+        public ControllerCustomer GetPeekCustomer()
         {
             return _customers.Peek();
         }
@@ -26,9 +27,9 @@ namespace Modules.Core.Services
            return item.ID;
         }
 
-        public bool IsContainsCustomer(Customer customer)
+        public bool IsContainsCustomer(ControllerCustomer controllerCustomer)
         {
-            return _customers.Contains(customer);
+            return _customers.Contains(controllerCustomer);
         }
 
         public bool IsContainsCustomerID(string customerID)
@@ -44,9 +45,9 @@ namespace Modules.Core.Services
             return true;
         }
 
-        public void AddNewCustomer(string pointID, Customer customer)
+        public void AddNewCustomer(string pointID, ControllerCustomer controllerCustomer)
         {
-            _customers.Enqueue(customer);
+            _customers.Enqueue(controllerCustomer);
             _buyPoints.Enqueue(_serviceMapPoint.GetFreePointByID(pointID));
             
             Debug.Log($"Пришел посититель. Посетителей в колекции - {_customers.Count}");

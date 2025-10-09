@@ -111,25 +111,6 @@ namespace Modules.Core.Services
 
             return randomFreePoint;
         }
-        
-        public PointMono GetFreeGeneratorPointWithFoodType(FoodType foodType)
-        {
-            var freePoints = _mapPointsInfo.Where(
-                    x =>
-                        x.Value.PointMono.IsEmpty &
-                        x.Value.FoodType == foodType).ToArray();
-
-            if (freePoints.Any() == false)
-            {
-                Debug.Log("Свободных мест нет");
-                return null;
-            }
-
-            var randomFreePoint = freePoints[Random.Range(0, freePoints.Length)].Value.PointMono;
-
-            return randomFreePoint;
-        }
-
 
         public PointMono GetFreePointByID(string id)
         {
