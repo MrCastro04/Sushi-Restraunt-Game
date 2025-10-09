@@ -1,4 +1,5 @@
 ﻿using Modules.Content.Characters.Customer;
+using Modules.Content.Characters.Customer.Controller;
 using Modules.Core.Factories;
 using UnityEngine;
 using Zenject;
@@ -7,7 +8,7 @@ namespace Modules.Core.Zenject
 {
     public class InstallerFactories : MonoInstaller
     {
-        [SerializeField] private Customer _customer;
+        [SerializeField] private ControllerCustomer controllerCustomer;
 
         public override void InstallBindings()
         {
@@ -18,7 +19,7 @@ namespace Modules.Core.Zenject
             Container
                 .BindInterfacesAndSelfTo<FactoryCustomer>()
                 .AsSingle()
-                .WithArguments(_customer);
+                .WithArguments(controllerCustomer);
         }
     }
 }

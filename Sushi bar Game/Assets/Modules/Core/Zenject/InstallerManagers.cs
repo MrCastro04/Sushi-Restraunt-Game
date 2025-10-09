@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Modules.Core.Zenject
 {
-    public class fInstallerManagers : MonoInstaller
+    public class InstallerManagers : MonoInstaller
     {
         public override void InstallBindings()
         {
@@ -28,7 +28,7 @@ namespace Modules.Core.Zenject
             var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CS1"].PointMono.Position;
 
             Container
-                .BindInterfacesAndSelfTo<ManagerCustomerQueue>()
+                .BindInterfacesAndSelfTo<ManagerPoolCustomer>()
                 .AsSingle()
                 .WithArguments(postionDefaultSpawnPoint);
         }
