@@ -62,11 +62,6 @@ namespace Modules.Content.Characters.Customer.Controller
             var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_modelCustomer.PointType);
 
             _serviceMapPoint.SetNonEmptyPointWithID(buyPoint.ID);
-
-            if (_viewCustomer == null)
-            {
-                Debug.Log("нету вьюшки");
-            }
             
             _viewCustomer.PlayAnimationWalk();
             
