@@ -1,4 +1,5 @@
 ﻿using Modules.Content.Characters.Employer;
+using Modules.Content.Characters.Employer.Controller;
 using UnityEngine;
 using Zenject;
 

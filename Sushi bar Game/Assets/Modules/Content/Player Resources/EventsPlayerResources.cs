@@ -1,9 +1,9 @@
 ﻿
 using System;
 
-namespace Modules.New
+namespace Modules.Content.Player_Resources
 {
-    public static class EventsPlayerResorces
+    public static class EventsPlayerResources
     {
         public static Action<int> OnCoinValueChange;
 

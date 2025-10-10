@@ -1,15 +1,17 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
-using Modules.Content.Characters.Customer;
 using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Customer.Events;
+using Modules.Content.Characters.Employer.Model;
+using Modules.Content.Characters.Employer.View;
+using Modules.Content.Food_Generator;
 using Modules.Content.FoodCollection;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;
-using Modules.New;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Content.Characters.Employer
+namespace Modules.Content.Characters.Employer.Controller
 {
     [RequireComponent(typeof(ViewEmployer))]
     public class ControllerEmployer : BaseController

@@ -1,6 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Modules.Content.Characters.Employer;
+using Modules.Content.Characters.Employer.Controller;
 using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;
@@ -8,7 +8,7 @@ using Modules.Core.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.New
+namespace Modules.Content.Food_Generator
 {
     public class FoodGenerator : MonoBehaviour
     {

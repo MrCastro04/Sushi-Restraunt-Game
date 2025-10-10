@@ -1,6 +1,6 @@
 using System;
 
-namespace Modules.New
+namespace Modules.Core.Extensions
 {
     public class ReactiveProperty<T>
     {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Modules.Content.Food_Generator;
 using Modules.Content.FoodCollection;
 
-namespace Modules.New
+namespace Modules.Core.Services
 {
     public class ServiceFoodGenerators
     {

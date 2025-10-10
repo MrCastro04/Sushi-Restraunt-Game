@@ -1,5 +1,4 @@
 ﻿using Modules.Core.Services;
-using Modules.New;
 using Zenject;
 
 namespace Modules.Core.Zenject
