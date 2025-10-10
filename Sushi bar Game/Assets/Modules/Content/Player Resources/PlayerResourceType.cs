@@ -1,4 +1,4 @@
-﻿namespace Modules.New
+﻿namespace Modules.Content.Player_Resources
 {
     public enum PlayerResourceType
     {

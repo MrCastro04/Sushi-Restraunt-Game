@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
+using Modules.Content.Characters.Customer.Events;
 using Modules.Content.Characters.Customer.Model;
 using Modules.Content.Characters.Customer.View;
 using Modules.Content.FoodCollection;
@@ -61,21 +62,15 @@ namespace Modules.Content.Characters.Customer.Controller
 
             _serviceMapPoint.SetNonEmptyPointWithID(buyPoint.ID);
             
-            _viewCustomer.PlayAnimationWalk();
-            
-            await _viewCustomer.MoveAgentTo(buyPoint.Position, buyPoint.Rotation);
-
-            _viewCustomer.PlayAnimationIdle();
+            await _viewCustomer.GoToPoint(buyPoint.Position, buyPoint.Rotation);
             
             EventsCustomer.ExecuteCustomerEnterBuyPoint(buyPoint.ID, this , _modelCustomer.DesiredFoodType);
 
             await UniTask.WaitUntil(() => _modelCustomer.HasFoodStatus);
 
             _serviceMapPoint.SetEmptyPointWithID(buyPoint.ID);
-            
-            _viewCustomer.PlayAnimationWalk();
-            
-            await _viewCustomer.MoveAgentTo(_modelCustomer.StartPosition, _modelCustomer.StartRotation);
+
+            await _viewCustomer.GoToPoint(_modelCustomer.StartPosition, _modelCustomer.StartRotation);
 
             _modelCustomer.SetFoodStatus(false); //переиспользую обьект через Object Pool
 

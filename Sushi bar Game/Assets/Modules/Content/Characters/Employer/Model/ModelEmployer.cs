@@ -1,4 +1,4 @@
-﻿namespace Modules.Content.Characters.Employer
+﻿namespace Modules.Content.Characters.Employer.Model
 {
     public class ModelEmployer
     {

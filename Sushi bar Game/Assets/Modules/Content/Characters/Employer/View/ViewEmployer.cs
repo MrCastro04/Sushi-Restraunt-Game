@@ -1,12 +1,11 @@
-﻿using System.Threading;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
 using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;
 using UnityEngine;
 
-namespace Modules.Content.Characters.Employer
+namespace Modules.Content.Characters.Employer.View
 {
     public class ViewEmployer : BaseView
     {

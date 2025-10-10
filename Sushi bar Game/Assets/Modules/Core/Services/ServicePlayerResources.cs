@@ -1,4 +1,6 @@
-﻿namespace Modules.New
+﻿using Modules.Content.Player_Resources;
+
+namespace Modules.Core.Services
 {
     public class ServicePlayerResources
     {

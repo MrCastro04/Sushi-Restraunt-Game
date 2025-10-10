@@ -2,7 +2,7 @@
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.FoodCollection;
 
-namespace Modules.Content.Characters.Customer
+namespace Modules.Content.Characters.Customer.Events
 {
     public static class EventsCustomer
     {

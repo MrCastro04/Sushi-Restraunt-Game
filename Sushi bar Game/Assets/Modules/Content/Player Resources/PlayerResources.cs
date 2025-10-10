@@ -1,4 +1,4 @@
-﻿namespace Modules.New
+﻿namespace Modules.Content.Player_Resources
 {
     public class PlayerResources
     {
@@ -11,7 +11,7 @@
             {
                 _coins = value;
 
-                EventsPlayerResorces.ExecuteEventOnCoinValueChange(_coins);
+                EventsPlayerResources.ExecuteEventOnCoinValueChange(_coins);
             }
         }
     }

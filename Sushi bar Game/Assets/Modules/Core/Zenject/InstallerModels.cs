@@ -1,5 +1,6 @@
 ﻿using Modules.Content.Characters.Customer.Model;
 using Modules.Content.Characters.Employer;
+using Modules.Content.Characters.Employer.Model;
 using Modules.Content.FoodCollection;
 using UnityEngine;
 using Zenject;
