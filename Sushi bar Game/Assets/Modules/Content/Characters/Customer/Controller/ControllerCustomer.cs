@@ -33,8 +33,6 @@ namespace Modules.Content.Characters.Customer.Controller
         public override void Init()
         {
             base.Init();
-
-            Debug.Log("sdsds");
             
             _viewCustomer = GetComponent<ViewCustomer>();
             
