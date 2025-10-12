@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
 using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
@@ -10,15 +11,17 @@ namespace Modules.Content.Characters.Employer.View
     public class ViewEmployer : BaseView
     {
         [SerializeField] private LoadingCircle _loadingCircle;
-
+        
         private float _immitationTime;
         private string ANIMATOR_PARAM_IS_CHOP_FOOD = "IsChopFood";
+        
+        [field: SerializeField] public Transform ViewFoodTransform { get; private set; }
         
         public void SetImmitationTime(float newTime)
         {
             _immitationTime = newTime;
         }
-        
+
         public async UniTask GoToPoint(PointMono pointMono, bool withImmitation = false, bool withFood = false)
         {
             if (withFood)

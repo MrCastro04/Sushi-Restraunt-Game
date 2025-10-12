@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Modules.Content.UI;
 using Modules.Content.UI.Buttons.Events;
 using Modules.Content.UI.Screens.Base;
 using Modules.Core.Serializeable_Collections.Screens;
@@ -12,13 +11,13 @@ namespace Modules.Core.Managers
     public class ManagerScreen : IInitializable, IDisposable
     {
         private readonly Dictionary<ScreenType, BaseScreen> _baseScreens;
-        private readonly Stack<BaseScreen> _screenHistory = new(); 
-        
+        private readonly Stack<BaseScreen> _screenHistory = new();
+
         private BaseScreen _currentActiveScreen;
 
-        public ManagerScreen(CollectionScreens _collectionScreens)
+        public ManagerScreen(CollectionScreens collectionScreens)
         {
-            _baseScreens = _collectionScreens.Screens;
+            _baseScreens = collectionScreens.Screens;
         }
 
         public void Initialize()
@@ -27,12 +26,12 @@ namespace Modules.Core.Managers
             {
                 if (keyValuePair.Key == ScreenType.Main)
                 {
-                   _currentActiveScreen = keyValuePair.Value;
-                    
-                   _currentActiveScreen.Open();
-                   
-                   _screenHistory.Push(_currentActiveScreen);
-                   continue;
+                    _currentActiveScreen = keyValuePair.Value;
+
+                    _currentActiveScreen.Open();
+
+                    _screenHistory.Push(_currentActiveScreen);
+                    continue;
                 }
 
                 keyValuePair.Value.Close();
@@ -63,7 +62,7 @@ namespace Modules.Core.Managers
             if (_screenHistory.Count > 0)
             {
                 _currentActiveScreen = _screenHistory.Peek();
-                
+
                 _currentActiveScreen.Open();
             }
             else
@@ -82,10 +81,10 @@ namespace Modules.Core.Managers
                 }
 
                 _currentActiveScreen = _baseScreens[screenType];
-               
-               _currentActiveScreen.Open();
-               
-               _screenHistory.Push(_currentActiveScreen);
+
+                _currentActiveScreen.Open();
+
+                _screenHistory.Push(_currentActiveScreen);
             }
             else
             {

@@ -2,6 +2,7 @@
 using Modules.Content.Characters.Base.Code;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Characters.Customer.Events;
+using Modules.Content.Characters.Employer.Events;
 using Modules.Content.Characters.Employer.Model;
 using Modules.Content.Characters.Employer.View;
 using Modules.Content.Food_Generator;
@@ -34,13 +35,13 @@ namespace Modules.Content.Characters.Employer.Controller
             CollectionPointsMono collectionPointsMono)
         {
             _modelEmployer = modelEmployer;
-            
+
             _serviceFoodGenerators = serviceFoodGenerators;
 
             _serviceMapPoint = serviceMapPoint;
 
             _serviceCustomerQueue = serviceCustomerQueue;
-            
+
             Init();
         }
 
@@ -49,12 +50,12 @@ namespace Modules.Content.Characters.Employer.Controller
             base.Init();
 
             _viewEmployer = GetComponent<ViewEmployer>();
-            
+
             _viewEmployer.SetImmitationTime(_modelEmployer.ImmitationTime);
         }
 
         #endregion
-        
+
         #region EVENT_SUBSCRIPTION
 
         private void OnEnable()
@@ -73,9 +74,9 @@ namespace Modules.Content.Characters.Employer.Controller
 
         private void HandlerEmployerStartCook(ControllerEmployer controllerEmployer, FoodType foodType)
         {
-            if(controllerEmployer != this) return;
-            
-        _viewEmployer.PlayAnimationCook(foodType);
+            if (controllerEmployer != this) return;
+
+            _viewEmployer.PlayAnimationCook(foodType);
         }
 
         #region WORK_FLOW
@@ -97,14 +98,15 @@ namespace Modules.Content.Characters.Employer.Controller
                 Debug.Log("Работник занят. Не может обслуживать");
                 return;
             }
-            
-            await WorkFlow(pointID, controllerCustomer,foodType);
+
+            await WorkFlow(pointID, controllerCustomer, foodType);
 
             if (_serviceCustomerQueue.IsQueueEmpty() == false)
             {
                 Debug.Log("очередь не пустая");
-                
-                TryWorkFlow(_serviceCustomerQueue.GetPeekCustomerID(), _serviceCustomerQueue.GetPeekCustomer(), foodType);
+
+                TryWorkFlow(_serviceCustomerQueue.GetPeekCustomerID(), _serviceCustomerQueue.GetPeekCustomer(),
+                    foodType);
             }
             else
             {
@@ -116,27 +118,33 @@ namespace Modules.Content.Characters.Employer.Controller
         private async UniTask WorkFlow(string pointID, ControllerCustomer controllerCustomer, FoodType foodType)
         {
             _modelEmployer.SetIsBusyStatus(true);
-            
+
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
             _serviceMapPoint.SetNonEmptyPointWithID(sellPoint.ID);
-            
+
             await _viewEmployer.GoToPoint(sellPoint, true);
 
             var generator = _serviceFoodGenerators.GetFreeFoodGeneratorByFoodType(foodType);
 
             await _viewEmployer.GoToPoint(generator.PointMono);
-            
+
             await generator.StartUse(this);
 
+            var viewFood = generator.GetViewFood(this, _viewEmployer.ViewFoodTransform.position);
+
             await _viewEmployer.GoToPoint(sellPoint, false, true);
+
+            viewFood.Hide();
+            
+            EventsEmployer.ExecuteEventOnEmployerSellFood(viewFood, generator.CurrentProfit);
 
             EventsCustomer.ExecuteCustomerGetFood(pointID, controllerCustomer);
 
             _serviceMapPoint.SetEmptyPointWithID(sellPoint.ID);
 
             _serviceCustomerQueue.RemoveCurrentCustomer();
-            
+
             _modelEmployer.SetIsBusyStatus(false);
         }
         #endregion
