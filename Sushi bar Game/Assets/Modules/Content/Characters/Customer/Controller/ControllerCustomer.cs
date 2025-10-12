@@ -18,8 +18,6 @@ namespace Modules.Content.Characters.Customer.Controller
         
         private ServiceMapPoint _serviceMapPoint;
 
-        public FoodType DesiredFoodType => _modelCustomer.DesiredFoodType;
-        
         #region Initialize
 
         [Inject]

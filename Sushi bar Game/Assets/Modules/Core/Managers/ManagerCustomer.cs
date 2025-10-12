@@ -11,14 +11,14 @@ using Zenject;
 
 namespace Modules.Core.Managers
 {
-    public class ManagerPoolCustomer : IInitializable, IDisposable
+    public class ManagerCustomer : IInitializable, IDisposable
     {
-        private readonly PoolCustomer _poolCustomer;
         private readonly ServiceMapPoint _serviceMapPoint;
+        private readonly PoolCustomer _poolCustomer;
         private readonly Vector3 _spawnPosition;
         private readonly int _startSpawnCustomerCount = 2;
     
-        public ManagerPoolCustomer(
+        public ManagerCustomer(
             FactoryCustomer factoryCustomer
             , ServiceMapPoint serviceMapPoint
             , Vector3 spawnPosition)
@@ -54,6 +54,7 @@ namespace Modules.Core.Managers
         private async void SpawnFirstCustomer()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(2f));
+            
             _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
         }
     }

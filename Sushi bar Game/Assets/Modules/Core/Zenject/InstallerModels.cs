@@ -2,6 +2,8 @@
 using Modules.Content.Characters.Employer;
 using Modules.Content.Characters.Employer.Model;
 using Modules.Content.FoodCollection;
+using Modules.Content.Player_Resources;
+using Modules.Content.Player_Resources.Model;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +16,10 @@ namespace Modules.Core.Zenject
         
         public override void InstallBindings()
         {
+            Container
+                .BindInterfacesAndSelfTo<ModelPlayerResources>()
+                .AsSingle();
+            
             Container
                 .BindInterfacesAndSelfTo<ModelCustomer>()
                 .AsTransient()
