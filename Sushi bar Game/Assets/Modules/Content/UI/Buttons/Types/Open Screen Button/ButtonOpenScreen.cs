@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Modules.Content.UI.Buttons.Types.Open_Screen_Button
 {
-    public class OpenScreenButton : BaseButton
+    public class ButtonOpenScreen : BaseButton
     {
         [SerializeField] private ScreenType _screenType;
         

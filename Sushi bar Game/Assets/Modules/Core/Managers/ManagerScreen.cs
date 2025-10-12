@@ -10,33 +10,28 @@ namespace Modules.Core.Managers
 {
     public class ManagerScreen : IInitializable, IDisposable
     {
-        private readonly Dictionary<ScreenType, BaseScreen> _baseScreens;
-        private readonly Stack<BaseScreen> _screenHistory = new();
+        private readonly Dictionary<ScreenType, BaseScreen> _screens;
 
-        private BaseScreen _currentActiveScreen;
+        private BaseScreen _currentActiveBaseScreen;
 
         public ManagerScreen(CollectionScreens collectionScreens)
         {
-            _baseScreens = collectionScreens.Screens;
+            _screens = collectionScreens.Screens;
         }
 
         public void Initialize()
         {
-            foreach (var keyValuePair in _baseScreens)
+            foreach (var pair in _screens)
             {
-                if (keyValuePair.Key == ScreenType.Main)
+                if (pair.Key == ScreenType.Main)
                 {
-                    _currentActiveScreen = keyValuePair.Value;
-
-                    _currentActiveScreen.Open();
-
-                    _screenHistory.Push(_currentActiveScreen);
+                    _currentActiveBaseScreen = pair.Value;
+                    
                     continue;
                 }
-
-                keyValuePair.Value.Close();
+                
+                pair.Value.Close();
             }
-
             EventsButtonClick.OnCloseScreen += CloseScreen;
             EventsButtonClick.OnOpenScreen += OpenScreen;
         }
@@ -49,47 +44,16 @@ namespace Modules.Core.Managers
 
         private void CloseScreen()
         {
-            if (_currentActiveScreen != null)
-            {
-                _currentActiveScreen.Close();
-            }
-
-            if (_screenHistory.Count > 0)
-            {
-                _screenHistory.Pop();
-            }
-
-            if (_screenHistory.Count > 0)
-            {
-                _currentActiveScreen = _screenHistory.Peek();
-
-                _currentActiveScreen.Open();
-            }
-            else
-            {
-                _currentActiveScreen = null;
-            }
+            _currentActiveBaseScreen.Close();
         }
 
         private void OpenScreen(ScreenType screenType)
         {
-            if (_baseScreens.ContainsKey(screenType))
-            {
-                if (_currentActiveScreen != null)
-                {
-                    _currentActiveScreen.Close();
-                }
+            if (_screens.ContainsKey(screenType) == false) return;
 
-                _currentActiveScreen = _baseScreens[screenType];
+            _currentActiveBaseScreen = _screens[screenType];
 
-                _currentActiveScreen.Open();
-
-                _screenHistory.Push(_currentActiveScreen);
-            }
-            else
-            {
-                Debug.Log("Нету такого типа скрина");
-            }
+            _currentActiveBaseScreen.Open();
         }
     }
 }
