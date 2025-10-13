@@ -3,14 +3,19 @@ using UnityEngine;
 
 namespace Modules.Content.UI.Screens.Base
 {
+    [RequireComponent(typeof(Canvas))]
     public abstract class BaseScreen : MonoBehaviour
     {
+        protected Canvas _canvas;
+
+        public Canvas Canvas => _canvas;
+        
+        protected virtual void Awake()
+        {
+            _canvas = GetComponent<Canvas>();
+        }
+
         public void Open() => gameObject.SetActive(true);
         public void Close() => gameObject.SetActive(false);
-    }
-
-    public class PlayerResourceScreen : BaseScreen
-    {
-        [field: SerializeField] public bool IsHideable { get; private set; }
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1868d8f52bff4b8781bf5c4523faa733, type: 3}
+  m_Name: +1 Employer Item (V1)
+  m_EditorClassIdentifier: 
+  <ItemSprite>k__BackingField: {fileID: 21300000, guid: 9a1bd84f180ce134ba481f565fd02861, type: 3}
+  <ItemCostSprite>k__BackingField: {fileID: 21300000, guid: 7d094e46b8995410a97ff8ad40089e05, type: 3}
+  <ItemType>k__BackingField: 0
+  <ItemName>k__BackingField: Hire Friend
+  <ItemDesccription>k__BackingField: +1 Employer
+  <ID>k__BackingField: I1
+  <ItemCost>k__BackingField: 300
