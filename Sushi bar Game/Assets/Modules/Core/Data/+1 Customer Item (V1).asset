@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1868d8f52bff4b8781bf5c4523faa733, type: 3}
+  m_Name: +1 Customer Item (V1)
+  m_EditorClassIdentifier: 
+  <ItemSprite>k__BackingField: {fileID: 21300000, guid: 4f0af6fa58243ec4fbdcde7f9f61c0d9, type: 3}
+  <ItemCostSprite>k__BackingField: {fileID: 21300000, guid: 967bc15465e274cdaa4e5ca0c3950fde, type: 3}
+  <ItemType>k__BackingField: 1
+  <ItemName>k__BackingField: Popularity
+  <ItemDesccription>k__BackingField: +1 Customer
+  <ID>k__BackingField: I0
+  <ItemCost>k__BackingField: 200

@@ -5,7 +5,6 @@ using Modules.Content.Characters.Customer.Events;
 using Modules.Content.Characters.Employer.Events;
 using Modules.Content.Characters.Employer.Model;
 using Modules.Content.Characters.Employer.View;
-using Modules.Content.Food_Generator;
 using Modules.Content.FoodCollection;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;

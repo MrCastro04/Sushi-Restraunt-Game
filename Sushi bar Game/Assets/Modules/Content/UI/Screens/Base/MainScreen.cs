@@ -1,8 +1,7 @@
 ﻿namespace Modules.Content.UI.Screens.Base
 {
-    public enum ScreenType
+    public class MainScreen : BaseScreen
     {
-        Main,
-        Shop
+        
     }
 }

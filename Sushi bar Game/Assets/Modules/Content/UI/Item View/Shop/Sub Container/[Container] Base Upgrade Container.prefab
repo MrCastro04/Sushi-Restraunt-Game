@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6694135419143481269}
   - component: {fileID: 6232169926920158529}
   m_Layer: 5
-  m_Name: '[Image] Background'
+  m_Name: '[Image] Item Background'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5763942802976866574}
   - component: {fileID: 6948406632221195080}
+  - component: {fileID: 5701054536438223467}
   m_Layer: 5
   m_Name: '[Container] Base Upgrade Container'
   m_TagString: Untagged
@@ -124,6 +125,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032202358053218811}
   m_CullTransparentMesh: 1
+--- !u!114 &5701054536438223467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032202358053218811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c690f07920fc4db19a317c49581e9695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemName: {fileID: 3812269401532950679}
+  _itemDescription: {fileID: 5173764006397509365}
+  _itemCost: {fileID: 1702488578423653446}
+  _itemImage: {fileID: 5975890702589113460}
+  _itemCostImage: {fileID: 586431744500996319}
 --- !u!1 &3481993923914778685
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +154,7 @@ GameObject:
   - component: {fileID: 6161423938490432523}
   - component: {fileID: 5975890702589113460}
   m_Layer: 5
-  m_Name: '[Image] Content Image'
+  m_Name: '[Image] Item Image'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,7 +351,7 @@ GameObject:
   - component: {fileID: 6768365260174681490}
   - component: {fileID: 5173764006397509365}
   m_Layer: 5
-  m_Name: '[Text] Content Ability'
+  m_Name: '[Text] Item Description'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,7 +485,7 @@ GameObject:
   - component: {fileID: 2767560978416821884}
   - component: {fileID: 3812269401532950679}
   m_Layer: 5
-  m_Name: '[Text] Content Name'
+  m_Name: '[Text] Item Name'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +621,7 @@ GameObject:
   - component: {fileID: 4336387844370064157}
   - component: {fileID: 1702488578423653446}
   m_Layer: 5
-  m_Name: '[Text] Cost '
+  m_Name: '[Text] Item Cost '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,7 +755,7 @@ GameObject:
   - component: {fileID: 7927870457641464129}
   - component: {fileID: 586431744500996319}
   m_Layer: 5
-  m_Name: '[Image] Coin '
+  m_Name: '[Image] Item Cost Image  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
