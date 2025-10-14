@@ -36,7 +36,7 @@ namespace Modules.Content.Player_Resources.Model
 
         public void PurchaseItem(ModelItem modelItem)
         {
-            if (!IsEnoughMoney(modelItem.ItemCost)) return; 
+            if (IsEnoughMoney(modelItem.ItemCost) == false) return; 
 
             Coins -= modelItem.ItemCost;
 

@@ -50,13 +50,11 @@ namespace Modules.Core.Managers
             {
                 ModelItem modelItem = new(data);
 
-
                 ViewItem newViewItem = Object.Instantiate(_viewItemPrefab, _viewShop.ItemListTransform);
 
                 newViewItem.transform.localPosition = Vector2.zero;
 
                 newViewItem.Init(data);
-
 
                 _modelItems.Add(data.ID, modelItem);
                 _viewItems.Add(data.ID, newViewItem);
