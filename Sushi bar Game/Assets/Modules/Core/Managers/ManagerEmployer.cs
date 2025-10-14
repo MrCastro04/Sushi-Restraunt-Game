@@ -21,12 +21,12 @@ namespace Modules.Core.Managers
         {
             SpawnEmployer();
 
-            EventsItem.OnGetMoreCustomers += SpawnEmployer;
+            EventsItem.OnGetMoreEmployers += SpawnEmployer;
         }
 
         public void Dispose()
         {
-            EventsItem.OnGetMoreCustomers -= SpawnEmployer;
+            EventsItem.OnGetMoreEmployers -= SpawnEmployer;
         }
 
         private void SpawnEmployer()

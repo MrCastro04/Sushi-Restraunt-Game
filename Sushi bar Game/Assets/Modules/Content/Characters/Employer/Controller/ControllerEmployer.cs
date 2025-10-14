@@ -54,9 +54,7 @@ namespace Modules.Content.Characters.Employer.Controller
         }
 
         #endregion
-
-        #region EVENT_SUBSCRIPTION
-
+        
         private void OnEnable()
         {
             EventsCustomer.OnEnterBuyPoint += TryWorkFlow;
@@ -68,8 +66,6 @@ namespace Modules.Content.Characters.Employer.Controller
             EventsCustomer.OnEnterBuyPoint -= TryWorkFlow;
             EventsEmployer.OnEmployerStartCook -= HandlerEmployerStartCook;
         }
-
-        #endregion
 
         private void HandlerEmployerStartCook(ControllerEmployer controllerEmployer, FoodType foodType)
         {
