@@ -59,6 +59,8 @@ namespace Modules.Content.Characters.Customer.Controller
             var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_modelCustomer.PointType);
 
             _serviceMapPoint.SetNonEmptyPointWithID(buyPoint.ID);
+
+            // Debug.Log($"Позиция - {} ");
             
             await _viewCustomer.GoToPoint(buyPoint.Position, buyPoint.Rotation);
             

@@ -1,11 +1,9 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Modules.Content.Characters.Customer;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Characters.Customer.Events;
 using Modules.Core.Factories;
 using Modules.Core.Pools;
-using Modules.Core.Services;
 using UnityEngine;
 using Zenject;
 
@@ -13,49 +11,60 @@ namespace Modules.Core.Managers
 {
     public class ManagerCustomer : IInitializable, IDisposable
     {
-        private readonly ServiceMapPoint _serviceMapPoint;
         private readonly PoolCustomer _poolCustomer;
         private readonly Vector3 _spawnPosition;
-        private readonly int _startSpawnCustomerCount = 2;
-    
-        public ManagerCustomer(
-            FactoryCustomer factoryCustomer
-            , ServiceMapPoint serviceMapPoint
-            , Vector3 spawnPosition)
+        private int _spawnCustomerCount = 1;
+        private int _spawnDelaySeconds = 2;
+
+        public ManagerCustomer(FactoryCustomer factoryCustomer, Vector3 spawnPosition)
         {
             _spawnPosition = spawnPosition;
 
-            _serviceMapPoint = serviceMapPoint;
-        
-            _poolCustomer = new(factoryCustomer, _spawnPosition,_startSpawnCustomerCount);
-
-            SpawnFirstCustomer();
+            _poolCustomer = new(factoryCustomer, _spawnPosition, _spawnCustomerCount);
         }
 
         public void Initialize()
         {
-            EventsCustomer.OnGetFood += CleanPointAndSpawnNewCustomer;
-            EventsCustomer.OnLeft += _poolCustomer.Return;
+            SpawnCustomer();
+            
+            EventsCustomer.OnLeft += ReturnAndSpawn;
+            EventsItem.OnGetMoreCustomers += UpgradeSpawnCustomerCount;
         }
 
         public void Dispose()
         {
-            EventsCustomer.OnGetFood -= CleanPointAndSpawnNewCustomer;
-            EventsCustomer.OnLeft -= _poolCustomer.Return;
+            EventsCustomer.OnLeft -= ReturnAndSpawn;
+            EventsItem.OnGetMoreCustomers -= UpgradeSpawnCustomerCount;
         }
 
-        private void CleanPointAndSpawnNewCustomer(string pointID,ControllerCustomer controllerCustomer)
+        private void UpgradeSpawnCustomerCount()
         {
-            _serviceMapPoint.SetEmptyPointWithID(pointID);
-        
-            _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
+            _spawnCustomerCount++;
+
+            _poolCustomer.PopulatePool(1, _spawnPosition);
+
+            SpawnCustomer(true);
         }
 
-        private async void SpawnFirstCustomer()
+        private void ReturnAndSpawn(ControllerCustomer customer)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(2f));
+            _poolCustomer.Return(customer);
             
-            _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
+            SpawnCustomer(true);
+        }
+        
+        private async void SpawnCustomer(bool withDelay = false)
+        {
+            if (withDelay)
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnDelaySeconds));
+                
+                _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
+            }
+            else
+            {
+                _poolCustomer.GetIn(_spawnPosition, Quaternion.identity);
+            }
         }
     }
 }

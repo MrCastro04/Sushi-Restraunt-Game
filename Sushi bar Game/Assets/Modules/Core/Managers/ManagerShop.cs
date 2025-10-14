@@ -4,6 +4,7 @@ using Modules.Content.Item;
 using Modules.Content.Player_Resources;
 using Modules.Content.Shop;
 using Modules.Content.UI.Buttons.Events;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -17,7 +18,7 @@ namespace Modules.Core.Managers
         private readonly List<DataItem> _dataItems;
         private readonly ViewShop _viewShop;
         private readonly ViewItem _viewItemPrefab;
-        
+
         [Inject]
         public ManagerShop(List<DataItem> dataItems, ViewItem viewItemPrefab, ViewShop viewShop)
         {
@@ -40,7 +41,7 @@ namespace Modules.Core.Managers
         public void Dispose()
         {
             EventsButtonClick.OnTryBuyItem -= TryBuyItem;
-            
+
             EventsShop.OnItemPurchasedSuccessfully -= RemoveTargetItemView;
         }
 
@@ -64,22 +65,46 @@ namespace Modules.Core.Managers
         private void TryBuyItem(string itemID)
         {
             if (_modelItems.ContainsKey(itemID) == false) return;
-            
+
             ModelItem itemToBuy = _modelItems[itemID];
-            
+
             EventsPlayerResources.ExecuteEventOnTryBuyItem(itemToBuy);
         }
 
         private void RemoveTargetItemView(string itemID)
         {
-            if (_viewItems.ContainsKey(itemID))
+            if (_viewItems.ContainsKey(itemID) == false) return;
+            
+            switch (_modelItems[itemID].ItemType)
             {
-                Object.Destroy(_viewItems[itemID].gameObject);
+                case ItemType.MoreCustomer :
+                    EventsItem.ExecuteEventOnGetMoreCustomers();
+                    break;
                 
-                _viewItems.Remove(itemID);
+                case ItemType.MoreEmployer:
+                    EventsItem.ExecuteEventOnGetMoreEmployers();
+                    break;
                 
-                _modelItems.Remove(itemID); 
+                default:
+                    Debug.Log($"Такой способности не существует. Добавте ее через | {this} | ");
+                    return;
+                
             }
+
+            Object.Destroy(_viewItems[itemID].gameObject);
+
+            _viewItems.Remove(itemID);
+
+            _modelItems.Remove(itemID);
         }
+    }
+
+    public static class EventsItem
+    {
+        public static event Action OnGetMoreEmployers;
+        public static event Action OnGetMoreCustomers;
+
+        public static void ExecuteEventOnGetMoreEmployers() => OnGetMoreEmployers?.Invoke();
+        public static void ExecuteEventOnGetMoreCustomers() => OnGetMoreCustomers?.Invoke();
     }
 }
