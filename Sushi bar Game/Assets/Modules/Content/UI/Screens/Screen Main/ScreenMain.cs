@@ -1,6 +1,6 @@
 ﻿namespace Modules.Content.UI.Screens.Base
 {
-    public class MainScreen : BaseScreen
+    public class ScreenMain : BaseScreen
     {
         
     }
