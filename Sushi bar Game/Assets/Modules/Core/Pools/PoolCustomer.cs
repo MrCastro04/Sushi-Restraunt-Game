@@ -12,6 +12,8 @@ namespace Modules.Core.Pools
     {
         private readonly FactoryCustomer _factoryCustomer;
         private readonly Queue<ControllerCustomer> _customersInPool = new();
+
+        public int PoolCapacity => _customersInPool.Count;
         
         public PoolCustomer(FactoryCustomer factoryCustomer, Vector3 spawnPosition, int poolSize = 10)
         {
@@ -20,7 +22,7 @@ namespace Modules.Core.Pools
             PopulatePool(poolSize, spawnPosition);
         }
 
-        private void PopulatePool(int size, Vector3 spawnPosition)
+        public void PopulatePool(int size, Vector3 spawnPosition)
         {
             for (int i = 0; i < size; i++)
             {

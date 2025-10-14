@@ -6,6 +6,7 @@
 
         public int ItemCost => DataItem.ItemCost;
         public string ItemID => DataItem.ID;
+        public ItemType ItemType => DataItem.ItemType;
         
         public ModelItem(DataItem dataItem)
         {
