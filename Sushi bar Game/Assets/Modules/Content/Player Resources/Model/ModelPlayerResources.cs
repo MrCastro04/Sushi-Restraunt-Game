@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using Modules.Content.Item;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Modules.Content.Player_Resources.Model
 {
     public class ModelPlayerResources
     {
         private int _coins = 0;
-        private List<ModelItem> _ownedItems  = new();
-        
+        private List<ModelItem> _ownedItems = new();
+
         private int Coins
         {
-            get
-            {
-                return _coins;
-            }
+            get => _coins;
 
-             set
+            set
             {
-                _coins = value; 
+                _coins = value;
                 OnCoinValueChanged?.Invoke(_coins);
             }
         }
 
         public event Action<int> OnCoinValueChanged;
-        
+
         public void AddCoins(int addValue)
         {
             Coins += addValue;
@@ -36,7 +32,7 @@ namespace Modules.Content.Player_Resources.Model
 
         public void PurchaseItem(ModelItem modelItem)
         {
-            if (IsEnoughMoney(modelItem.ItemCost) == false) return; 
+            if (IsEnoughMoney(modelItem.ItemCost) == false) return;
 
             Coins -= modelItem.ItemCost;
 
