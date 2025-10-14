@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Modules.Content.Characters.Customer;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Core.Extensions.GameObject_Extention;
 using Modules.Core.Factories;
@@ -16,7 +15,7 @@ namespace Modules.Core.Pools
         public PoolCustomer(FactoryCustomer factoryCustomer, Vector3 spawnPosition, int poolSize = 10)
         {
             _factoryCustomer = factoryCustomer;
-            
+
             PopulatePool(poolSize, spawnPosition);
         }
 
@@ -25,9 +24,9 @@ namespace Modules.Core.Pools
             for (int i = 0; i < size; i++)
             {
                 var customer = _factoryCustomer.CreateItemIn(spawnPosition, Quaternion.identity);
-                 
+
                 _customersInPool.Enqueue(customer);
-       
+
                 customer.gameObject.SetActive(false);
             }
         }
@@ -36,11 +35,11 @@ namespace Modules.Core.Pools
         {
             if (_customersInPool.Any() == false)
                 return null;
-            
+
             var customer = _customersInPool.Dequeue();
 
-            customer.gameObject.SetTransformValues(position,rotation);
-      
+            customer.gameObject.SetTransformValues(position, rotation);
+
             customer.gameObject.SetActive(true);
 
             customer.WorkFlow();
@@ -51,7 +50,7 @@ namespace Modules.Core.Pools
         public void Return(ControllerCustomer controllerCustomer)
         {
             _customersInPool.Enqueue(controllerCustomer);
-        
+
             controllerCustomer.gameObject.SetActive(false);
         }
     }

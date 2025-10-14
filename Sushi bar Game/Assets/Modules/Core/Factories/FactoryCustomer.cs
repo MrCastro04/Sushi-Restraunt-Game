@@ -1,25 +1,26 @@
-﻿using Modules.Content.Characters.Employer.Controller;
+﻿using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Employer.Controller;
 using UnityEngine;
 using Zenject;
 
 namespace Modules.Core.Factories
 {
-    public class FactoryEmployer : IFactory<ControllerEmployer>
+    public class FactoryCustomer : IFactory<ControllerCustomer>
     {
         private readonly DiContainer _diContainer;
-        private readonly ControllerEmployer _controllerEmployerPrefab;
+        private readonly ControllerCustomer _controllerEmployerPrefab;
 
-        public FactoryEmployer(DiContainer diContainer, ControllerEmployer controllerEmployerPrefab)
+        public FactoryCustomer(DiContainer diContainer, ControllerCustomer controllerEmployerPrefab)
         {
             _diContainer = diContainer;
             
             _controllerEmployerPrefab = controllerEmployerPrefab;
         }
 
-        public ControllerEmployer CreateItemIn(Vector3 createPosition, Quaternion createRotation, RuleTile.TilingRuleOutput.Transform parent = null)
+        public ControllerCustomer CreateItemIn(Vector3 createPosition, Quaternion createRotation, Transform parent = null)
         {
             return _diContainer
-                .InstantiatePrefabForComponent<ControllerEmployer>(_controllerEmployerPrefab, createPosition, createRotation, parent);
+                .InstantiatePrefabForComponent<ControllerCustomer>(_controllerEmployerPrefab, createPosition, createRotation, parent);
         }
     }
 }
