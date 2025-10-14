@@ -4,7 +4,6 @@ using Modules.Content.Item;
 using Modules.Content.Player_Resources;
 using Modules.Content.Shop;
 using Modules.Content.UI.Buttons.Events;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -97,14 +96,5 @@ namespace Modules.Core.Managers
 
             _modelItems.Remove(itemID);
         }
-    }
-
-    public static class EventsItem
-    {
-        public static event Action OnGetMoreEmployers;
-        public static event Action OnGetMoreCustomers;
-
-        public static void ExecuteEventOnGetMoreEmployers() => OnGetMoreEmployers?.Invoke();
-        public static void ExecuteEventOnGetMoreCustomers() => OnGetMoreCustomers?.Invoke();
     }
 }

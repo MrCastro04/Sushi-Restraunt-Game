@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Modules.Content.Characters.Employer.Controller;
+using Modules.Content.Item;
 using Modules.Core.Factories;
 using UnityEngine;
 using Zenject;
@@ -6,11 +9,12 @@ using Zenject;
 namespace Modules.Core.Managers
 {
     public class ManagerEmployer : IInitializable, IDisposable
-    {
+    {    
         private readonly FactoryEmployer _factoryEmployer;
         private readonly Vector3 _spawnPosition;
+        private readonly List<ControllerEmployer> _employers = new();
 
-        public ManagerEmployer(FactoryEmployer factoryEmployer, Vector3 spawnPosition)
+        public ManagerEmployer( FactoryEmployer factoryEmployer, Vector3 spawnPosition)
         {
             _spawnPosition = spawnPosition;
 
@@ -28,10 +32,12 @@ namespace Modules.Core.Managers
         {
             EventsItem.OnGetMoreEmployers -= SpawnEmployer;
         }
-
+        
         private void SpawnEmployer()
         {
-            _factoryEmployer.CreateItemIn(_spawnPosition, Quaternion.identity);
+            var newEmplyer = _factoryEmployer.CreateItemIn(_spawnPosition, Quaternion.identity);
+
+            _employers.Add(newEmplyer);
         }
     }
 }

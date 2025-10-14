@@ -32,7 +32,7 @@ namespace Modules.Content.Player_Resources.View_Model
             
             _viewPlayerResources.Init(this);
             
-            _modelPlayerResources.AddCoins(200);
+            _modelPlayerResources.AddCoins(500);
         }
         #endregion
 

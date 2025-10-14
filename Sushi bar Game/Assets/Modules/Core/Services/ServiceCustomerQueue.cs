@@ -20,7 +20,7 @@ namespace Modules.Core.Services
             return _customers.Peek();
         }
 
-        public string GetPeekCustomerID()
+        public string GetPeekCustomerBuyPointID()
         {
            var item = _buyPoints.Peek();
 

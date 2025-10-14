@@ -17,6 +17,8 @@ namespace Modules.Content.Characters.Customer.Controller
         private ViewCustomer _viewCustomer;
         private ServiceMapPoint _serviceMapPoint;
 
+        public FoodType DesiredFoodType => DesiredFoodType;
+        
         #region Initialize
 
         [Inject]
@@ -38,9 +40,7 @@ namespace Modules.Content.Characters.Customer.Controller
         }
 
         #endregion
-
-        #region EventsSubscription
-
+        
         private void OnEnable()
         {
             EventsCustomer.OnGetFood += GetFood;
@@ -51,8 +51,6 @@ namespace Modules.Content.Characters.Customer.Controller
             EventsCustomer.OnGetFood -= GetFood;
         }
 
-        #endregion
-        
         public async void WorkFlow()
         {
             var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_modelCustomer.PointType);

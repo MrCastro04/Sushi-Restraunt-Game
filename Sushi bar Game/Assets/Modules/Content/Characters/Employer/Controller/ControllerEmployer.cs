@@ -23,6 +23,8 @@ namespace Modules.Content.Characters.Employer.Controller
         private ServiceMapPoint _serviceMapPoint;
         private ServiceCustomerQueue _serviceCustomerQueue;
 
+        public bool IsBusy => _modelEmployer.IsBusy;
+
         #region INITIALIZE
 
         [Inject]
@@ -54,17 +56,17 @@ namespace Modules.Content.Characters.Employer.Controller
         }
 
         #endregion
-        
+
         private void OnEnable()
         {
-            EventsCustomer.OnEnterBuyPoint += TryWorkFlow;
             EventsEmployer.OnEmployerStartCook += HandlerEmployerStartCook;
+            EventsCustomer.OnEnterBuyPoint += ProsessQueue;
         }
 
         private void OnDisable()
         {
-            EventsCustomer.OnEnterBuyPoint -= TryWorkFlow;
             EventsEmployer.OnEmployerStartCook -= HandlerEmployerStartCook;
+            EventsCustomer.OnEnterBuyPoint -= ProsessQueue;
         }
 
         private void HandlerEmployerStartCook(ControllerEmployer controllerEmployer, FoodType foodType)
@@ -74,9 +76,7 @@ namespace Modules.Content.Characters.Employer.Controller
             _viewEmployer.PlayAnimationCook(foodType);
         }
 
-        #region WORK_FLOW
-
-        private async void TryWorkFlow(string pointID, ControllerCustomer controllerCustomer, FoodType foodType)
+        private async void ProsessQueue(string pointID, ControllerCustomer controllerCustomer, FoodType foodType)
         {
             if (_serviceCustomerQueue.IsContainsCustomerID(pointID) &
                 _serviceCustomerQueue.IsContainsCustomer(controllerCustomer))
@@ -100,7 +100,7 @@ namespace Modules.Content.Characters.Employer.Controller
             {
                 Debug.Log("очередь не пустая");
 
-                TryWorkFlow(_serviceCustomerQueue.GetPeekCustomerID(), _serviceCustomerQueue.GetPeekCustomer(),
+                ProsessQueue(_serviceCustomerQueue.GetPeekCustomerBuyPointID(), _serviceCustomerQueue.GetPeekCustomer(),
                     foodType);
             }
             else
@@ -116,8 +116,6 @@ namespace Modules.Content.Characters.Employer.Controller
 
             var sellPoint = _serviceMapPoint.GetNeighboringPointForEmployer(pointID);
 
-            _serviceMapPoint.SetNonEmptyPointWithID(sellPoint.ID);
-
             await _viewEmployer.GoToPoint(sellPoint, true);
 
             var generator = _serviceFoodGenerators.GetFreeFoodGeneratorByFoodType(foodType);
@@ -131,7 +129,7 @@ namespace Modules.Content.Characters.Employer.Controller
             await _viewEmployer.GoToPoint(sellPoint, false, true);
 
             viewFood.Hide();
-            
+
             EventsEmployer.ExecuteEventOnEmployerSellFood(viewFood, generator.CurrentProfit);
 
             EventsCustomer.ExecuteCustomerGetFood(pointID, controllerCustomer);
@@ -142,6 +140,5 @@ namespace Modules.Content.Characters.Employer.Controller
 
             _modelEmployer.SetIsBusyStatus(false);
         }
-        #endregion
     }
 }
