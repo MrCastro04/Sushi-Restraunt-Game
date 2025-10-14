@@ -13,14 +13,25 @@ namespace Modules.Core.Zenject
         [SerializeField] private List<DataItem> _dataItems;
         [SerializeField] private ViewItem _viewItemPrefab;
         [SerializeField] private ViewShop _viewShop;
+        [SerializeField] private Transform _employerSpawnTransform;
         
         public override void InstallBindings()
         {
             BindManagerShop();
+            
+            BindManagerEmployer();
 
-            BindManagerCustomerQueue();
+            BindManagerCustomer();
 
             BindManagerScreen();
+        }
+
+        private void BindManagerEmployer()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ManagerEmployer>()
+                .AsSingle()
+                .WithArguments(_employerSpawnTransform.position);
         }
 
         private void BindManagerShop()
@@ -39,12 +50,12 @@ namespace Modules.Core.Zenject
                 .AsSingle();
         }
 
-        private void BindManagerCustomerQueue()
+        private void BindManagerCustomer()
         {
             var resolveCollectionMapPoints = Container.Resolve<CollectionPointsMono>();
 
-            // взять позицию точки с ID - CS1 ( "Customer Spawn 1") .
-            var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CS1"].PointMono.Position;
+            // взять позицию точки с ID - CSP1 ( "Customer Spawn 1").
+            var postionDefaultSpawnPoint = resolveCollectionMapPoints.MapPoints["CSP1"].PointMono.Position;
             Container
                 .BindInterfacesAndSelfTo<ManagerCustomer>()
                 .AsSingle()

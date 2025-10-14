@@ -13,9 +13,6 @@ namespace Modules.Content.Food_Generator
 {
     public class FoodGenerator : MonoBehaviour
     {
-        [Inject] private ServiceMapPoint _serviceMapPoint;
-        [Inject] private ServiceFoodGenerators _serviceFoodGenerators;
-
         [SerializeField] private ViewFood _viewFood;
         [SerializeField] private PointMono _pointMono;
         [SerializeField] private FoodType _foodTypeGenerates;
@@ -23,6 +20,8 @@ namespace Modules.Content.Food_Generator
         [SerializeField] private float _offsetForLoadingCirclePosition;
         [SerializeField] private float _generateTime;
 
+        private ServiceMapPoint _serviceMapPoint; 
+        private ServiceFoodGenerators _serviceFoodGenerators;
         private int _currentProfit = 200;
         
         public ViewFood ViewFood => _viewFood;
@@ -33,7 +32,17 @@ namespace Modules.Content.Food_Generator
 
         #region Initialize
 
-        private void Awake()
+        [Inject]
+        private void Construct(ServiceMapPoint serviceMapPoint, ServiceFoodGenerators serviceFoodGenerators)
+        {
+            _serviceMapPoint = serviceMapPoint;
+
+            _serviceFoodGenerators = serviceFoodGenerators;
+
+            Init();
+        }
+        
+        private void Init()
         {
             _serviceFoodGenerators.AddNewFoodGenerator(this);
 
@@ -45,8 +54,9 @@ namespace Modules.Content.Food_Generator
         #endregion
 
         public void ChangeGenerateTime(float newGenerateTime) => _generateTime = newGenerateTime;
+
         public void ChangeProfitValue(int newProfitValue) => _currentProfit = newProfitValue;
-        
+
         public void CreateFood()
         {
           _viewFood = Instantiate(_viewFood, transform.position, Quaternion.identity); 
@@ -66,7 +76,7 @@ namespace Modules.Content.Food_Generator
             
             return _viewFood;
         }
-        
+
         public async UniTask StartUse(ControllerEmployer controllerEmployer)
         {
             if (_loadingCircle.gameObject.activeSelf)

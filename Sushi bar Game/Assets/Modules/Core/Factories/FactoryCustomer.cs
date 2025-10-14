@@ -1,5 +1,5 @@
-﻿using Modules.Content.Characters.Customer;
-using Modules.Content.Characters.Customer.Controller;
+﻿using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Employer.Controller;
 using UnityEngine;
 using Zenject;
 
@@ -8,18 +8,19 @@ namespace Modules.Core.Factories
     public class FactoryCustomer : IFactory<ControllerCustomer>
     {
         private readonly DiContainer _diContainer;
-        private readonly ControllerCustomer _controllerCustomerPrefab;
-        
-        public FactoryCustomer(DiContainer diContainer, ControllerCustomer controllerCustomerPrefab)
+        private readonly ControllerCustomer _controllerEmployerPrefab;
+
+        public FactoryCustomer(DiContainer diContainer, ControllerCustomer controllerEmployerPrefab)
         {
             _diContainer = diContainer;
-            _controllerCustomerPrefab = controllerCustomerPrefab;
+            
+            _controllerEmployerPrefab = controllerEmployerPrefab;
         }
 
         public ControllerCustomer CreateItemIn(Vector3 createPosition, Quaternion createRotation, Transform parent = null)
         {
             return _diContainer
-                .InstantiatePrefabForComponent<ControllerCustomer>(_controllerCustomerPrefab, createPosition, createRotation, parent);
+                .InstantiatePrefabForComponent<ControllerCustomer>(_controllerEmployerPrefab, createPosition, createRotation, parent);
         }
     }
 }

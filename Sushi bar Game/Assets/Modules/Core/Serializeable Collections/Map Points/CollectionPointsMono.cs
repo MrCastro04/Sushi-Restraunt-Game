@@ -6,7 +6,7 @@ namespace Modules.Core.Serializeable_Collections.Map_Points
 {
     public class CollectionPointsMono : SerializedMonoBehaviour
     {
-        [OdinSerialize, InfoBox("B - Buy Point, S - Sell Point, G - Gathering Food Point, CS - Customer Spanw Point")]
+        [OdinSerialize, InfoBox("B - Buy Point, S - Sell Point, G - Gathering Food Point, CSP - Customer Spanw Point")]
         public Dictionary<string, PointMonoInfo> MapPoints { get; private set; }
 
         public void Init()
