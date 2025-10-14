@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Characters.Customer.Events;
-using Modules.Core.Factories;
 using Modules.Core.Pools;
 using UnityEngine;
 using Zenject;

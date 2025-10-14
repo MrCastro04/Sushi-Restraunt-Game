@@ -13,8 +13,6 @@ namespace Modules.Core.Pools
         private readonly FactoryCustomer _factoryCustomer;
         private readonly Queue<ControllerCustomer> _customersInPool = new();
 
-        public int PoolCapacity => _customersInPool.Count;
-        
         public PoolCustomer(FactoryCustomer factoryCustomer, Vector3 spawnPosition, int poolSize = 10)
         {
             _factoryCustomer = factoryCustomer;

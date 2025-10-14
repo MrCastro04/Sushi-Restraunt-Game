@@ -43,6 +43,7 @@ namespace Modules.Content.Map_Points
         Buy,
         Sell,
         GatheringFood,
-        CustomerSpawnPoint
+        CustomerSpawnPoint,
+        EmployerSpawnPoint
     }
 }

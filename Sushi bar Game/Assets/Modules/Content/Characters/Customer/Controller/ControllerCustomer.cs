@@ -15,7 +15,6 @@ namespace Modules.Content.Characters.Customer.Controller
     {
         private ModelCustomer _modelCustomer;
         private ViewCustomer _viewCustomer;
-        
         private ServiceMapPoint _serviceMapPoint;
 
         #region Initialize
@@ -53,15 +52,13 @@ namespace Modules.Content.Characters.Customer.Controller
         }
 
         #endregion
-
+        
         public async void WorkFlow()
         {
             var buyPoint = _serviceMapPoint.GetAnyFreePointWithType(_modelCustomer.PointType);
 
             _serviceMapPoint.SetNonEmptyPointWithID(buyPoint.ID);
 
-            // Debug.Log($"Позиция - {} ");
-            
             await _viewCustomer.GoToPoint(buyPoint.Position, buyPoint.Rotation);
             
             EventsCustomer.ExecuteCustomerEnterBuyPoint(buyPoint.ID, this , _modelCustomer.DesiredFoodType);
