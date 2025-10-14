@@ -6,7 +6,7 @@ namespace Modules.Content.UI.Buttons.Events
 {
     public static class EventsButtonClick
     {
-        public static event Action<ItemType, int> OnBuyItem; 
+        public static event Action<string> OnTryBuyItem; 
         public static event Action<ScreenType> OnOpenScreen;
         public static event Action OnCloseScreen;
 
@@ -20,9 +20,9 @@ namespace Modules.Content.UI.Buttons.Events
             OnCloseScreen?.Invoke();
         }
 
-        public static void ExecuteEventOnBuyItem(ItemType itemType, int cost)
+        public static void ExecuteEventOnBuyItem( string itemID)
         {
-            OnBuyItem?.Invoke(itemType, cost);
+            OnTryBuyItem?.Invoke(itemID);
         }
     }
 }

@@ -38,18 +38,15 @@ namespace Modules.Content.Food_Generator
             _serviceFoodGenerators.AddNewFoodGenerator(this);
 
             _serviceMapPoint.AddNewPoint(_pointMono, PointType.GatheringFood, _foodTypeGenerates);
+            
+            CreateFood();
         }
 
         #endregion
 
         public void ChangeGenerateTime(float newGenerateTime) => _generateTime = newGenerateTime;
         public void ChangeProfitValue(int newProfitValue) => _currentProfit = newProfitValue;
-
-        private void Start()
-        {
-            CreateFood();
-        }
-
+        
         public void CreateFood()
         {
           _viewFood = Instantiate(_viewFood, transform.position, Quaternion.identity); 

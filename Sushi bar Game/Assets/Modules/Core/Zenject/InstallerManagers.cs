@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Modules.Content.Item;
-using Modules.Content.UI.Screens.Base;
+using Modules.Content.Shop;
 using Modules.Core.Managers;
 using Modules.Core.Serializeable_Collections.Map_Points;
-using Modules.Core.Serializeable_Collections.Screens;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +12,8 @@ namespace Modules.Core.Zenject
     {
         [SerializeField] private List<DataItem> _dataItems;
         [SerializeField] private ViewItem _viewItemPrefab;
-
+        [SerializeField] private ViewShop _viewShop;
+        
         public override void InstallBindings()
         {
             BindManagerShop();
@@ -26,14 +25,10 @@ namespace Modules.Core.Zenject
 
         private void BindManagerShop()
         {
-            var collectionScreensResolve = Container.Resolve<CollectionScreens>();
-
-            var shopScreen = collectionScreensResolve.Screens[ScreenType.Shop];
-
             Container
                 .BindInterfacesAndSelfTo<ManagerShop>()
                 .AsSingle()
-                .WithArguments(_dataItems, _viewItemPrefab, shopScreen)
+                .WithArguments(_dataItems, _viewItemPrefab, _viewShop)
                 .NonLazy();
         }
 
