@@ -2,8 +2,11 @@
 using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Characters.Customer.Events;
+using Modules.Content.FoodCollection;
+using Modules.Content.Item;
 using Modules.Core.Factories;
 using Modules.Core.Pools;
+using Modules.Core.Services;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +22,7 @@ namespace Modules.Core.Managers
         public ManagerCustomer(FactoryCustomer factoryCustomer, Vector3 spawnPosition)
         {
             _spawnPosition = spawnPosition;
-
+            
             _poolCustomer = new(factoryCustomer, _spawnPosition, _spawnCustomerCount);
         }
 

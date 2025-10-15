@@ -2,6 +2,7 @@
 using System.Linq;
 using Modules.Content.Characters.Customer;
 using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using UnityEngine;
 using Zenject;
@@ -12,54 +13,46 @@ namespace Modules.Core.Services
     {
         [Inject] private ServiceMapPoint _serviceMapPoint;
 
-        private Queue<ControllerCustomer> _customers = new();
-        private Queue<PointMono> _buyPoints = new();
+        private Queue<CustomerQueueInfo> _queuedCustomers = new();
 
-        public ControllerCustomer GetPeekCustomer()
-        {
-            return _customers.Peek();
-        }
-
-        public string GetPeekCustomerID()
-        {
-           var item = _buyPoints.Peek();
-
-           return item.ID;
-        }
+        public int QueueCount => _queuedCustomers.Count;
 
         public bool IsContainsCustomer(ControllerCustomer controllerCustomer)
         {
-            return _customers.Contains(controllerCustomer);
+            return _queuedCustomers.Any(info => info.customer == controllerCustomer);
         }
 
         public bool IsContainsCustomerID(string customerID)
         {
-            return _buyPoints.FirstOrDefault(x => x.ID == customerID);
+            return _queuedCustomers.Any(info => info.pointID == customerID);
         }
 
-        public bool IsQueueEmpty()
+        public bool IsQueueEmpty() => _queuedCustomers.Count == 0;
+
+        public void AddNewCustomer(string pointID, ControllerCustomer controllerCustomer, FoodType foodType)
         {
-            if (_customers.Any())
-                return false;
+            var newCustomerInfo = new CustomerQueueInfo
+            {
+                pointID = pointID,
+                customer = controllerCustomer,
+                foodType = foodType
+            };
 
-            return true;
+            _queuedCustomers.Enqueue(newCustomerInfo);
         }
 
-        public void AddNewCustomer(string pointID, ControllerCustomer controllerCustomer)
+        public CustomerQueueInfo TryDequeueCustomer()
         {
-            _customers.Enqueue(controllerCustomer);
-            _buyPoints.Enqueue(_serviceMapPoint.GetFreePointByID(pointID));
-            
-            Debug.Log($"Пришел посититель. Посетителей в колекции - {_customers.Count}");
-        }
+            if (_queuedCustomers.Count == 0) return null;
 
-        public void RemoveCurrentCustomer()
-        {
-            _customers.Dequeue();
-
-            _buyPoints.Dequeue();
-            
-            Debug.Log($" Посетитель ушел. Посетителей в колекции - {_customers.Count}");
+            return _queuedCustomers.Dequeue();
         }
+    }
+
+    public class CustomerQueueInfo
+    {
+        public string pointID;
+        public ControllerCustomer customer;
+        public FoodType foodType;
     }
 }
