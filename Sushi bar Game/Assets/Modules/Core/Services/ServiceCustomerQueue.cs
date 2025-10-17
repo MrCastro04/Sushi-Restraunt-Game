@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Customer.Code.Controller;
 using Modules.Content.FoodCollection;
 using Zenject;
 

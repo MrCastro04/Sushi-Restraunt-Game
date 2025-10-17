@@ -1,8 +1,8 @@
 ﻿using System;
-using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Customer.Code.Controller;
 using Modules.Content.FoodCollection;
 
-namespace Modules.Content.Characters.Customer.Events
+namespace Modules.Content.Characters.Customer.Code.Events
 {
     public static class EventsCustomer
     {

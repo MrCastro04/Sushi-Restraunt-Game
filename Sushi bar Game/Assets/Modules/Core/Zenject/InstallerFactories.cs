@@ -1,4 +1,4 @@
-﻿using Modules.Content.Characters.Customer.Controller;
+﻿using Modules.Content.Characters.Customer.Code.Controller;
 using Modules.Content.Characters.Employer.Code.Controller;
 using Modules.Core.Factories;
 using UnityEngine;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Modules.Content.Characters.Customer.Controller;
-using Modules.Content.Characters.Customer.Events;
+using Modules.Content.Characters.Customer.Code.Controller;
+using Modules.Content.Characters.Customer.Code.Events;
 using Modules.Content.FoodCollection;
 using Modules.Content.Item;
 using Modules.Core.Factories;

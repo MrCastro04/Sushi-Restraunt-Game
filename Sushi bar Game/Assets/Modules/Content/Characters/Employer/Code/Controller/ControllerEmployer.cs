@@ -1,11 +1,11 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
-using Modules.Content.Characters.Customer.Controller;
-using Modules.Content.Characters.Customer.Events;
+using Modules.Content.Characters.Customer.Code.Controller;
+using Modules.Content.Characters.Customer.Code.Events;
+using Modules.Content.Characters.Employer.Code.Events;
+using Modules.Content.Characters.Employer.Code.Model;
 using Modules.Content.Characters.Employer.Code.View;
-using Modules.Content.Characters.Employer.Events;
-using Modules.Content.Characters.Employer.Model;
 using Modules.Content.FoodCollection;
 using Modules.Core.Serializeable_Collections.Map_Points;
 using Modules.Core.Services;

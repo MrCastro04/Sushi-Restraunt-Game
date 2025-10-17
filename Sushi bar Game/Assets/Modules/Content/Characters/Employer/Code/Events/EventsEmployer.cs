@@ -1,10 +1,9 @@
 ﻿using System;
 using Modules.Content.Characters.Employer.Code.Controller;
-using Modules.Content.Characters.Employer.View;
+using Modules.Content.Characters.Employer.Code.View;
 using Modules.Content.FoodCollection;
-using UnityEngine;
 
-namespace Modules.Content.Characters.Employer.Events
+namespace Modules.Content.Characters.Employer.Code.Events
 {
     public static class EventsEmployer
     {

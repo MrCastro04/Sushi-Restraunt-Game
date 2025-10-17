@@ -1,6 +1,6 @@
-﻿using Modules.Content.Characters.Customer.Model;
+﻿using Modules.Content.Characters.Customer.Code.Model;
 using Modules.Content.Characters.Employer;
-using Modules.Content.Characters.Employer.Model;
+using Modules.Content.Characters.Employer.Code.Model;
 using Modules.Content.FoodCollection;
 using Modules.Content.Player_Resources;
 using Modules.Content.Player_Resources.Model;

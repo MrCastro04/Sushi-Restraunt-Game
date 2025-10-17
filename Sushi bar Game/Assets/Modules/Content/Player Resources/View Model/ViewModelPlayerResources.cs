@@ -1,6 +1,6 @@
 ﻿using System;
-using Modules.Content.Characters.Employer.Events;
-using Modules.Content.Characters.Employer.View;
+using Modules.Content.Characters.Employer.Code.Events;
+using Modules.Content.Characters.Employer.Code.View;
 using Modules.Content.Item;
 using Modules.Content.Player_Resources.Model;
 using Modules.Content.Player_Resources.View;

@@ -2,7 +2,7 @@
 using Modules.Content.Map_Points;
 using UnityEngine;
 
-namespace Modules.Content.Characters.Customer.Model
+namespace Modules.Content.Characters.Customer.Code.Model
 {
     public class ModelCustomer
     {

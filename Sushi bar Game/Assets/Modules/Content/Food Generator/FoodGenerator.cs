@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Employer.Code.Controller;
-using Modules.Content.Characters.Employer.Events;
-using Modules.Content.Characters.Employer.View;
+using Modules.Content.Characters.Employer.Code.Events;
+using Modules.Content.Characters.Employer.Code.View;
 using Modules.Content.FoodCollection;
 using Modules.Content.Map_Points;
 using Modules.Content.UI.Circle_Loading.Code;

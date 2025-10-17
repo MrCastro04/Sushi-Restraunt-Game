@@ -1,14 +1,14 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Content.Characters.Base.Code;
-using Modules.Content.Characters.Customer.Events;
-using Modules.Content.Characters.Customer.Model;
-using Modules.Content.Characters.Customer.View;
+using Modules.Content.Characters.Customer.Code.Events;
+using Modules.Content.Characters.Customer.Code.Model;
+using Modules.Content.Characters.Customer.Code.View;
 using Modules.Content.FoodCollection;
 using Modules.Core.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Modules.Content.Characters.Customer.Controller
+namespace Modules.Content.Characters.Customer.Code.Controller
 {
     [RequireComponent(typeof(ViewCustomer))]
     public class ControllerCustomer : BaseController

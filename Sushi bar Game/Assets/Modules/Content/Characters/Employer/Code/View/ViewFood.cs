@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Modules.Content.Characters.Employer.View
+namespace Modules.Content.Characters.Employer.Code.View
 {
     public class ViewFood : MonoBehaviour
     {

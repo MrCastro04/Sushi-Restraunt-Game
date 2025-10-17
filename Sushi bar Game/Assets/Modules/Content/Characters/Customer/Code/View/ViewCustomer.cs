@@ -2,7 +2,7 @@
 using Modules.Content.Characters.Base.Code;
 using UnityEngine;
 
-namespace Modules.Content.Characters.Customer.View
+namespace Modules.Content.Characters.Customer.Code.View
 {
     public class ViewCustomer : BaseView
     {

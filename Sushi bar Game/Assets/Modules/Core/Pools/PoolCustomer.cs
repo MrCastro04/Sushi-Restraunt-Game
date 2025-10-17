@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Modules.Content.Characters.Customer.Controller;
+using Modules.Content.Characters.Customer.Code.Controller;
 using Modules.Core.Extensions.GameObject_Extention;
 using Modules.Core.Factories;
 using UnityEngine;
