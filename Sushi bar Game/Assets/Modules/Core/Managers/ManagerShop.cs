@@ -4,7 +4,6 @@ using Modules.Content.Item;
 using Modules.Content.Player_Resources;
 using Modules.Content.Shop;
 using Modules.Content.UI.Buttons.Events;
-using Modules.Core.Extensions;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
