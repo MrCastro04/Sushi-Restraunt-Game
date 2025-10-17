@@ -4,6 +4,7 @@ using Modules.Content.Item;
 using Modules.Content.Player_Resources;
 using Modules.Content.Shop;
 using Modules.Content.UI.Buttons.Events;
+using Modules.Core.Extensions;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -34,14 +35,14 @@ namespace Modules.Core.Managers
 
             EventsButtonClick.OnTryBuyItem += TryBuyItem;
 
-            EventsShop.OnItemPurchasedSuccessfully += RemoveTargetItemView;
+            EventsShop.OnItemPurchasedSuccessfully += HandlerOnItemPurchased;
         }
 
         public void Dispose()
         {
             EventsButtonClick.OnTryBuyItem -= TryBuyItem;
 
-            EventsShop.OnItemPurchasedSuccessfully -= RemoveTargetItemView;
+            EventsShop.OnItemPurchasedSuccessfully -= HandlerOnItemPurchased;
         }
 
         private void CreateItemViews()
@@ -51,44 +52,96 @@ namespace Modules.Core.Managers
                 ModelItem modelItem = new(data);
 
                 ViewItem newViewItem = Object.Instantiate(_viewItemPrefab, _viewShop.ItemListTransform);
-
+                
                 newViewItem.transform.localPosition = Vector2.zero;
 
-                newViewItem.Init(data);
+                string finalID = GenerateUniqueKeyForBothDictionaries(data.ID);
+                
+                modelItem.ChangeID(finalID);
+                
+                Debug.Log($"{GetType().Name}: Creating {finalID}");
+                
+                _modelItems.Add(finalID, modelItem);
+                _viewItems.Add(finalID, newViewItem);
 
-                _modelItems.Add(data.ID, modelItem);
-                _viewItems.Add(data.ID, newViewItem);
+                newViewItem.Init(data, finalID);
             }
+        }
+
+        private string GenerateUniqueKeyForBothDictionaries(string baseID)
+        {
+            Debug.Log(baseID);
+            
+            if (_modelItems.ContainsKey(baseID) == false && _viewItems.ContainsKey(baseID) == false)
+                return baseID;
+
+            // Находим, где начинаются цифры в конце строки
+            int numberStartIndex = baseID.Length - 1;
+
+            while (numberStartIndex >= 0 && char.IsDigit(baseID[numberStartIndex]))
+                numberStartIndex--;
+
+            numberStartIndex++;
+
+            // Разделяем на буквенную и числовую части
+            string lettersPart = baseID.Substring(0, numberStartIndex);
+            string numberPart = baseID.Substring(numberStartIndex);
+
+            // Если числа нет, начинаем с 1
+            if (int.TryParse(numberPart, out int number) == false)
+                number = 0;
+
+            // Генерируем новый уникальный ключ
+            string newKey;
+            do
+            {
+                number++;
+                newKey = lettersPart + number;
+            } while (_modelItems.ContainsKey(newKey) || _viewItems.ContainsKey(newKey));
+
+            Debug.Log(newKey);
+            
+            return newKey;
         }
 
         private void TryBuyItem(string itemID)
         {
             if (_modelItems.ContainsKey(itemID) == false) return;
-
-            ModelItem itemToBuy = _modelItems[itemID];
-
-            EventsPlayerResources.ExecuteEventOnTryBuyItem(itemToBuy);
+            
+            EventsPlayerResources.ExecuteEventOnTryBuyItem(_modelItems[itemID].ItemCost, itemID);
         }
 
-        private void RemoveTargetItemView(string itemID)
+        private void HandlerOnItemPurchased(string itemID)
         {
-            if (_viewItems.ContainsKey(itemID) == false) return;
-            
-            switch (_modelItems[itemID].ItemType)
+            Debug.Log(itemID);
+            if (_viewItems.ContainsKey(itemID) == false)
             {
-                case ItemType.MoreCustomer :
+                return;
+            }
+
+            ModelItem item = _modelItems[itemID];
+
+            switch (item.ItemType)
+            {
+                case ItemType.MoreCustomer:
                     EventsItem.ExecuteEventOnGetMoreCustomers();
                     break;
-                
+
                 case ItemType.MoreEmployer:
                     EventsItem.ExecuteEventOnGetMoreEmployers();
                     break;
-                
+
+                case ItemType.FasterGenerateFood:
+                    
+                    EventsItem.ExecuteEventOnGetFasterFoodGenerator(item.FoodType);
+                    break;
+
                 default:
                     Debug.Log($"Такой способности не существует. Добавте ее через | {this} | ");
                     return;
-                
             }
+
+            Debug.Log($"{itemID}");
 
             Object.Destroy(_viewItems[itemID].gameObject);
 

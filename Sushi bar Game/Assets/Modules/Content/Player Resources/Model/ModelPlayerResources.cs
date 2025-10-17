@@ -40,7 +40,7 @@ namespace Modules.Content.Player_Resources.Model
 
             Debug.Log($"Предмет {modelItem.ItemID} куплен! Текущий баланс: {Coins}");
         }
-
+        
         public bool IsEnoughMoney(int coinsAmount)
         {
             return _coins >= coinsAmount;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Modules.Content.Food_Generator;
 using Modules.Content.Item;
 using Modules.Content.Shop;
 using Modules.Core.Managers;
@@ -10,6 +11,7 @@ namespace Modules.Core.Zenject
 {
     public class InstallerManagers : MonoInstaller
     {
+        [SerializeField] private List<FoodGenerator> _foodGenerators;
         [SerializeField] private List<DataItem> _dataItems;
         [SerializeField] private ViewItem _viewItemPrefab;
         [SerializeField] private ViewShop _viewShop;
@@ -18,6 +20,11 @@ namespace Modules.Core.Zenject
         public override void InstallBindings()
         {
             BindManagerShop();
+
+            Container
+                .BindInterfacesAndSelfTo<ManagerFoodGenerator>()
+                .AsSingle()
+                .WithArguments(_foodGenerators);
             
             BindManagerEmployer();
 

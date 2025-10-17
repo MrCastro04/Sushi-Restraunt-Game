@@ -1,6 +1,6 @@
-﻿using TMPro;
+﻿using Modules.Content.FoodCollection;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Modules.Content.Item
 {
@@ -10,9 +10,16 @@ namespace Modules.Content.Item
         [field: SerializeField] public Sprite ItemSprite { get; private set; }
         [field: SerializeField] public Sprite ItemCostSprite { get; private set; }
         [field: SerializeField] public ItemType ItemType { get; private set; }
+
+        [field: SerializeField]
+        [field: ShowIf(nameof(IsFasterGenerateFood))]
+        public FoodType FoodType { get; private set; }
+
         [field: SerializeField] public string ItemName { get; private set; }
-        [field: SerializeField] public string ItemDesccription { get; private set; }
+        [field: SerializeField] public string ItemDescription { get; private set; }
         [field: SerializeField] public string ID { get; private set; }
         [field: SerializeField] public int ItemCost { get; private set; }
+
+        private bool IsFasterGenerateFood() => ItemType == ItemType.FasterGenerateFood;
     }
 }

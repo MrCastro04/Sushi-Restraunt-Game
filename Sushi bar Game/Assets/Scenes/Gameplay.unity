@@ -10780,9 +10780,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a9c3b858ae4f3da4c3fa8855a1beb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _foodGenerators:
+  - {fileID: 1859202453}
   _dataItems:
   - {fileID: 11400000, guid: 653b3e00f9272fe44bc8fb1432888568, type: 2}
+  - {fileID: 11400000, guid: 653b3e00f9272fe44bc8fb1432888568, type: 2}
   - {fileID: 11400000, guid: 9fb262782a7c57d469a01b7a4b93f422, type: 2}
+  - {fileID: 11400000, guid: 9fb262782a7c57d469a01b7a4b93f422, type: 2}
+  - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
+  - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
   _viewItemPrefab: {fileID: 5701054536438223467, guid: 14e020b4263eb204cabcde2b533c7786, type: 3}
   _viewShop: {fileID: 4268501175896050679}
   _employerSpawnTransform: {fileID: 688391589}
@@ -15764,6 +15770,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 857499832992735203, guid: c11512cac5c2f7e459201bd82b43488e, type: 3}
   m_PrefabInstance: {fileID: 1859202451}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1859202453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 468846744067642059, guid: c11512cac5c2f7e459201bd82b43488e, type: 3}
+  m_PrefabInstance: {fileID: 1859202451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d19cd2c23e40d6a924e06574e505db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1869756220
 PrefabInstance:
   m_ObjectHideFlags: 0

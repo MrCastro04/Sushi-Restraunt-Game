@@ -30,15 +30,13 @@ namespace Modules.Content.Food_Generator
         public int CurrentProfit => _currentProfit;
         public float GenerateTime => _generateTime;
 
-        #region Initialize
-
         [Inject]
         private void Construct(ServiceMapPoint serviceMapPoint, ServiceFoodGenerators serviceFoodGenerators)
         {
             _serviceMapPoint = serviceMapPoint;
 
             _serviceFoodGenerators = serviceFoodGenerators;
-
+            
             Init();
         }
         
@@ -49,13 +47,17 @@ namespace Modules.Content.Food_Generator
             _serviceMapPoint.AddNewPoint(_pointMono, PointType.GatheringFood, _foodTypeGenerates);
             
             CreateFood();
+            
+            Debug.Log($"{_generateTime}");
         }
 
-        #endregion
-
-        public void ChangeGenerateTime(float newGenerateTime) => _generateTime = newGenerateTime;
-
-        public void ChangeProfitValue(int newProfitValue) => _currentProfit = newProfitValue;
+        public void ReduceGenerateTime(float newGenerateTime)
+        {
+            _generateTime -= newGenerateTime;
+            
+            Debug.Log($"{_generateTime}");
+        }
+        public void AddProfitValue(int newProfitValue) => _currentProfit += newProfitValue;
 
         public void CreateFood()
         {
