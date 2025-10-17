@@ -7,8 +7,6 @@ namespace Modules.Content.UI.Screens.Base
     public abstract class BaseScreen : MonoBehaviour
     {
         protected Canvas _canvas;
-
-        public Canvas Canvas => _canvas;
         
         protected virtual void Awake()
         {
