@@ -10789,6 +10789,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fb262782a7c57d469a01b7a4b93f422, type: 2}
   - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
   - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
+  - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
+  - {fileID: 11400000, guid: f9347ba311f3778438999e89472bd51d, type: 2}
   _viewItemPrefab: {fileID: 5701054536438223467, guid: 14e020b4263eb204cabcde2b533c7786, type: 3}
   _viewShop: {fileID: 4268501175896050679}
   _employerSpawnTransform: {fileID: 688391589}

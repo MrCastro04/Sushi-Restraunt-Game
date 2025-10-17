@@ -57,7 +57,7 @@ namespace Modules.Core.Managers
 
                 string finalID = GenerateUniqueKeyForBothDictionaries(data.ID);
                 
-                modelItem.ChangeID(finalID);
+                modelItem.SetNewID(finalID);
                 
                 Debug.Log($"{GetType().Name}: Creating {finalID}");
                 
@@ -70,12 +70,9 @@ namespace Modules.Core.Managers
 
         private string GenerateUniqueKeyForBothDictionaries(string baseID)
         {
-            Debug.Log(baseID);
-            
             if (_modelItems.ContainsKey(baseID) == false && _viewItems.ContainsKey(baseID) == false)
                 return baseID;
 
-            // Находим, где начинаются цифры в конце строки
             int numberStartIndex = baseID.Length - 1;
 
             while (numberStartIndex >= 0 && char.IsDigit(baseID[numberStartIndex]))
@@ -83,23 +80,18 @@ namespace Modules.Core.Managers
 
             numberStartIndex++;
 
-            // Разделяем на буквенную и числовую части
             string lettersPart = baseID.Substring(0, numberStartIndex);
             string numberPart = baseID.Substring(numberStartIndex);
 
-            // Если числа нет, начинаем с 1
             if (int.TryParse(numberPart, out int number) == false)
                 number = 0;
 
-            // Генерируем новый уникальный ключ
             string newKey;
             do
             {
                 number++;
                 newKey = lettersPart + number;
             } while (_modelItems.ContainsKey(newKey) || _viewItems.ContainsKey(newKey));
-
-            Debug.Log(newKey);
             
             return newKey;
         }
@@ -108,12 +100,11 @@ namespace Modules.Core.Managers
         {
             if (_modelItems.ContainsKey(itemID) == false) return;
             
-            EventsPlayerResources.ExecuteEventOnTryBuyItem(_modelItems[itemID].ItemCost, itemID);
+            EventsPlayerResources.ExecuteEventOnTryBuyItem(_modelItems[itemID]);
         }
 
         private void HandlerOnItemPurchased(string itemID)
         {
-            Debug.Log(itemID);
             if (_viewItems.ContainsKey(itemID) == false)
             {
                 return;
@@ -140,9 +131,7 @@ namespace Modules.Core.Managers
                     Debug.Log($"Такой способности не существует. Добавте ее через | {this} | ");
                     return;
             }
-
-            Debug.Log($"{itemID}");
-
+            
             Object.Destroy(_viewItems[itemID].gameObject);
 
             _viewItems.Remove(itemID);

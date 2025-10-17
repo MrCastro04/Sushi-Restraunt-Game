@@ -18,7 +18,7 @@ namespace Modules.Content.Item
             DataItem = dataItem;
         }
 
-        public void ChangeID(string newID)
+        public void SetNewID(string newID)
         {
           _dynamicID = newID;
         }
