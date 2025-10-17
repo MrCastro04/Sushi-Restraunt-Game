@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Modules.Content.Characters.Customer;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.FoodCollection;
-using Modules.Content.Map_Points;
-using UnityEngine;
 using Zenject;
 
 namespace Modules.Core.Services

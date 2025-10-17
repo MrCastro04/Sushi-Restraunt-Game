@@ -14,18 +14,20 @@ namespace Modules.Content.Item
         [SerializeField] private Image _itemCostImage;
         [SerializeField] private ButtonBuyItem _buttonBuyItem;
 
-        public void Init(DataItem dataItem)
+        public void Init(DataItem dataItem , string finalID)
         {
             DisplayView(dataItem);
             
-            _buttonBuyItem.Init(dataItem.ID);
+            // ошибка
+            
+            _buttonBuyItem.Init(finalID);
         }
         
         public void DisplayView(DataItem dataItem)
         {
             _itemName.text = dataItem.ItemName;
 
-            _itemDescription.text = dataItem.ItemDesccription;
+            _itemDescription.text = dataItem.ItemDescription;
 
             _itemCost.text = dataItem.ItemCost.ToString();
 

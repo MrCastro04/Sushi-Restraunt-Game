@@ -17,8 +17,6 @@ namespace Modules.Content.Player_Resources.View_Model
 
         public event Action<string> OnCoinValueChanged;
 
-        #region INITIALIZE
-
         [Inject]
         public ViewModelPlayerResources(ModelPlayerResources modelPlayerResources, ViewPlayerResources viewPlayerResources)
         {
@@ -34,49 +32,44 @@ namespace Modules.Content.Player_Resources.View_Model
             
             _modelPlayerResources.AddCoins(500);
         }
-        #endregion
-
-        #region EVENT_SUBSCRIPTION
 
         private void EventsSubscription()
         {
-            _modelPlayerResources.OnCoinValueChanged += HandlerOnCoinValueChange;
+            _modelPlayerResources.OnCoinValueChanged += HandlerOnCoinsValueChange;
             
-            EventsEmployer.OnEmployerSellFood += HandlerOnEmployerSellFood;
+            EventsEmployer.OnEmployerSellFood += GetProfitFromSell;
 
-            EventsPlayerResources.OnTryBuyItem += HandlerOnTryBuyItem;
+            EventsPlayerResources.OnTryBuyItem += TryBuyItem;
         }
 
         public void Dispose()
         {
-            _modelPlayerResources.OnCoinValueChanged -= HandlerOnCoinValueChange;
+            _modelPlayerResources.OnCoinValueChanged -= HandlerOnCoinsValueChange;
             
-            EventsEmployer.OnEmployerSellFood -= HandlerOnEmployerSellFood;
+            EventsEmployer.OnEmployerSellFood -= GetProfitFromSell;
             
-            EventsPlayerResources.OnTryBuyItem -= HandlerOnTryBuyItem;
+            EventsPlayerResources.OnTryBuyItem -= TryBuyItem;
         }
 
-        #endregion
-
-        private void HandlerOnTryBuyItem(ModelItem modelItemToBuy)
+        private void TryBuyItem(ModelItem modelItem)
         {
-            if(_modelPlayerResources.IsEnoughMoney(modelItemToBuy.ItemCost) == false) 
+            if(_modelPlayerResources.IsEnoughMoney(modelItem.ItemCost) == false) 
             {
                 Debug.Log("Недостаточно средств!");
                 return;
             }
-       
-            _modelPlayerResources.PurchaseItem(modelItemToBuy);
             
-            EventsShop.ExecuteEventOnItemPurchased(modelItemToBuy.ItemID);
+            _modelPlayerResources.PurchaseItem(modelItem);
+            
+            EventsShop.ExecuteEventOnConfirmPurchase(modelItem.ItemID);
         }
 
-        private void HandlerOnEmployerSellFood(ViewFood viewFood,int profit)
+        private void GetProfitFromSell(ViewFood viewFood,int profit)
         {
             _modelPlayerResources.AddCoins(profit);
         }
 
-        private void HandlerOnCoinValueChange(int newCoinValue)
+        private void HandlerOnCoinsValueChange(int newCoinValue)
         {
             OnCoinValueChanged?.Invoke(newCoinValue.ToString());
         }

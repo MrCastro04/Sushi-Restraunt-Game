@@ -15,7 +15,8 @@ MonoBehaviour:
   <ItemSprite>k__BackingField: {fileID: 21300000, guid: 4f0af6fa58243ec4fbdcde7f9f61c0d9, type: 3}
   <ItemCostSprite>k__BackingField: {fileID: 21300000, guid: 967bc15465e274cdaa4e5ca0c3950fde, type: 3}
   <ItemType>k__BackingField: 1
+  <FoodType>k__BackingField: 0
   <ItemName>k__BackingField: Popularity
-  <ItemDesccription>k__BackingField: +1 Customer
-  <ID>k__BackingField: I0
+  <ItemDescription>k__BackingField: +1 Customer
+  <ID>k__BackingField: C1
   <ItemCost>k__BackingField: 200
