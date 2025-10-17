@@ -43,7 +43,7 @@ namespace Modules.Content.Characters.Base.Code
             
             await UniTask.WaitUntil(() => HasAgentPath() == false, cancellationToken: _token);
             
-            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f);
+            await gameObject.transform.DORotateQuaternion(targetRotation, 0.2f).AsyncWaitForCompletion();
         }
 
         public void PlayAnimationIdle()

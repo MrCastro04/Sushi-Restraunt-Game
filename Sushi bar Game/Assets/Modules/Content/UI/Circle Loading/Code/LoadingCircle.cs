@@ -22,7 +22,7 @@ namespace Modules.Content.UI.Circle_Loading.Code
         
             _circleImage.fillAmount = 0;
         
-            await _circleImage.DOFillAmount(_maxFillAmount, immitationTime);
+            await _circleImage.DOFillAmount(_maxFillAmount, immitationTime).AsyncWaitForCompletion();
         
             gameObject.SetActive(false);
         }
