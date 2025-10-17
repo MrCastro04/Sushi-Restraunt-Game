@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Modules.Content.Characters.Customer.Controller;
 using Modules.Content.Characters.Customer.Events;
-using Modules.Content.Characters.Employer.Controller;
+using Modules.Content.Characters.Employer.Code.Controller;
 using Modules.Content.FoodCollection;
 using Modules.Content.Item;
 using Modules.Core.Factories;

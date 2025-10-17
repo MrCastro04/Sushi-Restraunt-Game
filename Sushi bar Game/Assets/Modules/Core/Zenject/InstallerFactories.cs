@@ -1,5 +1,5 @@
 ﻿using Modules.Content.Characters.Customer.Controller;
-using Modules.Content.Characters.Employer.Controller;
+using Modules.Content.Characters.Employer.Code.Controller;
 using Modules.Core.Factories;
 using UnityEngine;
 using Zenject;

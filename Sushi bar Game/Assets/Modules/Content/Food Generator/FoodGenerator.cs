@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Modules.Content.Characters.Employer.Controller;
+using Modules.Content.Characters.Employer.Code.Controller;
 using Modules.Content.Characters.Employer.Events;
 using Modules.Content.Characters.Employer.View;
 using Modules.Content.FoodCollection;
