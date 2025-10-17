@@ -51,20 +51,17 @@ namespace Modules.Content.Player_Resources.View_Model
             EventsPlayerResources.OnTryBuyItem -= TryBuyItem;
         }
 
-        private void TryBuyItem(int costItem, string idItem)
+        private void TryBuyItem(ModelItem modelItem)
         {
-            if(_modelPlayerResources.IsEnoughMoney(costItem) == false) 
+            if(_modelPlayerResources.IsEnoughMoney(modelItem.ItemCost) == false) 
             {
                 Debug.Log("Недостаточно средств!");
                 return;
             }
             
-            EventsShop.ExecuteEventOnConfirmPurchase(idItem);
-        }
-
-        private void PurchaseItem(ModelItem item)
-        {
-            _modelPlayerResources.PurchaseItem(item);
+            _modelPlayerResources.PurchaseItem(modelItem);
+            
+            EventsShop.ExecuteEventOnConfirmPurchase(modelItem.ItemID);
         }
 
         private void GetProfitFromSell(ViewFood viewFood,int profit)
