@@ -4,6 +4,7 @@ using Modules.Content.Item;
 using Modules.Content.Player_Resources;
 using Modules.Content.Shop;
 using Modules.Content.UI.Buttons.Events;
+using Modules.Core.Extensions;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -51,48 +52,18 @@ namespace Modules.Core.Managers
                 ModelItem modelItem = new(data);
 
                 ViewItem newViewItem = Object.Instantiate(_viewItemPrefab, _viewShop.ItemListTransform);
-                
-                newViewItem.transform.localPosition = Vector2.zero;
 
-                string finalID = GenerateUniqueKeyForBothDictionaries(data.ID);
+                newViewItem.transform.localPosition = Vector2.zero;
                 
+                string finalID = _modelItems.GenerateUniqueKey(data.ID);
+
                 modelItem.SetNewID(finalID);
-                
-                Debug.Log($"{GetType().Name}: Creating {finalID}");
-                
+
                 _modelItems.Add(finalID, modelItem);
                 _viewItems.Add(finalID, newViewItem);
 
                 newViewItem.Init(data, finalID);
             }
-        }
-
-        private string GenerateUniqueKeyForBothDictionaries(string baseID)
-        {
-            if (_modelItems.ContainsKey(baseID) == false && _viewItems.ContainsKey(baseID) == false)
-                return baseID;
-
-            int numberStartIndex = baseID.Length - 1;
-
-            while (numberStartIndex >= 0 && char.IsDigit(baseID[numberStartIndex]))
-                numberStartIndex--;
-
-            numberStartIndex++;
-
-            string lettersPart = baseID.Substring(0, numberStartIndex);
-            string numberPart = baseID.Substring(numberStartIndex);
-
-            if (int.TryParse(numberPart, out int number) == false)
-                number = 0;
-
-            string newKey;
-            do
-            {
-                number++;
-                newKey = lettersPart + number;
-            } while (_modelItems.ContainsKey(newKey) || _viewItems.ContainsKey(newKey));
-            
-            return newKey;
         }
 
         private void TryBuyItem(string itemID)
