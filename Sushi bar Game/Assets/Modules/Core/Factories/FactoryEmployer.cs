@@ -1,4 +1,4 @@
-﻿using Modules.Content.Characters.Employer.Controller;
+﻿using Modules.Content.Characters.Employer.Code.Controller;
 using UnityEngine;
 using Zenject;
 
