@@ -1,26 +1,229 @@
-1. Project Description
+## Project Overview
 
-A brief overview of the project and its key features. This is an idle simulation game where the player manages a sushi restaurant, hires staff, serves customers, and expands their culinary empire.
+**Sushi Idle Game** - An idle restaurant management game built with Unity 2022.3.20f1. Players manage a sushi restaurant by hiring employees, serving customers, and generating revenue. The game uses modern Unity development practices with Zenject for dependency injection, UniTask for async operations, and DOTween for animations.
 
----
+## Key Technologies
 
- Features:
-   
-   Idle Gameplay: Automate restaurant operations with hired staff.
-   
-  Staff Management: Hire different types of employees (chefs, waiters) with unique skills.
-  
-  Customer AI: Dynamic customer spawning and navigation system. 
-  
-  Upgrade System: Improve your restaurant's equipment and recipes.
-  
-  Resource Management: Balance your budget and resources to maximize profit.
+- **Unity Version**: 2022.3.20f1
+- **Zenject**: Dependency injection framework (in `Assets/Plugins/Zenject/`)
+- **UniTask**: Async/await for Unity (in `Assets/Plugins/UniTask/`)
+- **DOTween**: Animation tweening library (in `Assets/Plugins/Demigiant/DOTween/`)
+- **Odin Inspector**: Inspector enhancement tool (in `Assets/Plugins/Sirenix/`)
+- **TextMesh Pro**: Text rendering
+- **AI Navigation**: NavMesh for character pathfinding
 
-  ---
+## Code Architecture
 
+The project follows a modular architecture with clear separation between Core systems and Content-specific implementations.
 
-2. Technologies & Plugins
+### Module Structure
 
-A detailed description of all technologies used in the project.
+```
+Assets/Modules/
+├── Core/                          # Framework and reusable systems
+│   ├── Data/                      # Data structures and ScriptableObjects
+│   ├── Extensions/                # Extension methods and utilities
+│   ├── Factories/                 # Factory pattern implementations
+│   ├── Managers/                  # High-level game systems
+│   ├── Pools/                     # Object pooling
+│   ├── Serializeable Collections/ # Custom serializable collections
+│   ├── Services/                  # Business logic services
+│   └── Zenject/                   # DI installers (CRITICAL)
+└── Content/                       # Game-specific implementations
+    ├── Characters/                # Customer and Employer systems
+    ├── Food Generator/            # Food creation logic
+    ├── FoodCollection/            # Food types and data
+    ├── Item/                      # Shop items
+    ├── Map Points/                # Waypoint system for navigation
+    ├── Player Resources/          # Currency and resources
+    ├── Shop/                      # Shop UI and logic
+    └── UI/                        # UI components and buttons
+```
 
-    Zenject (Dependency Injection): Used for managing dependencies and creating a loosely coupled architecture. It helps decouple objects from concrete implementations, making the code more modular, testable, and maintainable.
+### Zenject Dependency Injection
+
+**IMPORTANT**: This project heavily uses Zenject for dependency injection. All major systems are registered through installers located in `Assets/Modules/Core/Zenject/`.
+
+#### Key Installers (Read these first when modifying systems):
+
+- **InstallerServices.cs** - Registers all service layer classes:
+  - `ServiceMapPoint` - Map point management
+  - `ServiceCustomerQueue` - Customer queueing system
+  - `ServiceFoodGenerators` - Food generation logic
+
+- **InstallerManagers.cs** - Registers manager classes:
+  - `ManagerShop` - Shop system with items and purchases
+  - `ManagerEmployer` - Employee spawning and management
+  - `ManagerCustomer` - Customer spawning and lifecycle
+  - `ManagerScreen` - UI screen management
+
+- **InstallerFactories.cs** - Registers factory classes for object creation
+- **InstallerModels.cs** - Registers model/data classes
+- **InstallerViewModels.cs** - Registers view-model classes
+- **InstallerSerializeableCollections.cs** - Registers serializable collection instances
+
+#### Zenject Best Practices for this Project:
+
+1. **Always check installers first** before modifying core systems
+2. **Use constructor injection** - Most classes receive dependencies via `[Inject]` constructor
+3. **Register new services** in appropriate installer (Services go in `InstallerServices.cs`, Managers in `InstallerManagers.cs`, etc.)
+4. **Scene Context** - Check the Gameplay scene for the SceneContext GameObject that references all installers
+5. **Binding lifetimes**:
+   - `AsSingle()` - Singleton across scene
+   - `NonLazy()` - Force instantiation at startup
+   - `WithArguments()` - Pass specific values to constructors
+
+### Character System (MVC Pattern)
+
+Characters (Customer and Employer) follow a Model-View-Controller pattern:
+
+**Structure**:
+```
+Characters/
+├── Base/
+│   ├── BaseController.cs      # Base controller logic
+│   └── BaseView.cs             # Base view with MonoBehaviour
+├── Customer/
+│   ├── Controller/             # Customer-specific behavior
+│   ├── Model/                  # Customer data (ModelCustomer.cs)
+│   ├── View/                   # Customer visuals (ViewCustomer.cs)
+│   └── Events/                 # Customer event system
+└── Employer/
+    ├── Controller/             # Employer-specific behavior
+    ├── Model/                  # Employer data (ModelEmployer.cs)
+    ├── View/                   # Employer visuals (ViewEmployer.cs, ViewFood.cs)
+    └── Events/                 # Employer event system
+```
+
+**Key Points**:
+- **Model** holds data and business logic (no Unity dependencies)
+- **View** handles rendering and Unity-specific behavior (MonoBehaviour)
+- **Controller** coordinates between Model and View
+- **Events** provide decoupled communication between systems
+
+### Manager Pattern
+
+Managers are high-level systems that coordinate multiple services and control game flow:
+
+- **ManagerScreen** (`ManagerScreen.cs:8-58`) - Manages UI screen transitions, listens to button events, handles screen open/close logic
+- **ManagerCustomer** - Controls customer spawning, lifecycle, and queueing
+- **ManagerEmployer** - Controls employee hiring, placement, and management
+- **ManagerShop** - Controls shop UI, item purchases, and inventory
+
+All managers implement `IInitializable` and `IDisposable` from Zenject for proper lifecycle management.
+
+### Service Pattern
+
+Services contain business logic and coordinate data flow:
+
+- **ServiceMapPoint** - Manages waypoints and pathfinding points for characters
+- **ServiceCustomerQueue** - Handles customer queue logic and order processing
+- **ServiceFoodGenerators** - Manages food generation stations and timers
+
+### Factory Pattern
+
+Factories handle object creation and are injected via Zenject:
+
+- **FactoryCustomer** - Creates customer instances with proper dependency injection
+- **FactoryEmployer** - Creates employer instances with proper dependency injection
+- **IFactory** - Base factory interface
+
+### Map Points System
+
+The game uses a waypoint-based navigation system:
+
+- **PointMono** - MonoBehaviour representing a physical point in the scene
+- **CollectionPointsMono** - Serializable dictionary of all map points
+- Map points use string IDs (e.g., "CSP1" for "Customer Spawn 1")
+- See `InstallerManagers.cs:58` for example: `MapPoints["CSP1"]` retrieves spawn point
+
+### Event System
+
+The project uses C# events for decoupled communication:
+
+- **EventsCustomer** - Customer-related events
+- **EventsEmployer** - Employer-related events
+- **EventsPlayerResources** - Resource change events
+- **EventsShop** - Shop interaction events
+- **EventsButtonClick** - UI button events (e.g., `OnCloseScreen`, `OnOpenScreen`)
+
+## Common Development Tasks
+
+### Adding a New Service
+
+1. Create service class in `Assets/Modules/Core/Services/`
+2. Implement service logic (inject dependencies via constructor)
+3. Open `Assets/Modules/Core/Zenject/InstallerServices.cs`
+4. Add binding method:
+   ```csharp
+   private void BindYourService()
+   {
+       Container
+           .BindInterfacesAndSelfTo<YourService>()
+           .AsSingle();
+   }
+   ```
+5. Call method in `InstallBindings()`
+
+### Adding a New Manager
+
+1. Create manager class in `Assets/Modules/Core/Managers/`
+2. Implement `IInitializable` and `IDisposable` interfaces
+3. Add constructor with injected dependencies
+4. Open `Assets/Modules/Core/Zenject/InstallerManagers.cs`
+5. Add serialized field if manager needs scene references
+6. Add binding method similar to existing managers
+7. Inject required dependencies with `WithArguments()` if needed
+
+### Adding a New Character Type
+
+1. Create folder structure: `Assets/Modules/Content/Characters/[Type]/`
+2. Create Model, View, Controller, and Events classes
+3. Inherit from `BaseController` and `BaseView`
+4. Create factory in `Assets/Modules/Core/Factories/`
+5. Register factory in `InstallerFactories.cs`
+6. Add manager if needed for lifecycle control
+
+### Modifying UI Screens
+
+1. UI screens inherit from `BaseScreen`
+2. Screen types defined in `ScreenType` enum
+3. Screens registered in `CollectionScreens` serializable collection
+4. ManagerScreen handles transitions via `EventsButtonClick` events
+5. Main scene: `Assets/Scenes/Gameplay.unity`
+
+### Working with Food System
+
+1. **FoodType** enum defines food varieties
+2. **FoodGenerator** MonoBehaviour generates food over time
+3. **ServiceFoodGenerators** manages all generators
+4. Food visuals handled by **ViewFood** component on Employers
+
+### Working with Map Points
+
+1. Find all points in scene via `CollectionPointsMono.MapPoints` dictionary
+2. Point IDs are strings (e.g., "CSP1", "BUY1", "KITCHEN1")
+3. **PointType** enum categorizes points (Buy, Spawn, Kitchen, etc.)
+4. Use `ServiceMapPoint` to query and manage points at runtime
+5. 
+## Scene Structure
+
+**Main Scene**: `Assets/Scenes/Gameplay.unity`
+
+This scene contains:
+- SceneContext (Zenject) with all installers attached
+- Camera setup
+- UI Canvas with screen collection
+- Map points for navigation
+- Environment objects
+
+## Important Notes
+
+- **Zenject is critical** - Most systems depend on DI, always check installers before modifications
+- **Event-driven architecture** - Systems communicate via events, not direct references
+- **MVC for characters** - Keep Model, View, Controller separated for maintainability
+- **Map point IDs** - Use meaningful string IDs for waypoints (e.g., "CSP1" = Customer Spawn Point 1)
+- **UniTask for async** - Prefer UniTask over Coroutines for async operations
+- **Odin Inspector** - Many classes use Odin attributes for inspector enhancement
+- **Mobile target** - Consider touch input and performance for mobile platforms
+- **NavMesh** - Character movement uses Unity's AI Navigation with NavMeshAgent
