@@ -346,8 +346,8 @@ GameObject:
   - component: {fileID: 69538234}
   - component: {fileID: 69538233}
   - component: {fileID: 69538232}
-  - component: {fileID: 69538236}
   - component: {fileID: 69538235}
+  - component: {fileID: 69538236}
   m_Layer: 5
   m_Name: '[Button] Open Screen Button'
   m_TagString: Untagged
@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8219f367e5184058b4890a1a78db657c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _withAnimation: 0
   _screenType: 1
 --- !u!95 &69538236
 Animator:
@@ -12974,6 +12975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6791737f75d64a57918b784a212531cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _withAnimation: 0
 --- !u!1 &1507031326
 GameObject:
   m_ObjectHideFlags: 0
