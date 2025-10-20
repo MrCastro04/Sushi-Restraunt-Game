@@ -1,22 +1,6 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 **Sushi Idle Game** - An idle restaurant management game built with Unity 2022.3.20f1. Players manage a sushi restaurant by hiring employees, serving customers, and generating revenue. The game uses modern Unity development practices with Zenject for dependency injection, UniTask for async operations, and DOTween for animations.
-
-## Unity Project Structure
-
-The actual Unity project is located at:
-```
-Sushi-Restraunt-Game/Sushi bar Game/
-```
-
-Always navigate to this directory before running Unity commands:
-```bash
-cd "Desktop/Unity Projects/Sushi Idle Game/Sushi-Restraunt-Game/Sushi bar Game"
-```
 
 ## Key Technologies
 
@@ -221,48 +205,7 @@ The project uses C# events for decoupled communication:
 2. Point IDs are strings (e.g., "CSP1", "BUY1", "KITCHEN1")
 3. **PointType** enum categorizes points (Buy, Spawn, Kitchen, etc.)
 4. Use `ServiceMapPoint` to query and manage points at runtime
-
-## Building and Testing
-
-### Opening in Unity
-
-```bash
-# From project root
-cd "Sushi bar Game"
-
-# Windows - Open Unity Hub
-start unityhub://[PROJECT_PATH]
-```
-
-### Opening in Rider
-
-The project includes a `.sln` file for JetBrains Rider:
-```bash
-rider "Sushi bar Game.sln"
-```
-
-### Running Tests
-
-Unity Test Framework is available. Access via:
-- Unity Editor: Window → General → Test Runner
-- Or run tests via command line (requires Unity CLI setup)
-
-## Third-Party Assets
-
-### Casual GUI Kit Mobile
-
-Located in `Assets/hardartcore/Casual GUI Kit Mobile/`
-- UI sprites, fonts, and prefabs for mobile-friendly interface
-- Pre-made button styles and panel designs
-- Use these assets for consistent UI look and feel
-
-### Plugin Documentation
-
-- **Zenject**: `Assets/Plugins/Zenject/` - See Zenject documentation at https://github.com/modesttree/Zenject
-- **UniTask**: `Assets/Plugins/UniTask/` - See UniTask documentation at https://github.com/Cysharp/UniTask
-- **DOTween**: `Assets/Plugins/Demigiant/DOTween/` - See DOTween documentation at http://dotween.demigiant.com/
-- **Odin Inspector**: `Assets/Plugins/Sirenix/` - Enhanced inspector and serialization
-
+5. 
 ## Scene Structure
 
 **Main Scene**: `Assets/Scenes/Gameplay.unity`
@@ -284,12 +227,3 @@ This scene contains:
 - **Odin Inspector** - Many classes use Odin attributes for inspector enhancement
 - **Mobile target** - Consider touch input and performance for mobile platforms
 - **NavMesh** - Character movement uses Unity's AI Navigation with NavMeshAgent
-
-## Development Tips
-
-1. **Read installers first** - Understanding the DI setup is crucial for this project
-2. **Follow existing patterns** - Study existing Managers, Services, and Factories before creating new ones
-3. **Use Events** - Avoid tight coupling by using the event system
-4. **Test in Unity Editor** - Always test changes in play mode before building
-5. **Check map points** - Verify map point IDs match between code and scene
-6. **Profile on device** - Performance matters for mobile idle games
