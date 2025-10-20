@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 69538233}
   - component: {fileID: 69538232}
   - component: {fileID: 69538235}
+  - component: {fileID: 69538236}
   m_Layer: 5
   m_Name: '[Button] Open Screen Button'
   m_TagString: Untagged
@@ -467,7 +468,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8219f367e5184058b4890a1a78db657c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _withAnimation: 0
   _screenType: 1
+--- !u!95 &69538236
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69538230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b5859506d36c4d8b85fdb1526af4251, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &74792953
 GameObject:
   m_ObjectHideFlags: 0
@@ -6804,7 +6827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0022329013}
+  m_AnchoredPosition: {x: 0, y: 0.00085657736}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &905260168
@@ -12952,6 +12975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6791737f75d64a57918b784a212531cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _withAnimation: 0
 --- !u!1 &1507031326
 GameObject:
   m_ObjectHideFlags: 0
