@@ -2,6 +2,8 @@
 
 A brief overview of the project and its key features. This is an idle simulation game where the player manages a sushi restaurant, hires staff, serves customers, and expands their culinary empire.
 
+---
+
  Features:
    
    Idle Gameplay: Automate restaurant operations with hired staff.
@@ -13,3 +15,12 @@ A brief overview of the project and its key features. This is an idle simulation
   Upgrade System: Improve your restaurant's equipment and recipes.
   
   Resource Management: Balance your budget and resources to maximize profit.
+
+  ---
+
+
+2. Technologies & Plugins
+
+A detailed description of all technologies used in the project.
+
+    Zenject (Dependency Injection): Used for managing dependencies and creating a loosely coupled architecture. It helps decouple objects from concrete implementations, making the code more modular, testable, and maintainable.
