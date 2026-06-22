@@ -128,7 +128,7 @@ Factories handle object creation and are injected via Zenject:
 - **FactoryEmployer** - Creates employer instances with proper dependency injection
 - **IFactory** - Base factory interface
 
-### Map Points System
+### Map Points System/
 
 The game uses a waypoint-based navigation system:
 
